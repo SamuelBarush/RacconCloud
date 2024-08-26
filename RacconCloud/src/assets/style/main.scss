@@ -1,0 +1,16 @@
+@import "../style/global/variable.scss";
+@import "../style/global/fonts.scss";
+@import "../style/components/header_home.scss";
+@import "../style/components/header_dashboard.scss";
+@import "../style/components/footer_dashboard.scss";
+@import "../style/components/main_dashboard.scss";
+@import "../style/components/header_folders.scss";
+@import "../style/components/main_folders.scss";
+
+*{
+    margin: 0;
+}
+
+body{
+    background-color: $black;
+}

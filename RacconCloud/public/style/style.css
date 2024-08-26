@@ -1,0 +1,366 @@
+@font-face {
+  font-family: "Sono-Bold";
+  src: url("../../../../src/assets/fonts/Sono-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-ExtraBold";
+  src: url("../../../../src/assets/fonts/Sono-ExtraBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-ExtraLight";
+  src: url("../../../../src/assets/fonts/Sono-ExtraLight.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-Light";
+  src: url("../../../../src/assets/fonts/Sono-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-Medium";
+  src: url("../../../../src/assets/fonts/Sono-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-Regular";
+  src: url("../../../../src/assets/fonts/Sono-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Sono-SemiBold";
+  src: url("../../../../src/assets/fonts/Sono-SemiBold.woff2") format("woff2");
+}
+.header-home-container {
+  margin: 0;
+  background-color: #000;
+  color: #FFF;
+  display: flex;
+}
+
+.header-dashboard-container {
+  display: flex;
+  padding: 5px 35px;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  background-color: rgba(255, 255, 255, 0.0823529412);
+  color: #FFF;
+}
+
+.header-dashboard-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 145px;
+  height: 55px;
+  padding: 5px 10px;
+}
+.header-dashboard-user p:first-child {
+  font-family: "Sono-Medium";
+  font-size: 20px;
+}
+.header-dashboard-user p:last-child {
+  font-family: "Sono-Light";
+  font-size: 16px;
+}
+
+.header-dashboard-img {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  width: 75px;
+}
+.header-dashboard-img img {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+}
+
+.footer-dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.0823529412);
+  height: 70px;
+  padding: 5px 30px;
+}
+
+.footer-dashboard-icon {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 30px;
+}
+.footer-dashboard-icon img {
+  width: 30px;
+  height: 30px;
+}
+
+.footer-dashboard-icon:nth-child(3) {
+  width: 33px;
+  height: 33px;
+}
+.footer-dashboard-icon:nth-child(3) img {
+  width: 33px;
+  height: 33px;
+}
+
+.main-dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 24px;
+  padding: 25px 25px;
+}
+
+.main-dashboard-title {
+  height: 80px;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  padding: 0px 15px;
+}
+.main-dashboard-title p {
+  color: #FFF;
+  font-family: "Sono-SemiBold";
+  font-size: 32px;
+}
+
+.main-dashboard-block {
+  background-color: rgba(255, 255, 255, 0.25);
+  height: 130px;
+  width: 130px;
+  border-radius: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 15px;
+  color: #FFF;
+}
+.main-dashboard-block p:nth-child(2) {
+  font-family: "Sono-Regular";
+  font-size: 16px;
+}
+.main-dashboard-block p:last-child {
+  font-family: "Sono-Light";
+  font-size: 10px;
+}
+
+.main-dashboard-block-img-a {
+  background-color: #EC3A0A;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10%;
+}
+.main-dashboard-block-img-a img {
+  width: 30px;
+  height: 30px;
+}
+
+#block-a {
+  grid-column: span 4/span 4;
+}
+
+#block-1a {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-row-start: 2;
+}
+
+#block-2a {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+#block-b {
+  grid-column: span 4/span 4;
+  grid-row-start: 4;
+}
+
+#block-1b {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-row-start: 5;
+}
+
+#block-2b {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 5;
+}
+
+#block-3b {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-row-start: 7;
+}
+
+#block-4b {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 7;
+}
+
+.header-folders-container {
+  display: flex;
+  padding: 5px 35px;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  background-color: rgba(255, 255, 255, 0.0823529412);
+}
+
+.header-folders-title {
+  color: #FFF;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-folders-title p {
+  font-family: "Sono-Bold";
+  font-size: 16px;
+}
+
+#header-folders-title-a {
+  border-bottom-color: #EC3A0A;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+}
+
+#header-folders-title-b {
+  border-bottom-color: #EC3A0A;
+  border-bottom-style: none;
+  border-bottom-width: 3px;
+}
+
+.main-folders-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  gap: 24px;
+  padding: 25px 40px;
+}
+
+.main-folders-search {
+  height: 50px;
+  width: 260px;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 0px 20px;
+  padding: 0px 20px;
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+}
+.main-folders-search img {
+  width: 25px;
+  height: 25px;
+}
+.main-folders-search input {
+  right: 100px;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  color: white;
+  font-family: "Sono-ExtraLight";
+  font-size: 14px;
+}
+
+.main-folders-block {
+  background-color: rgba(255, 255, 255, 0.25);
+  height: 110px;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 0px;
+  color: white;
+  padding: 10px 0px;
+  border-radius: 10%;
+}
+.main-folders-block img {
+  height: 70px;
+  width: 70px;
+}
+.main-folders-block p {
+  font-family: "Sono-Light";
+  font-size: 16px;
+}
+
+#folder-block-a {
+  grid-column: span 4/span 4;
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+#folder-block-1 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+#folder-block-2 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+#folder-block-3 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 1;
+  grid-row-start: 4;
+}
+
+#folder-block-4 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
+
+#folder-block-5 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 1;
+  grid-row-start: 6;
+}
+
+#folder-block-6 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 6;
+}
+
+#folder-block-7 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 1;
+  grid-row-start: 8;
+}
+
+#folder-block-8 {
+  grid-column: span 2/span 2;
+  grid-row: span 2/span 2;
+  grid-column-start: 3;
+  grid-row-start: 8;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  background-color: #000;
+}
+
+/*# sourceMappingURL=style.css.map */

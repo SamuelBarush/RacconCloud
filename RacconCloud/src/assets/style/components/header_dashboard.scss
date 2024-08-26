@@ -1,0 +1,39 @@
+.header-dashboard-container {
+    display: flex;
+    padding: 5px 35px;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+    background-color: #ffffff15;
+    color: $white;
+}
+
+.header-dashboard-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 145px;
+    height: 55px;
+    padding: 5px 10px;
+    p:first-child{
+        font-family: 'Sono-Medium';
+        font-size: 20px;
+    }
+    p:last-child{
+        font-family: 'Sono-Light';
+        font-size: 16px;
+    }
+}
+
+.header-dashboard-img {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    width: 75px;
+
+    img{
+        height: 75px;
+        width: 75px;
+        border-radius: 50%;
+    }
+}
