@@ -1,0 +1,52 @@
+.main-folders-menu-container-open{
+    display: none;
+    //display: flex;
+    position: fixed;
+    z-index: 1000;
+    bottom: 80px;
+    right: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: $white;
+    width: 200px;
+    height: 200px;
+    border-radius: 30px;
+}
+
+.main-folders-menu-option{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    img{
+        width: 30px;
+        height: 30px;
+    }
+    p{
+        color: $black;
+        font-family: 'Sono-Bold';
+        font-size: 14px;
+    }
+
+}
+
+.main-folders-menu-container-close{
+    //display: none;
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    bottom: 80px;
+    right: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: $white;
+    width: 70px;
+    height: 70px;
+    border-radius: 15px;
+    img{
+        width: 40px;
+        height: 40px;
+    }
+}

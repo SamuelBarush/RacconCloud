@@ -2,11 +2,16 @@
 
 .footer-dashboard-container{
     display: flex;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1000;
     align-items: center;
-    justify-content: space-between;
-    background-color: #ffffff15;
-    height: 70px;
-    padding: 5px 30px;
+    justify-content: center;
+    gap: 70px;
+    background-color: #262626;
+    height: 60px;
+    width: 100%;
+    padding: 5px 5px;
 }
 
 .footer-dashboard-icon{

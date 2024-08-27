@@ -74,11 +74,16 @@
 
 .footer-dashboard-container {
   display: flex;
+  position: fixed;
+  bottom: 0px;
+  z-index: 1000;
   align-items: center;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.0823529412);
-  height: 70px;
-  padding: 5px 30px;
+  justify-content: center;
+  gap: 70px;
+  background-color: #262626;
+  height: 60px;
+  width: 100%;
+  padding: 5px 5px;
 }
 
 .footer-dashboard-icon {
@@ -242,17 +247,19 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  gap: 24px;
-  padding: 25px 40px;
+  gap: 30px;
+  justify-items: center;
+  align-items: center;
+  padding: 10px 10px;
 }
 
 .main-folders-search {
   height: 50px;
-  width: 260px;
+  width: 80%;
   background-color: rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
-  gap: 0px 20px;
+  gap: 20px;
   padding: 0px 20px;
   color: rgba(255, 255, 255, 0.5);
   border-radius: 15px;
@@ -262,6 +269,7 @@
   height: 25px;
 }
 .main-folders-search input {
+  width: 100%;
   right: 100px;
   border: 0;
   outline: none;
@@ -273,15 +281,14 @@
 
 .main-folders-block {
   background-color: rgba(255, 255, 255, 0.25);
-  height: 110px;
-  width: 130px;
+  height: 140px;
+  width: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px 0px;
+  gap: 20px;
   color: white;
-  padding: 10px 0px;
   border-radius: 10%;
 }
 .main-folders-block img {
@@ -353,6 +360,56 @@
   grid-row: span 2/span 2;
   grid-column-start: 3;
   grid-row-start: 8;
+}
+
+.main-folders-menu-container-open {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  bottom: 80px;
+  right: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #FFF;
+  width: 200px;
+  height: 200px;
+  border-radius: 30px;
+}
+
+.main-folders-menu-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.main-folders-menu-option img {
+  width: 30px;
+  height: 30px;
+}
+.main-folders-menu-option p {
+  color: #000;
+  font-family: "Sono-Bold";
+  font-size: 14px;
+}
+
+.main-folders-menu-container-close {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  bottom: 80px;
+  right: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+  width: 70px;
+  height: 70px;
+  border-radius: 15px;
+}
+.main-folders-menu-container-close img {
+  width: 40px;
+  height: 40px;
 }
 
 .main-login-container {
@@ -511,13 +568,13 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  padding: 0px 30px;
   font-family: "Sono-Regular";
   font-size: 14px;
 }
 .main-info-text div img {
   width: 50px;
   height: 50px;
-  background-color: #EC3A0A;
 }
 
 * {
