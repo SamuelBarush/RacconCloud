@@ -355,6 +355,171 @@
   grid-row-start: 8;
 }
 
+.main-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-login-ID {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Sono-Regular";
+  font-size: 14px;
+  color: #FFF;
+}
+.main-login-ID div {
+  display: flex;
+  width: 300px;
+  height: 40px;
+  border-style: solid;
+  border-color: #EC3A0A;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.main-login-ID div input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  color: #FFF;
+  font-family: "Sono-ExtraLight";
+  font-size: 18px;
+}
+
+.main-login-PW {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.main-login-PW label {
+  font-family: "Sono-Regular";
+  font-size: 14px;
+  color: #FFF;
+}
+.main-login-PW div {
+  display: flex;
+  width: 300px;
+  height: 40px;
+  border-style: solid;
+  border-color: #EC3A0A;
+  border-radius: 5px;
+  padding: 0px 10px;
+}
+.main-login-PW div input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  color: #FFF;
+  font-family: "Sono-ExtraLight";
+  font-size: 18px;
+}
+
+.main-login-BT {
+  position: relative;
+  top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EC3A0A;
+  width: 150px;
+  height: 50px;
+  border-radius: 15px;
+}
+.main-login-BT input {
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  width: 80%;
+  height: 80%;
+  color: #FFF;
+  font-family: "Sono-Medium";
+  font-size: 16px;
+}
+
+#main-login-FPW {
+  position: relative;
+  left: 150px;
+  color: #9B2211;
+  font-family: "Sono-Light";
+  font-size: 14px;
+}
+
+.header-login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px 20px;
+}
+
+#header-login-img {
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #EC3A0A;
+  border-radius: 50%;
+}
+
+#header-login-title {
+  display: flex;
+  justify-content: center;
+  color: #FFF;
+  font-family: "Sono-Bold";
+  font-size: 20px;
+}
+
+.main-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0px;
+  gap: 40px;
+}
+
+.main-info-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  color: #FFF;
+  font-family: "Sono-Bold";
+  font-size: 20px;
+}
+.main-info-user div {
+  background-color: #EC3A0A;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.main-info-text {
+  width: 100%;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.main-info-text h3 {
+  font-family: "Sono-Bold";
+  font-size: 18px;
+}
+.main-info-text div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: "Sono-Regular";
+  font-size: 14px;
+}
+.main-info-text div img {
+  width: 50px;
+  height: 50px;
+  background-color: #EC3A0A;
+}
+
 * {
   margin: 0;
 }

@@ -1,0 +1,51 @@
+.main-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0px;
+    gap: 40px;
+}
+
+.main-info-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    color: $white;
+    font-family: 'Sono-Bold';
+    font-size: 20px;
+    div{
+        background-color: $color-7;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+    }
+}
+
+.main-info-text{
+    width: 100%;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    h3{
+        font-family: 'Sono-Bold';
+        font-size: 18px;
+    }
+
+    div{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-family: 'Sono-Regular';
+        font-size: 14px;
+
+        img{
+                width: 50px;
+                height: 50px;
+                background-color: $color-7;
+        }       
+    }
+    
+}
