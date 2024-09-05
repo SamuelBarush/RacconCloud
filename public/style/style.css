@@ -117,15 +117,16 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(8, 1fr);
   gap: 24px;
-  padding: 25px 25px;
+  justify-items: center;
+  align-items: center;
+  padding: 10px 10px;
 }
 
 .main-dashboard-title {
   height: 80px;
-  width: 280px;
+  width: 100%;
   display: flex;
   align-items: center;
-  padding: 0px 15px;
 }
 .main-dashboard-title p {
   color: #FFF;
@@ -252,7 +253,7 @@
 }
 
 .main-folders-container {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(9, 1fr);
   gap: 30px;
@@ -403,7 +404,7 @@
 }
 
 .main-folders-menu-container-close {
-  display: flex;
+  display: none;
   position: fixed;
   z-index: 1000;
   bottom: 80px;
@@ -418,6 +419,72 @@
 .main-folders-menu-container-close img {
   width: 40px;
   height: 40px;
+}
+
+.modal-folder-nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-folder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #FFF;
+  width: 260px;
+  height: 150px;
+  border-radius: 15px;
+  padding: 0px 20px;
+}
+
+.modal-folder-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #000;
+}
+.modal-folder-text p:first-child {
+  font-family: "Sono-Bold";
+  font-size: 18px;
+}
+.modal-folder-text p:nth-child(2) {
+  font-family: "Sono-ExtraLight";
+  font-size: 12px;
+}
+
+.modal-folder-namefolder {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+}
+.modal-folder-namefolder input {
+  width: 80%;
+  height: 100%;
+  color: #000;
+  border-style: solid;
+  border-color: #EC3A0A;
+  font-family: "Sono-ExtraLight";
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.modal-folder-input {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+.modal-folder-input input {
+  color: #EC3A0A;
+  font-family: "Sono-Bold";
+  border: 0;
+  outline: none;
+  background-color: transparent;
 }
 
 .main-login-container {
