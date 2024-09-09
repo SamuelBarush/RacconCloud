@@ -1,0 +1,122 @@
+.main-folders-container{
+    //display: none;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(9,1fr);
+    gap: 30px;
+    justify-items: center;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.main-folders-search{
+    height: 50px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 20px;
+    color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    img{
+        width: 25px;
+        height: 25px;
+    }
+    input{
+        width: 100%;
+        right: 100px;
+        border: 0;
+        outline: none;
+        background-color: transparent;
+        color: white;
+        font-family: 'Sono-ExtraLight';
+        font-size: 14px;
+    }
+
+}
+
+.main-folders-block{
+    background-color: rgba(255, 255, 255, 0.25);
+    height: 140px;
+    width: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: white;
+    border-radius: 10%;
+    img{
+        height: 70px;
+        width: 70px;
+    }
+
+    p{
+        font-family: 'Sono-Light';
+        font-size: 16px;
+    }
+}
+
+#folder-block-a{
+    grid-column: span 4 / span 4;
+    grid-column-start: 1;
+    grid-row-start: 1;
+}
+
+#folder-block-1{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+#folder-block-2{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 2;
+}
+
+#folder-block-3{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 4;
+}
+
+#folder-block-4{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 4;
+}
+
+#folder-block-5{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 6;
+}
+
+#folder-block-6{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 6;
+}
+
+#folder-block-7{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 1;
+    grid-row-start: 8;
+}
+
+#folder-block-8{
+    grid-column: span 2 / span 2;
+    grid-row: span 2 / span 2;
+    grid-column-start: 3;
+    grid-row-start: 8;
+}
+

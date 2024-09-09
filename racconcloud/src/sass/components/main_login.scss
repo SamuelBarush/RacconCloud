@@ -1,0 +1,95 @@
+.main-login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-login-ID{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'Sono-Regular';
+    font-size: 14px;
+    color: $white;
+    div{
+        display: flex;
+        width: 300px;
+        height: 40px;
+        border-style: solid;
+        border-color: $color-7;
+        border-radius: 5px;
+        padding: 0px 10px;
+
+        input{
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: $white;
+            font-family: 'Sono-ExtraLight';
+            font-size: 18px;
+        }
+    }
+}
+
+.main-login-PW{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    label{
+        font-family: 'Sono-Regular';
+        font-size: 14px;
+        color: $white;
+    }
+    div{
+        display: flex;
+        width: 300px;
+        height: 40px;
+        border-style: solid;
+        border-color: $color-7;
+        border-radius: 5px;
+        padding: 0px 10px;
+
+        input{
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: $white;
+            font-family: 'Sono-ExtraLight';
+            font-size: 18px;
+        } 
+    }
+}
+
+.main-login-BT{
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-7;
+    width: 150px;
+    height: 50px;
+    border-radius: 15px;
+    input{
+        border: 0;
+        outline: none;
+        background-color: transparent;
+        width: 80%;
+        height: 80%;
+        color: $white;
+        font-family: 'Sono-Medium';
+        font-size: 16px;
+    }
+}
+
+#main-login-FPW{
+    position: relative;
+    left: 150px;
+    color: $color-9;
+    font-family: 'Sono-Light';
+    font-size: 14px;
+}

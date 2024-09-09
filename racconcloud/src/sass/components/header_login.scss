@@ -1,0 +1,22 @@
+.header-login-container{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px 20px;
+}
+#header-login-img{
+    display: flex;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: $color-7;
+    border-radius: 50%;
+}
+#header-login-title{
+    display: flex;
+    justify-content: center;
+    color: $white;
+    font-family: 'Sono-Bold';
+    font-size: 20px;
+
+}
