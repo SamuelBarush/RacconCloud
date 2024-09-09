@@ -12,8 +12,10 @@
             <div><img src="../assets/images/llave.png" alt=""><p>CURP: </p></div>
         </div>
     </main>
+    <FooterComponent/>
 </template>
 
 <script setup>
-    import HeaderInfoComponent from '../components/HeaderInfoComponent.vue'
+    import HeaderInfoComponent from '@/components/HeaderInfoComponent.vue'
+    import FooterComponent from '@/components/FooterComponent.vue';
 </script>

@@ -38,9 +38,11 @@
             <p>Archivo</p>
         </div>   
     </main>
+    <FooterComponent/>
 </template>
 
 <script setup>
-    import HeaderFolderComponent from '../components/HeaderFolderComponent.vue'
+    import HeaderFolderComponent from '@/components/HeaderFolderComponent.vue'
+    import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 

@@ -22,9 +22,11 @@
         <div class="main-dashboard-block" id="block-3b"></div>
         <div class="main-dashboard-block" id="block-4b"></div>    
     </main>
+    <FooterComponent/>
 </template>
 
 <script setup>
-    import HeaderComponent from '../components/HeaderComponent.vue'
+    import HeaderComponent from '@/components/HeaderComponent.vue'
+    import FooterComponent from '@/components/FooterComponent.vue';
 </script>
 

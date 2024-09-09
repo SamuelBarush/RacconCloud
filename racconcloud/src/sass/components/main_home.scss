@@ -1,0 +1,33 @@
+.main-home-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 50px;
+    padding-top: 50px;
+}
+
+.main-home-text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 70%;
+    color: $white;
+    h1{
+        font-family: 'Sono-Bold';
+    }
+    p{
+        font-family: 'Sono-Light';
+    }
+
+}
+
+.main-home-image{
+    display: none;
+}
+
+.aside{
+    display: none;
+}

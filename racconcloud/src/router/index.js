@@ -3,6 +3,7 @@ import DashboardStudentView from '../views/DashboardStudentView.vue'
 import FolderStudentView from '../views/FoldersStudentView.vue'
 import InfoView from '../views/InfoView.vue'
 import LoginView from '../views/LoginView.vue'
+import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/folders',
     name: 'folders',
     component: FolderStudentView
+  },
+  {
+    path: '/home',
+    name: 'home',
+    component: HomeView
   }
 ]
 

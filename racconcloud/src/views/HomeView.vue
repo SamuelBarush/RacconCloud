@@ -2,8 +2,8 @@
     <HeaderHomeComponent/>
     <main class="main-home-container">
         <div class="main-home-text">
-            <h1>Bienvenido a la nube de la ESCOM</h1>
-            <p>No se que poner XD</p>
+            <h1>Raccon Cloud</h1>
+            <p>Bienvenido a la Nube de la ESCOM</p>
         </div>
         <div class="main-home-image">
             <img src="" alt="Cloud Image">
