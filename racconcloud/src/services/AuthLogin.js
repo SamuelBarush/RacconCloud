@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-class AuthLogin {
+export default class AuthLogin {
 
     constructor(){
         this.jwt = ref('')

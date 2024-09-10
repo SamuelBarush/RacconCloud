@@ -1,41 +1,73 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardStudentView from '../views/DashboardStudentView.vue'
 import FolderStudentView from '../views/FoldersStudentView.vue'
-import InfoView from '../views/InfoView.vue'
+import InfoStudentView from '@/views/InfoStudentView.vue'
+//import InfoView from '../views/InfoView.vue'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   {
-    path: '/dashboard',
-    name: 'dashboard',
-    component: DashboardStudentView
+    path: '/home',
+    name: 'home',
+    component: HomeView,
+    meta:{
+      requireAuth: false,
+      role: ''
+    }
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    meta:{
+      requireAuth: false,
+      role: ''
+    }
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard-student',
+    component: DashboardStudentView,
+    meta:{
+      requireAuth: true,
+      role: 'student'
+    }
   },
   {
     path: '/info',
-    name: 'info',
-    component: InfoView
+    name: 'info-student',
+    component: InfoStudentView,
+    meta:{
+      requireAuth: true,
+      role: 'student'
+    }
   },
   {
     path: '/folders',
-    name: 'folders',
-    component: FolderStudentView
-  },
-  {
-    path: '/home',
-    name: 'home',
-    component: HomeView
+    name: 'folders-student',
+    component: FolderStudentView,
+    meta:{
+      requireAuth: true,
+      role: 'student'
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const auth = true
+  const needAuth = to.meta.requireAuth
+
+  if (needAuth && !auth) {
+    next('login')
+  } else {
+    next()
+  }
 })
 
 export default router
