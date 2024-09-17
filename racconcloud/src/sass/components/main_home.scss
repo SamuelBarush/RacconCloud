@@ -1,20 +1,37 @@
 .main-home-container{
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     height: 100%;
     gap: 50px;
-    padding-top: 50px;
+    margin-top: 50px;
 }
 
-.main-home-text{
+.main-home-image{
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     gap: 20px;
     width: 70%;
     color: $white;
+    img{
+        display: none;
+    }
+
+    @media (min-width: 1441px) {
+        img{
+            display: block;
+            width: 500px;
+            height: 670px;
+        }
+    }
+}
+
+.main-home-text{
+
     h1{
         font-family: 'Sono-Bold';
     }
@@ -22,12 +39,86 @@
         font-family: 'Sono-Light';
     }
 
+    @media (min-width: 1441px) {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 100px;
+        left: 50px;
+        gap: 20px;
+
+        h1{
+            font-size: 64px;
+        }
+        p{
+            font-size: 36px;
+        }
+    }
 }
 
-.main-home-image{
-    display: none;
-}
 
 .aside{
     display: none;
+    position: absolute;
+    overflow: hidden;
+    margin: 10px 10px;
+    color: $white;
+
+    h2{
+        font-family: 'Sono-Bold';
+    }
+    p{
+        font-family: 'Sono-Light';
+    }
+    ul{
+        display: flex;
+        padding: 0px 0px;
+        width: 400%;
+        animation: slide 20s infinite alternate ease-in-out;
+    }
+    li{
+        width: 100%;
+        list-style: none;
+    }
+
+    @media (min-width: 1441px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 350px;
+        height: 450px;
+        right: 80px;
+        top: 10px;
+
+        h2{
+            font-size: 16px;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+}
+
+.main-home-image-slide{
+    
+    @media (min-width: 1441px) {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@keyframes slide {
+    0% { margin-left: 0%;}
+    25% { margin-left: 0%;}
+
+    25% { margin-left: -100%;}
+    50% { margin-left: -100%;}
+
+    50% { margin-left: -200%;}
+    75% { margin-left: -200%;}
+
+    75% { margin-left: -300%;}
+    100% { margin-left: -300%;}
 }

@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import App from '@/App.vue'
 import DashboardStudentView from '../views/DashboardStudentView.vue'
 import FolderStudentView from '../views/FoldersStudentView.vue'
 import InfoStudentView from '@/views/InfoStudentView.vue'
 //import InfoView from '../views/InfoView.vue'
 import LoginView from '../views/LoginView.vue'
-import HomeView from '@/views/HomeView.vue'
 
 const routes = [
   {
     path: '/home',
     name: 'home',
-    component: HomeView,
+    component: App,
     meta:{
       requireAuth: false,
       role: ''
