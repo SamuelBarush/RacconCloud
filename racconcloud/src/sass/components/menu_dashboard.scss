@@ -1,0 +1,85 @@
+.menu-dashboard-student-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 350px;
+    background-color: #ffffff15;
+}
+
+.menu-dashboard-student-actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-dashboard-actions-options{
+    display: flex;
+    align-items: center;
+    color: $white;
+    gap: 10px;
+
+    p{
+        font-family: 'Sono-Regular';
+    }
+
+    @media (min-width: 1441px){
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.menu-dashboard-student-nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-dashboard-nav-options{
+    display: flex;
+    align-items: center;
+    color: $white;
+    gap: 10px;
+
+    p{
+        font-family: 'Sono-Regular';
+    }
+
+    @media (min-width: 1441px){
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+.menu-dashboard-student-options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu-dashboard-options-options{
+    display: flex;
+    align-items: center;
+    color: $white;
+    gap: 10px;
+
+    p{
+        font-family: 'Sono-Regular';
+    }
+
+    @media (min-width: 1441px){
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    }
+}

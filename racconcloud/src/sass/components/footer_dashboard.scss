@@ -9,6 +9,10 @@
     background-color: #262626;
     height: 60px;
     width: 100%;
+
+    @media (min-width: 1441px){
+        display: none;
+    }
 }
 
 .footer-dashboard-icon{
