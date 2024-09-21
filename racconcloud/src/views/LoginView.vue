@@ -1,17 +1,20 @@
 <template>
     <HeaderLoginComponent/>
     <main class="main-login-container">
-        <form action="" method="post">
+        <div class="main-login-title">
+            <h2>Ingresa Tus Datos</h2>
+        </div>
+        <form action="" method="post" class="main-login-form">
             <div class="main-login-ID">
                 <label for="">Identificación</label>
-                <div><input type="text" value="Ingresa tu ID" name="" id="" v-model="ID"></div>
+                <div><input type="text" placeholder="Ingresa tu ID" name="" id="" v-model="ID"></div>
             </div>
             <div class="main-login-PW">
                 <label for="">Contraseña</label>
-                <div><input type="text" value="Ingresa tu Contraseña" name="" id="" v-model="password"></div>
+                <div><input type="password" placeholder="Ingresa tu Contraseña" name="" id="" v-model="password"></div>
                 <p id="main-login-FPW">Olvide mi Contraseña</p>
             </div>   
-            <div class="main-login-BT"><button type="submit" @click.prevent="AuthUser">Sign Up</button></div>
+            <div class="main-login-BT"><input type="submit" value="Sign Up" @click.prevent="AuthUser"></div>
         </form>
     </main>
 </template>

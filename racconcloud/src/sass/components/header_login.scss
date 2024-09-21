@@ -1,8 +1,7 @@
 .header-login-container{
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding: 20px 20px;
+    align-items: center;
+    margin: 20px 20px;
 }
 #header-login-img{
     display: flex;
@@ -11,12 +10,9 @@
     height: 50px;
     background-color: $color-7;
     border-radius: 50%;
-}
-#header-login-title{
-    display: flex;
-    justify-content: center;
-    color: $white;
-    font-family: 'Sono-Bold';
-    font-size: 20px;
 
+    @media (min-width: 1281px) and (max-width: 1440px) {
+        width: 60px;
+        height: 60px;
+    }
 }

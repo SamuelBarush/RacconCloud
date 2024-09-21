@@ -5,6 +5,32 @@
     gap: 20px;
 }
 
+.main-login-title{
+    display: flex;
+    justify-content: center;
+    color: $white;
+    font-family: 'Sono-Bold';
+    font-size: 20px;
+
+}
+
+.main-login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 350px;
+    overflow: hidden;
+
+    @media (min-width: 768px){
+        width: 500px;
+        height: 350px;
+        background-color: $white;
+        border-radius: 20px;
+    }
+}
+
 .main-login-ID{
     display: flex;
     flex-direction: column;
@@ -29,6 +55,15 @@
             color: $white;
             font-family: 'Sono-ExtraLight';
             font-size: 18px;
+        }
+    }
+
+    @media (min-width: 768px){
+        color: $black;
+        div{
+            input{
+                color: $black;
+            }
         }
     }
 }
@@ -62,6 +97,16 @@
             font-size: 18px;
         } 
     }
+    @media (min-width: 768px){
+        label{
+            color: $black;
+        }
+        div{
+            input{
+                color: $black;
+            }
+        }
+    }
 }
 
 .main-login-BT{
@@ -72,7 +117,7 @@
     align-items: center;
     width: 150px;
     height: 50px;
-    button{
+    input{
         border: 0;
         outline: none;
         background-color: $color-7;
@@ -84,6 +129,9 @@
         font-size: 16px;
         cursor: pointer;
     }
+    input:hover{
+        background-color: $color-6;
+    }
 }
 
 #main-login-FPW{
@@ -92,4 +140,12 @@
     color: $color-9;
     font-family: 'Sono-Light';
     font-size: 14px;
+    cursor: pointer;
+    @media (min-width: 768px){
+        font-family: 'Sono-Regular';
+    }
+}
+
+#main-login-FPW:hover{
+    font-family: 'Sono-Bold';
 }
