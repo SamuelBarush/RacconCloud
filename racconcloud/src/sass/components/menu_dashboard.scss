@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     width: 350px;
+    //height: 80vh;
     background-color: #ffffff15;
 }
 
@@ -24,12 +24,9 @@
     p{
         font-family: 'Sono-Regular';
     }
-
-    @media (min-width: 1441px){
-        img{
-            width: 30px;
-            height: 30px;
-        }
+    img{
+        width: 30px;
+        height: 30px;
     }
 }
 
@@ -50,13 +47,11 @@
     p{
         font-family: 'Sono-Regular';
     }
-
-    @media (min-width: 1441px){
-        img{
-            width: 30px;
-            height: 30px;
-        }
+    img{
+        width: 30px;
+        height: 30px;
     }
+
 }
 
 .menu-dashboard-student-options{
@@ -64,9 +59,16 @@
     flex-direction: column;
     justify-content: center;
     gap: 20px;
+    border-style: solid;
+    border-top: 2px solid $white;
+    border-left: $white;
+    border-right: $white;
+    border-bottom: $white;
 }
 
 .menu-dashboard-options-options{
+
+    
     display: flex;
     align-items: center;
     color: $white;
@@ -76,10 +78,8 @@
         font-family: 'Sono-Regular';
     }
 
-    @media (min-width: 1441px){
-        img{
-            width: 30px;
-            height: 30px;
-        }
+    img{
+        width: 30px;
+        height: 30px;
     }
 }

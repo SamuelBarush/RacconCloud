@@ -1,5 +1,6 @@
 .main-dashboard-container{
     display: flex;
+    height: 80vh;
 }
 
 .main-dashboard-container-grid{
@@ -11,7 +12,7 @@
     align-items: center;
     padding: 10px 10px;
 
-    @media (min-width: 1441px){
+    @media (min-width: 1281px){
         display: none;
     }
     
