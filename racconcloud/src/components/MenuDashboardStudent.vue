@@ -21,14 +21,18 @@
             </div>
         </div>
         <div class="menu-dashboard-student-options">
-            <div class="menu-dashboard-options-options">
-                <img src="../assets/images/usuario.png" alt="">
-                <p>Perfil</p>
-            </div>
-            <div class="menu-dashboard-options-options">
-                <img src="../assets/images/salida.png" alt="">
-                <p>Log Out</p>
-            </div>
+            <router-link :to="{name: 'info-student'}">
+                <div class="menu-dashboard-options-options">
+                    <img src="../assets/images/usuario.png" alt="">
+                    <p>Perfil</p>
+                </div>
+            </router-link>
+            <router-link to="/">
+                <div class="menu-dashboard-options-options">
+                    <img src="../assets/images/salida.png" alt="">
+                    <p>Log Out</p>
+                </div>
+            </router-link>
         </div>
     </div>
 </template>

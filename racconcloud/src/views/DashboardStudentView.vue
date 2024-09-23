@@ -25,7 +25,21 @@
             <div class="main-dashboard-block" id="block-4b"></div>
         </div>
         <div class="main-dashboard-container-flex">
-            
+            <div class="main-dashboard-title" id="block-a">
+                <p>Mis Carpetas</p>
+            </div>
+            <div id="main-dashboard-block-container">
+                <div class="main-dashboard-block" id="block-1a">
+                    <div class="main-dashboard-block-img-a"><img src="../assets/images/usuario.png" alt=""></div>
+                    <p>Carpeta Personal</p>
+                    <p>1.5GB de 2GB</p>
+                </div>
+                <div class="main-dashboard-block" id="block-2a">
+                    <div class="main-dashboard-block-img-a"><img src="../assets/images/usuarios-alt.png" alt=""></div>
+                    <p>Carpeta Materias</p>
+                    <p>1.5GB de 2GB</p>
+                </div>
+            </div>
         </div>
     </main> 
     <FooterComponent/>

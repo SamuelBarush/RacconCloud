@@ -48,6 +48,17 @@
         font-family: 'Sono-Light';
         font-size: 10px;
     }  
+
+    @media (min-width: 1281px){
+        width: 160px;
+        height: 160px;
+        p:nth-child(2){
+            font-size: 20px;
+        }
+        p:last-child{
+            font-size: 14px;
+        }  
+    }
 }
 
 .main-dashboard-block-img-a{
@@ -61,6 +72,15 @@
     img{
         width: 30px;
         height: 30px;
+    }
+
+    @media (min-width: 1281px){
+        width: 80px;
+        height: 80px;
+        img{
+            width: 50px;
+            height: 50px;
+        }
     }
 }
 
@@ -110,4 +130,21 @@
     grid-row: span 2 / span 2;
     grid-column-start: 3;
     grid-row-start: 7;
+}
+
+.main-dashboard-container-flex{
+    display: none;
+    @media (min-width: 1281px){
+        display: flex;
+        flex-direction: column;
+        padding-left: 50px;
+        padding-top: 30px;
+        width: 1250px;
+    }
+}
+
+#main-dashboard-block-container{
+    display: flex;
+    gap: 50px   ;
+    
 }
