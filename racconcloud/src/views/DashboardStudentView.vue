@@ -2,45 +2,39 @@
     <HeaderComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardStudent/>
-        <div class="main-dashboard-container-grid">
-            <div class="main-dashboard-title" id="block-a">
+        <div id="main-dashboard-principal">
+            <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
             </div>
-            <div class="main-dashboard-block" id="block-1a">
-                <div class="main-dashboard-block-img-a"><img src="../assets/images/usuario.png" alt=""></div>
-                <p>Carpeta Personal</p>
-                <p>1.5GB de 2GB</p>
+            <div class="main-container-grid-a">
+                <div class="main-dashboard-block">
+                    <div class="main-dashboard-block-img">
+                        <img src="../assets/images/usuario.png" alt="">
+                        <p>Carpeta Personal</p>
+                    </div>
+                    <p>1.5GB de 2GB</p>
+                </div>
+                <div class="main-dashboard-block">
+                    <div class="main-dashboard-block-img">
+                        <img src="../assets/images/usuarios-alt.png" alt="">
+                        <p>Carpeta Materias</p>
+                    </div>
+                    <p>1.5GB de 2GB</p>
+                </div>
             </div>
-            <div class="main-dashboard-block" id="block-2a">
-                <div class="main-dashboard-block-img-a"><img src="../assets/images/usuarios-alt.png" alt=""></div>
-                <p>Carpeta Materias</p>
-                <p>1.5GB de 2GB</p>
-            </div>
-            <div class="main-dashboard-title" id="block-b">
+            <div class="main-dashboard-title">
                 <p>Subidos Recientemente</p>
             </div>
-            <div class="main-dashboard-block" id="block-1b"></div>
-            <div class="main-dashboard-block" id="block-2b"></div>
-            <div class="main-dashboard-block" id="block-3b"></div>
-            <div class="main-dashboard-block" id="block-4b"></div>
-        </div>
-        <div class="main-dashboard-container-flex">
-            <div class="main-dashboard-title" id="block-a">
-                <p>Mis Carpetas</p>
+            <div class="main-container-grid-b">
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
+                <div class="main-dashboard-block-b"></div>
             </div>
-            <div id="main-dashboard-block-container">
-                <div class="main-dashboard-block" id="block-1a">
-                    <div class="main-dashboard-block-img-a"><img src="../assets/images/usuario.png" alt=""></div>
-                    <p>Carpeta Personal</p>
-                    <p>1.5GB de 2GB</p>
-                </div>
-                <div class="main-dashboard-block" id="block-2a">
-                    <div class="main-dashboard-block-img-a"><img src="../assets/images/usuarios-alt.png" alt=""></div>
-                    <p>Carpeta Materias</p>
-                    <p>1.5GB de 2GB</p>
-                </div>
-            </div>
-        </div>
+        </div>  
     </main> 
     <FooterComponent/>
 </template>

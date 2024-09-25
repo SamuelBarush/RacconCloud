@@ -1,12 +1,14 @@
 .menu-dashboard-student-container{
     display: none;
-    @media (min-width: 1281px){
+    @media (min-width: 1024px){
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 350px;
+        width: 20%;
         background-color: #ffffff15;
+        height: 100%;
     }
+
 }
 
 .menu-dashboard-student-actions{ 

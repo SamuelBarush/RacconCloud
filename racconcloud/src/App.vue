@@ -14,4 +14,8 @@
 body{
   background-color: $black;
 }
+
+a{
+  text-decoration: none;
+}
 </style>
