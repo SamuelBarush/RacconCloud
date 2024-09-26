@@ -38,6 +38,7 @@
         width: 30px; 
         height: 30px; 
     }
+
 }
 
 .menu-dashboard-student-nav{ 
@@ -63,6 +64,17 @@
         height: 30px;
     }
 
+    @media (min-width: 1024px){
+        img{ 
+            width: 25px; 
+            height: 25px; 
+        }
+
+        p{
+            font-size: 12px;
+        }
+    }
+
 }
 
 .menu-dashboard-student-options{
@@ -79,7 +91,6 @@
 }
 
 .menu-dashboard-options-options{
-
     display: flex;
     align-items: center;
     margin-left: 40px;
@@ -93,5 +104,16 @@
     img{
         width: 30px;
         height: 30px;
+    }
+
+    @media (min-width: 1024px){
+        img{ 
+            width: 25px; 
+            height: 25px; 
+        }
+
+        p{
+            font-size: 12px;
+        }
     }
 }

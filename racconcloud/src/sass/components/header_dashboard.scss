@@ -1,23 +1,20 @@
-.header-dashboard-container {
+.header-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 50px;
     height: 90px;
+    width: 100%;
     background-color: #ffffff15;
     color: $white;
-    @media(min-width: 768px)
-    {
-        height: 100px;
-    }
     @media(min-width: 1024px)
     {
+        justify-content: space-between;
         height: 15vh;
-        width: 100%;
-        //margin: 5px 30px;
     }
 }
 
-.header-dashboard-user {
+.header-user {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,22 +35,13 @@
         border-radius: 50%;
     }
 
-    @media(min-width: 768px)
-    {
-        width: 155px;
-        height: 65px;
-        p:first-child{
-            font-size: 22px;
-        }
-        p:last-child{
-            font-size: 18px;
-        }
+    @media(max-width: 1023px){
+        display: none;
     }
 
-    @media(min-width: 1024px)
-    {
-        width: 250px;
-        height: 85px;
+    @media(min-width: 1024px){
+        width: 200px;
+        height: 80px;
         padding: 5px 5px;
         gap: 15px;
         background-color: $black;
@@ -61,19 +49,77 @@
 
         img{
             display: block;
-            width: 75px;
-            height: 75px;
+            width: 60px;
+            height: 60px;
+        }
+
+        p:first-child{
+            font-size: 16px;
+        }
+        p:last-child{
+            font-size: 14px;
+        }
+    }
+
+    @media(min-width: 1440px)
+    {
+        width: 240px;
+        height: 80px;
+        padding: 5px 5px;
+        gap: 15px;
+        background-color: $black;
+        border-radius: 20px;
+
+        img{
+            display: block;
+            width: 70px;
+            height: 70px;
+        }
+
+        p:first-child{
+            font-size: 18px;
+        }
+        p:last-child{
+            font-size: 16px;
         }
     }
 
 }
 
 
-.header-dashboard-search{
+.header-search{
     display: none;
+
+    @media(min-width: 1024px){
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 35%;
+        margin: 0px 10px;
+        background-color: rgba(255, 255, 255, 0.15);
+        gap: 30px;
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 15px;
+        img{
+            position: relative;
+            left: 20px;
+            width: 25px;
+            height: 25px;
+        }
+        input{
+            width: 100%;
+            right: 100px;
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: white;
+            font-family: 'Sono-ExtraLight';
+            font-size: 14px;
+        }
+    }
 }
 
-.header-dashboard-img {
+.header-img {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,18 +137,13 @@
         font-family: 'Sono-Bold';
     }
 
-    @media(min-width: 768px)
-    {
-        width: 85px;
-        height: 85px;
-        img{
-            width: 85px;
-            height: 85px;
-        }
+    @media(max-width: 1023px){
+        display: none;
     }
+
     @media(min-width: 1024px)
     {
-        width:150px;
+        width:160px;
         p{
             display: block;
             font-size: 22px;
@@ -113,3 +154,52 @@
     }
 }
 
+.header-folders-title{
+    color: $white;
+    width: 120px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-family: 'Sono-Bold';
+        font-size: 16px;
+    }
+
+    @media(min-width:1024px){
+        display: none;
+    }
+}
+
+#header-folders-title-a{
+    border-bottom-color: $color-7;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+}
+
+#header-folders-title-b{
+    border-bottom-color: $color-7;
+    border-bottom-style: none;
+    border-bottom-width: 3px;
+}
+
+.header-info-logo{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img{
+        height: 75px;
+        width: 75px;
+    }
+    p{
+        font-family: 'Sono-ExtraLight';
+        font-size: 20px;
+        color: $white;
+    }
+
+    @media(min-width:1024px){
+        display: none;
+    }
+}
