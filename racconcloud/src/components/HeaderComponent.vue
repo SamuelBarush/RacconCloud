@@ -1,23 +1,38 @@
 <template>
     <header class="header-container">
-        <div class="header-user">
+        <div class="header-user" v-if="$route.path === '/dashboard'">
             <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
             <div class="header-dashboard-user-text">
                 <p>Bienvenido</p>
                 <p>Usuario</p>
             </div> 
         </div>
-        <div class="header-search">
+        <div class="header-search" v-if="$route.path === '/dashboard'">
             <img src="../assets/images/busqueda.png" alt="">
             <input type="search" value="Buscar">
         </div>
-        <div class="header-img">
+        <div class="header-img" v-if="$route.path === '/dashboard'">
             <p>RacconCloud</p>
             <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
         </div>
-        <div class="header-folders-title" id="header-folders-title-a"><p>Personal</p></div>
-        <div class="header-folders-title" id="header-folders-title-b"><p>Materias</p></div>
-        <div class="header-info-logo">
+        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders'"><p>Personal</p></div>
+        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path === '/folders'"><p>Materias</p></div>
+        <div class="header-user-2" v-if="$route.path === '/folders'">
+            <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
+            <div class="header-dashboard-user-text">
+                <p>Bienvenido</p>
+                <p>Usuario</p>
+            </div> 
+        </div>
+        <div class="header-search-2" v-if="$route.path === '/folders'">
+            <img src="../assets/images/busqueda.png" alt="">
+            <input type="search" value="Buscar">
+        </div>
+        <div class="header-img-2" v-if="$route.path === '/folders'">
+            <p>RacconCloud</p>
+            <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
+        </div>
+        <div class="header-info-logo" v-if="$route.path === '/info'">
             <svg class="header-home-logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve">
                 <path fill="#000000" opacity="1.000000" stroke="none" 
                     d="M240.760864,554.761047 
@@ -280,6 +295,21 @@
                 z"/>
             </svg>
             <p>Raccon Cloud</p>
+        </div>
+        <div class="header-user-2" v-if="$route.path === '/info'">
+            <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
+            <div class="header-dashboard-user-text">
+                <p>Bienvenido</p>
+                <p>Usuario</p>
+            </div> 
+        </div>
+        <div class="header-search-2" v-if="$route.path === '/info'">
+            <img src="../assets/images/busqueda.png" alt="">
+            <input type="search" value="Buscar">
+        </div>
+        <div class="header-img-2" v-if="$route.path === '/info'">
+            <p>RacconCloud</p>
+            <img src="../assets/images/FB_IMG_1661211168594.jpg" alt="">
         </div>
     </header>
 </template>
