@@ -28,16 +28,16 @@
         display: none;
     }
 
-    @media (min-width: 1281px) and (max-width: 1440px) {
+    @media (min-width: 1024px) and (max-width: 1439px) {
         img{
             display: block;
-            width: 80%;
-            height: 80%;
+            width: 70%;
+            height: 70%;
             clip-path: inset(5% 30% 20% 30%);
         }
     }
 
-    @media (min-width: 1441px) {
+    @media (min-width: 1440px) {
         img{
             display: block;
             width: 80%;
@@ -56,7 +56,7 @@
         font-family: 'Sono-Light';
     }
 
-    @media (min-width: 1281px) and (max-width: 1440px){
+    @media (min-width: 1024px) and (max-width: 1439px){
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -65,14 +65,14 @@
         gap: 20px;
 
         h1{
-            font-size: 58px;
+            font-size: 48px;
         }
         p{
-            font-size: 30px;
+            font-size: 24px;
         }
     }
 
-    @media (min-width: 1441px) {
+    @media (min-width: 1440px) {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -117,26 +117,26 @@
         list-style: none;
     }
 
-    @media (min-width: 1281px) and (max-width: 1440px){
+    @media (min-width: 1024px) and (max-width: 1439px){
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 10px;
-        width: 220px;
-        height: 340px;
+        width: 180px;
+        height: 300px;
         right: 80px;
         top: 10px;
 
         h2{
-            font-size: 12px;
+            font-size: 10px;
         }
         p{
-            font-size: 12px;
+            font-size: 10px;
         }
     }
 
-    @media (min-width: 1441px) {
+    @media (min-width: 1440px) {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -158,13 +158,13 @@
 
 .main-home-image-slide{
 
-    @media (min-width: 1281px) and (max-width: 1440px){
+    @media (min-width: 1024px) and (max-width: 1439px){
         width: 80%;
         height: 80%;
         clip-path: inset(0% 20% 0% 20%);
     }
     
-    @media (min-width: 1441px) {
+    @media (min-width: 1440px) {
         width: 90%;
         height: 90%;
         clip-path: inset(0% 20% 0% 20%);
