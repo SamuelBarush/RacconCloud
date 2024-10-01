@@ -1,0 +1,71 @@
+.modal-file-container{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 400px;
+    background-color: $white;
+    border-radius: 20px;
+    z-index: 1000;
+}
+
+.modal-file-title{
+    margin: 30px 0px 0px 30px;
+    color: $black;
+    font-family: 'Sono-Bold';
+    font-size: 36px;
+}
+
+.modal-file-title-folder{
+    margin: 0px 30px;
+    color: $black;
+    font-family: 'Sono-ExtraLight';
+    font-size: 18px;
+}
+
+.modal-file-name-folder{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 30px;
+    input{
+        width: 90%;
+        height: 30px;
+        border: 1px solid $color-7;
+        border-radius: 10px;
+        margin: 10px;
+        font-family: 'Sono-Regular';
+        font-size: 16px;
+    }
+}
+
+.modal-file-options{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+#modal-file-option-cancel{
+    width: 150px;
+    height: 40px;
+    border: 1px solid $color-7;
+    background-color: transparent;
+    border-radius: 10px;
+    color: $black;
+    font-family: 'Sono-Light';
+    font-size: 16px;
+}
+
+#modal-file-option-create{
+    width: 150px;
+    height: 40px;
+    background-color: $color-7;
+    border: none;
+    border-radius: 10px;
+    color: $white;
+    font-family: 'Sono-Regular';
+    font-size: 16px;
+}

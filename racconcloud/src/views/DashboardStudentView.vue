@@ -1,7 +1,7 @@
 <template>
     <HeaderComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardStudent/>
+        <MenuDashboardStudent @open-Modal="showModal = true"/>
         <div id="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
@@ -37,11 +37,31 @@
         </div>  
     </main> 
     <FooterComponent/>
+    <ModalFileUpload v-if="showModal" @close-Modal="showModal = false"/>
+    <div v-if="showModal" class="overlay"></div>
 </template>
 
 <script setup>
     import HeaderComponent from '@/components/HeaderComponent.vue'
     import FooterComponent from '@/components/FooterComponent.vue'
-    import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue';
+    import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
+    import ModalFileUpload from '@/components/ModalFileUpload.vue'
+
+    import { ref } from "vue";
+
+    const showModal = ref(false);
 </script>
+
+<style lang="scss">
+    .overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        pointer-events: all;
+        z-index: 999;
+    }
+</style>
 
