@@ -1,12 +1,12 @@
 <template>
     <div class="menu-dashboard-student-container">
         <div class="menu-dashboard-student-actions">
-            <button class="menu-dashboard-actions-options" @click="openModal">
+            <button class="menu-dashboard-actions-options" @click="openModal1">
                 <img src="" alt="">
                 <p>Crear Carpeta</p>
             </button>
 
-            <button class="menu-dashboard-actions-options">
+            <button class="menu-dashboard-actions-options" @click="openModal2">
                 <img src="" alt="">
                 <p>Subir Archivo</p>
             </button>
@@ -45,9 +45,13 @@
 <script setup>
     import { defineEmits } from 'vue';
     
-    const emit = defineEmits(['open-Modal'])
+    const emit = defineEmits(['open-Modal1', 'open-Modal2'])
 
-    function openModal() {
-        emit('open-Modal')
+    function openModal1() {
+        emit('open-Modal1')
+    }
+
+    function openModal2() {
+        emit('open-Modal2')
     }
 </script>

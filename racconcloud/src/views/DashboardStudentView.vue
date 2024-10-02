@@ -1,7 +1,7 @@
 <template>
     <HeaderComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardStudent @open-Modal="showModal = true"/>
+        <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
         <div id="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
@@ -37,8 +37,9 @@
         </div>  
     </main> 
     <FooterComponent/>
-    <ModalFileUpload v-if="showModal" @close-Modal="showModal = false"/>
-    <div v-if="showModal" class="overlay"></div>
+    <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
+    <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
+    <div v-if="showModal1 || showModal2" class="overlay"></div>
 </template>
 
 <script setup>
@@ -46,10 +47,12 @@
     import FooterComponent from '@/components/FooterComponent.vue'
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
+    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
 
     import { ref } from "vue";
 
-    const showModal = ref(false);
+    const showModal1 = ref(false);
+    const showModal2 = ref(false);
 </script>
 
 <style lang="scss">
