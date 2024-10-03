@@ -1,7 +1,7 @@
 <template>
     <HeaderComponent/>
     <main class="main-info-container">
-        <MenuDashboardStudent/>
+        <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
         <div class="main-info-principal">
             <div class="main-info-user">
                 <div><img src="" alt=""></div>
@@ -16,10 +16,20 @@
         </div>
     </main>
     <FooterComponent/>
+    <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
+    <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
+    <div v-if="showModal1 || showModal2" class="overlay"></div>
 </template>
 
 <script setup>
     import HeaderComponent from '@/components/HeaderComponent.vue'
     import FooterComponent from '@/components/FooterComponent.vue'
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
+    import ModalFileUpload from '@/components/ModalFileUpload.vue'
+    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+
+    import { ref } from "vue";
+
+    const showModal1 = ref(false);
+    const showModal2 = ref(false);
 </script>

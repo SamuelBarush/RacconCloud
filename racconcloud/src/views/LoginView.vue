@@ -12,7 +12,7 @@
             <div class="main-login-PW">
                 <label for="">Contraseña</label>
                 <div><input type="password" placeholder="Ingresa tu Contraseña" name="" id="" v-model="password"></div>
-                <p id="main-login-FPW">Olvide mi Contraseña</p>
+                <router-link to="/forgot"><p id="main-login-FPW">Olvide mi Contraseña</p></router-link>
             </div>   
             <div class="main-login-BT"><input type="submit" value="Sign Up" @click.prevent="AuthUser"></div>
         </form>

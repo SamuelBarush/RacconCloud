@@ -1,10 +1,10 @@
 <template>
-    <header class="header-login-container">      
+    <header class="header-login-container">
         <router-link to="/">
             <div id="header-login-img">
                     <img src="" alt="">        
             </div>
-        </router-link>
+        </router-link>       
     </header>
 </template>
 

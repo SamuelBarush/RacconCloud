@@ -67,6 +67,7 @@
     height: 300px;
     gap: 10px;
     overflow: scroll;
+    overflow-x: hidden;
 }
 
 .modal-file-preview-file{
@@ -75,7 +76,7 @@
     justify-content: space-between;
     width: 90%;
     padding: 5px 10px;
-    border: 2px solid $color-7;
+    border: 2px solid;
     border-radius: 5px;
 }
 
@@ -108,8 +109,9 @@
 .modal-file-preview-progress{
     width: 230px;
     height: 5px;
-    background-color: $color-7;
+    background-color: $color-3;
     border-radius: 5px;
+    position: relative;
 }
 
 .modal-file-option{
@@ -129,3 +131,18 @@
     }
 }
 
+.progress-bar {
+    height: 100%;
+    background-color: #000;
+    border-radius: 5px;
+}
+
+.upload-button {
+    color: #ff5c33;
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+.upload-button:hover {
+    color: #ff3c1a;
+}

@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DashboardStudentView from '../views/DashboardStudentView.vue'
-import FolderStudentView from '../views/FoldersStudentView.vue'
+import DashboardStudentView from '@/views/DashboardStudentView.vue'
+import FolderStudentView from '@/views/FoldersStudentView.vue'
 import InfoStudentView from '@/views/InfoStudentView.vue'
-import HomeView from '../views/HomeView.vue'
-import LoginView from '../views/LoginView.vue'
+import HomeView from '@/views/HomeView.vue'
+import LoginView from '@/views/LoginView.vue'
+import ForgotPasswordView from '@/views/ForgotPasswordView.vue'
 
 const routes = [
   {
@@ -19,6 +20,15 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginView,
+    meta:{
+      requireAuth: false,
+      role: ''
+    }
+  },
+  {
+    path: '/forgot',
+    name: 'forgot-password',
+    component: ForgotPasswordView,
     meta:{
       requireAuth: false,
       role: ''

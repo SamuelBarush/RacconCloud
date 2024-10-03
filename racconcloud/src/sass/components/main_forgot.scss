@@ -1,0 +1,43 @@
+.forgot-password-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forgot-password-box {
+    width: 400px;
+    padding: 40px;
+    background-color: $white;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.submit-button {
+    background-color: $color-7;
+    color: $white;
+    font-family: 'Sono-Bold';
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .submit-button:hover {
+    background-color: $color-9;
+  }
+  
+  .confirmation-message {
+    margin-top: 20px;
+    font-family: 'Sono-Regular';
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .confirmation-message p {
+    font-family: 'Sono-Regular';
+    color: #555;
+    font-size: 16px;
+  }
