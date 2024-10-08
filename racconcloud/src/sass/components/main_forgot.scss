@@ -12,6 +12,46 @@
     text-align: center;
 }
 
+.forgot-password-box-title {
+    font-family: 'Sono-Bold';
+    font-size: 24px;
+    color: $black;
+    margin-bottom: 20px;
+}
+
+.forgot-password-box-text {
+    font-family: 'Sono-Regular';
+    font-size: 14px;
+    color: $black;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    label {
+        font-family: 'Sono-Light';
+        font-size: 14px;
+        color: $black;
+        margin-bottom: 8px;
+        display: block;
+    }
+      
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-family: 'Sono-Regular', sans-serif;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+      
+    input[type="text"]:focus {
+        border-color: #ff5c33;
+        outline: none;
+      }
+}
+
 .submit-button {
     background-color: $color-7;
     color: $white;

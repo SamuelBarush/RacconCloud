@@ -34,19 +34,44 @@
             </div>
             <div class="main-dashboard-title">
                 <p>Mis Archivos</p>
+                <div class="main-dashboard-title-description">
+                    <p>Nombre</p>
+                    <p>Fecha de Subida</p>
+                    <p>Tamaño</p>
+                </div>
             </div>
             <div class="main-container-grid-b">
                 <div class="main-folders-block-b">
-                    <img src="../assets/images/documento.png" alt="">
-                    <p>Archivo</p>
+                    <div class="main-folders-block-b-img">
+                        <img src="../assets/images/documento.png" alt="">
+                        <p>Archivo</p>
+                    </div>
+                    <div class="main-folders-block-b-txt"><p>08 - 10 - 2024</p></div>
+                    <div class="main-folders-block-b-txt"><p>34 Kb</p></div>
                 </div>
                 <div class="main-folders-block-b">
-                    <img src="../assets/images/documento.png" alt="">
-                    <p>Archivo</p>
+                    <div class="main-folders-block-b-img">
+                        <img src="../assets/images/documento.png" alt="">
+                        <p>Archivo</p>
+                    </div>
+                    <div class="main-folders-block-b-txt"><p>08 - 10 - 2024</p></div>
+                    <div class="main-folders-block-b-txt"><p>34 Kb</p></div>
                 </div>
                 <div class="main-folders-block-b">
-                    <img src="../assets/images/documento.png" alt="">
-                    <p>Archivo</p>
+                    <div class="main-folders-block-b-img">
+                        <img src="../assets/images/documento.png" alt="">
+                        <p>Archivo</p>
+                    </div>
+                    <div class="main-folders-block-b-txt"><p>08 - 10 - 2024</p></div>
+                    <div class="main-folders-block-b-txt"><p>34 Kb</p></div>
+                </div>
+                <div class="main-folders-block-b">
+                    <div class="main-folders-block-b-img">
+                        <img src="../assets/images/documento.png" alt="">
+                        <p>Archivo</p>
+                    </div>
+                    <div class="main-folders-block-b-txt"><p>08 - 10 - 2024</p></div>
+                    <div class="main-folders-block-b-txt"><p>34 Kb</p></div>
                 </div>
             </div>
         </div>    

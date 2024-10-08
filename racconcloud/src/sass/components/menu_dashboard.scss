@@ -25,46 +25,18 @@
     align-items: center;
     justify-content: center;
     color: $white; 
-    gap: 10px;
     background-color: $color-7;
-    height: 60px;
-    width: 250px;
     border-radius: 20px;
+    width: 80%;
+    height: 25%;
+    cursor: pointer;
 
     p{  
         font-family: 'Sono-Regular'; 
     } 
-    img{ 
-        width: 30px; 
-        height: 30px; 
-    }
-
-}
-
-.menu-dashboard-student-nav{ 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-    gap: 20px;
-}
-
-.menu-dashboard-nav-options{
-    display: flex;
-    align-items: center;
-    color: $white;
-    gap: 10px;
-
-    p{
-        font-family: 'Sono-Regular';
-    }
-    img{
-        width: 30px;
-        height: 30px;
-    }
 
     @media (min-width: 1024px){
+        gap: 20px;
         img{ 
             width: 25px; 
             height: 25px; 
@@ -75,14 +47,102 @@
         }
     }
 
+    @media (min-width: 1440px){
+        gap: 30px;
+        img{ 
+            width: 30px; 
+            height: 30px; 
+        }
+
+        p{
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 1920px){
+        gap: 40px;
+        img{ 
+            width: 35px; 
+            height: 35px; 
+        }
+
+        p{
+            font-size: 16px;
+        }
+    }
+}
+
+.menu-dashboard-student-nav{ 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 20px;
+    height: 20vh;
+    a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-7;
+        border-radius: 20px;
+        width: 80%;
+        height: 25%;
+    }
+}
+
+.menu-dashboard-nav-options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+
+    p{  
+        font-family: 'Sono-Regular'; 
+    } 
+
+    @media (min-width: 1024px){
+        gap: 20px;
+        img{ 
+            width: 25px; 
+            height: 25px; 
+        }
+
+        p{
+            font-size: 12px;
+        }
+    }
+
+    @media (min-width: 1440px){
+        gap: 30px;
+        img{ 
+            width: 30px; 
+            height: 30px; 
+        }
+
+        p{
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 1920px){
+        gap: 40px;
+        img{ 
+            width: 35px; 
+            height: 35px; 
+        }
+
+        p{
+            font-size: 16px;
+        }
+    }
 }
 
 .menu-dashboard-student-options{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    gap: 20px;
     height: 20vh;
-    gap: 35px;
     border-style: solid;
     border-top: 2px solid $white;
     border-left: $white;
@@ -101,12 +161,8 @@
         font-family: 'Sono-Regular';
     }
 
-    img{
-        width: 30px;
-        height: 30px;
-    }
-
     @media (min-width: 1024px){
+        gap: 20px;
         img{ 
             width: 25px; 
             height: 25px; 
@@ -114,6 +170,30 @@
 
         p{
             font-size: 12px;
+        }
+    }
+
+    @media (min-width: 1440px){
+        gap: 30px;
+        img{ 
+            width: 30px; 
+            height: 30px; 
+        }
+
+        p{
+            font-size: 14px;
+        }
+    }
+
+    @media (min-width: 1920px){
+        gap: 40px;
+        img{ 
+            width: 35px; 
+            height: 35px; 
+        }
+
+        p{
+            font-size: 16px;
         }
     }
 }
