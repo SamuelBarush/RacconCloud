@@ -15,8 +15,7 @@
           v-for="(file, index) in files" 
           :key="index" 
           class="modal-file-preview-file" 
-          :style="{ borderColor: file.status === 'completed' ? '#EC3A0A' : '#FFCCA9' }"
-        >
+          :style="{ borderColor: file.status === 'completed' ? '#EC3A0A' : '#FFCCA9' }">
           <!-- Muestra el ícono basado en la extensión del archivo -->
           <div class="modal-file-preview-img">
             <img :src="file.icon" alt="icono de archivo" />

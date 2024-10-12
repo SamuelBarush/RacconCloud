@@ -1,44 +1,45 @@
 import { ref } from "vue";
+import store from '@/store'
 
 export default class AuthLogin {
 
     constructor(){
-        this.jwt = ref('')
-        this.error = ref('')
+        this.role = ref('')
     }
 
-    getJwt(){
-        return this.jwt
-    }
-
-    getError(){
-        return this.error
+    getRole(){
+        return this.role
     }
 
     async login(ID,password){
         try {
-            const res = await fetch('Endpoint API-Rest',{
+            const res = await fetch('http://192.168.1.245:5000/auth/login',{
                 method: 'POST',
                 headers:{
-                    'Accept': 'application/json',
+                    //'Accept': 'application/json',
                     'Content-Type':'application/json'
                 },
+                credentials:'include',
                 body:JSON.stringify({
-                    id:ID,
+                    boleta:ID,
                     password:password
                 })
             })
             const response = await res.json()
 
-            //esperar como Aldrich va a mandar el JSON de respuesta de la API
+            //if('' in response){
+            //   this.error = "Login Failed"
+            //   return false
+            //}
 
-            if('' in response){
-               this.error = "Login Failed"
-               return false
+            if(res.ok){
+                store.dispatch('login',{role:response.user_type})
+                return true
             }
 
-            this.jwt = response.data.access_token
-            return true
+            console.log("No entro")
+            alert(response.message || response.error)
+            return false
 
         } catch (error) {
             console.log(error)

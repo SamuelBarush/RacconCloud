@@ -20,6 +20,7 @@ export default class FileIconMapper {
         cs : require('@/assets/icons/cs.png'),
         cpp : require('@/assets/icons/cpp.png'),
         java : require('@/assets/icons/java.png'),
+        jar : require('@/assets/icons/java.png'),
         py : require('@/assets/icons/py.png'),
         html : require('@/assets/icons/html.png'),
         css : require('@/assets/icons/css.png'),

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//import store from '@/store'
 import DashboardStudentView from '@/views/DashboardStudentView.vue'
 import FolderStudentView from '@/views/FoldersStudentView.vue'
 import InfoStudentView from '@/views/InfoStudentView.vue'
@@ -69,7 +70,8 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const auth = true
+  const auth =  true //store.getters.isAuthenticated 
+  //const role = store.getters.userRole
   const needAuth = to.meta.requireAuth
 
   if (needAuth && !auth) {
