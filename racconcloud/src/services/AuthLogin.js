@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import store from '@/store'
+import { useAuthStore } from "@/store";
 
 export default class AuthLogin {
 
@@ -16,7 +16,6 @@ export default class AuthLogin {
             const res = await fetch('http://192.168.1.245:5000/auth/login',{
                 method: 'POST',
                 headers:{
-                    //'Accept': 'application/json',
                     'Content-Type':'application/json'
                 },
                 credentials:'include',
@@ -25,24 +24,22 @@ export default class AuthLogin {
                     password:password
                 })
             })
+
             const response = await res.json()
 
-            //if('' in response){
-            //   this.error = "Login Failed"
-            //   return false
-            //}
-
             if(res.ok){
-                store.dispatch('login',{role:response.user_type})
+                const store = useAuthStore()
+                store.setAuth(true)
+                store.setRole(response.user_type)
                 return true
             }
 
-            console.log("No entro")
             alert(response.message || response.error)
             return false
 
         } catch (error) {
             console.log(error)
+            return false
         }
     }
 }

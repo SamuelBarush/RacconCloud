@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-//import store from '@/store'
+import { useAuthStore } from '@/store'
 import DashboardStudentView from '@/views/DashboardStudentView.vue'
 import FolderStudentView from '@/views/FoldersStudentView.vue'
 import InfoStudentView from '@/views/InfoStudentView.vue'
@@ -14,7 +14,7 @@ const routes = [
     component: HomeView,
     meta:{
       requireAuth: false,
-      role: ''
+      role: 0
     }
   },
   {
@@ -23,7 +23,7 @@ const routes = [
     component: LoginView,
     meta:{
       requireAuth: false,
-      role: ''
+      role: 0
     }
   },
   {
@@ -32,7 +32,7 @@ const routes = [
     component: ForgotPasswordView,
     meta:{
       requireAuth: false,
-      role: ''
+      role: 0
     }
   },
   {
@@ -41,7 +41,7 @@ const routes = [
     component: DashboardStudentView,
     meta:{
       requireAuth: true,
-      role: 'student'
+      role: 4
     }
   },
   {
@@ -50,7 +50,7 @@ const routes = [
     component: InfoStudentView,
     meta:{
       requireAuth: true,
-      role: 'student'
+      role: 4
     }
   },
   {
@@ -59,7 +59,7 @@ const routes = [
     component: FolderStudentView,
     meta:{
       requireAuth: true,
-      role: 'student'
+      role: 4
     }
   }
 ]
@@ -70,12 +70,21 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const auth =  true //store.getters.isAuthenticated 
-  //const role = store.getters.userRole
+  const authStore = useAuthStore()
+  //const auth = authStore.auth
+  //const role = authStore.role
   const needAuth = to.meta.requireAuth
+  const roleRequired = to.meta.role
+
+  const auth = authStore.setAuth(true)
+  const role = authStore.setRole(4)
+
+  console.log(auth,role)
 
   if (needAuth && !auth) {
-    next('login')
+    next('/login')
+  } else if (needAuth && roleRequired !== role) {
+    next('/login')
   } else {
     next()
   }
