@@ -6,7 +6,7 @@
 ## Tecnologías Utilizadas
 - **VueJS**: Estructuración del Proyecto
 - **Vue Router**: Gestion y Control de Rutas
-- **Vuex**: Administración de Sesiones y Conexiones
+- **Pinia**: Administración de Estados
 - **Sass**: Estilos
 
 ## Requisitos Previos
@@ -31,15 +31,27 @@ npm install -g @vue/cli
 npm install -g sass
 ```
 
-## Instalacion
+## Ejecucion de FrontEnd
 ### Clonar el Repositorio
 ```bash
 git clone https://github.com/SamuelBarush/RacconCloud
 cd RacconCloud
 ```
 
+## Instalar Librerias faltantes como Pinia y Pinia-Plugin-PersistedState
+```bash
+npm install pinia
+npm install pinia-plugin-persistedstate
+```
+
 ### Iniciar Servidor
 ```bash
 cd racconcloud
 npm run serve
+```
+
+## ⚠️ Advertencia
+⚠️ **IMPORTANTE:** Si hay falta de librerias para ejecutar el Servidor ejecutar el siguiente comando para instalar librerias y plugins faltantes
+```bash
+npm install
 ```
