@@ -17,5 +17,5 @@
 
 <script setup>
     import HeaderInfoComponent from '@/components/HeaderInfoComponent.vue'
-    import FooterComponent from '@/components/FooterComponent.vue';
+    import FooterComponent from '@/components/FooterStudentComponent.vue';
 </script>

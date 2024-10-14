@@ -21,33 +21,22 @@
 
 <script setup>
     import { ref } from "vue"
-    import { useRouter } from "vue-router"
     import { useAuthStore } from "@/store"
-    import HeaderLoginComponent from '../components/HeaderLoginComponent.vue'
-    import AuthLogin  from '../services/AuthLogin.js'
+    import { useRouter } from "vue-router"
+    import HeaderLoginComponent from '@/components/HeaderLoginComponent.vue'
 
     let ID = ref("")
     let password = ref("")
-    const router = useRouter()
     const authStore = useAuthStore()
+    const router = useRouter()
 
     const AuthUser = async () => {
-        const auth = new AuthLogin()
-        const success = await auth.login(ID.value,password.value)
-        if (success) {
-            alert("Sesion Inciada")
-            
-            if (authStore.role === 4) {
-                router.push({name:'dashboard-student'})
-            } else if ( authStore.role === 3) {
-                router.push({name:'dashboard-teacher'})
-            } else if ( authStore.role === 2) {
-                router.push({name:'dashboard-academy'})
-            } else if ( authStore.role === 1) {
-                router.push({name:'dashboard-admin'})
-            }
-        } else {
-            alert("Sesion Incorrecta")
+        await authStore.login(ID.value, password.value)
+        if (authStore.isAuthenticated) {
+            if (authStore.role === "admin") router.push("/dashboard-admin")
+            else if (authStore.role === "academy") router.push("/dashboard-academy")
+            else if (authStore.role === "teacher") router.push("/dashboard-teacher")
+            else if (authStore.role === "student") router.push("/dashboard-student")
         }
     }
 </script>

@@ -1,31 +1,54 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { defineStore } from 'pinia'
 
-export const useAuthStore = defineStore('auth', () => {
-  const auth = ref(false); // Controla si el usuario está autenticado
-  const role = ref(0);    // Almacena el rol del usuario
+export const useAuthStore = defineStore('auth',{
+  state: () => ({
+    authUser: null,
+    role: null,
+  }),
+  getters: {
+    isAuthenticated: (state) => state.authUser,
+    getRole: (state) => state.role
+  },
+  actions: {
+    async login(id, password){
+      try {
+        const res = await fetch('http://192.168.1.68:5000/auth/login',{
+            method: 'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            //credentials:'include',
+            body:JSON.stringify({
+              boleta:id,
+              password:password
+            })
+        })
 
-  // Función para iniciar sesión
-  function setAuth(status) {
-    auth.value = status;
+        const response = await res.json()
+        console.log(response)
+
+        if(res.ok){
+            this.authUser = true
+            this.role = response.user_type
+            alert(response.message)
+        } else {
+            alert(response.message || response.error)
+            this.authUser = false
+        }
+
+      } catch (error) {
+          console.error(error)
+          this.authUser = false
+      }
+    }
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        storage: localStorage,
+      },
+    ]
   }
 
-  // Función para establecer el rol del usuario
-  function setRole(userRole) {
-    role.value = userRole;
-  }
-
-  // Función para cerrar sesión
-  function logout() {
-    auth.value = false;
-    role.value = 0;
-  }
-
-  return {
-    auth,
-    role,
-    setAuth,
-    setRole,
-    logout
-  };
 });

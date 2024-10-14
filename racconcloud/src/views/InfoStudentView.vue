@@ -4,7 +4,7 @@
         <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
         <div class="main-info-principal">
             <div class="main-info-user">
-                <div><img src="" alt=""></div>
+                <div><img src="../assets/icons/avatar-student.png" alt=""></div>
                 <p>Nombre Completo del usuario</p>
             </div>
             <div class="main-info-text">
@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-    import HeaderComponent from '@/components/HeaderComponent.vue'
-    import FooterComponent from '@/components/FooterComponent.vue'
+    import HeaderComponent from '@/components/HeaderStudentComponent.vue'
+    import FooterComponent from '@/components/FooterStudentComponent.vue'
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'

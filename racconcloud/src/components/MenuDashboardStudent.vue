@@ -1,6 +1,6 @@
 <template>
     <div class="menu-dashboard-student-container">
-        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders'">
+        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-student'">
             <button class="menu-dashboard-actions-options" @click="openModal1">
                 <img src="" alt="">
                 <p>Crear Carpeta</p>

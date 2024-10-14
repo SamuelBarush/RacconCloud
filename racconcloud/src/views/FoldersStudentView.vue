@@ -83,8 +83,8 @@
 </template>
 
 <script setup>
-    import HeaderComponent from '@/components/HeaderComponent.vue'
-    import FooterComponent from '@/components/FooterComponent.vue'
+    import HeaderComponent from '@/components/HeaderStudentComponent.vue'
+    import FooterComponent from '@/components/FooterStudentComponent.vue'
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
