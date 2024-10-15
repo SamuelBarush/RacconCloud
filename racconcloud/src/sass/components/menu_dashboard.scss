@@ -5,7 +5,7 @@
         flex-direction: column;
         justify-content: space-between;
         width: 20%;
-        background-color: #ffffff15;
+        background-color: var(--background-color-items);
         height: 100%;
     }
 
@@ -24,7 +24,7 @@
     display: flex; 
     align-items: center;
     justify-content: center;
-    color: $white; 
+    color: var(--text-color); 
     background-color: $color-7;
     border-radius: 20px;
     width: 80%;
@@ -94,7 +94,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $white;
+    color: var(--text-color);
 
     p{  
         font-family: 'Sono-Regular'; 
@@ -144,17 +144,17 @@
     gap: 20px;
     height: 20vh;
     border-style: solid;
-    border-top: 2px solid $white;
-    border-left: $white;
-    border-right: $white;
-    border-bottom: $white;
+    border-top: 2px solid var(--text-color);
+    border-left: var(--text-color);
+    border-right: var(--text-color);
+    border-bottom: var(--text-color);
 }
 
 .menu-dashboard-options-options{
     display: flex;
     align-items: center;
     margin-left: 40px;
-    color: $white;
+    color: var(--text-color);
     gap: 10px;
 
     p{

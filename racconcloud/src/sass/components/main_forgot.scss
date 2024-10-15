@@ -7,7 +7,7 @@
 .forgot-password-box {
     width: 400px;
     padding: 40px;
-    background-color: $white;
+    background-color: var(--invert-background-color-page);
     border-radius: 12px;
     text-align: center;
 }
@@ -15,14 +15,14 @@
 .forgot-password-box-title {
     font-family: 'Sono-Bold';
     font-size: 24px;
-    color: $black;
+    color: var(--invert-text-color);
     margin-bottom: 20px;
 }
 
 .forgot-password-box-text {
     font-family: 'Sono-Regular';
     font-size: 14px;
-    color: $black;
+    color: var(--invert-text-color);
     margin-bottom: 20px;
 }
 
@@ -32,7 +32,7 @@
     label {
         font-family: 'Sono-Light';
         font-size: 14px;
-        color: $black;
+        color: var(--invert-text-color);
         margin-bottom: 8px;
         display: block;
     }
@@ -40,9 +40,9 @@
     input[type="text"] {
         width: 100%;
         padding: 10px;
-        font-family: 'Sono-Regular', sans-serif;
+        font-family: 'Sono-Regular';
         font-size: 14px;
-        border: 1px solid #ccc;
+        border: 1px solid var(--background-color-page);
         border-radius: 8px;
     }
       
@@ -54,7 +54,7 @@
 
 .submit-button {
     background-color: $color-7;
-    color: $white;
+    color: var(--text-color);
     font-family: 'Sono-Bold';
     font-size: 16px;
     padding: 12px;
@@ -73,11 +73,11 @@
     margin-top: 20px;
     font-family: 'Sono-Regular';
     font-size: 14px;
-    color: #333;
+    color: var(--invert-text-color);
   }
   
   .confirmation-message p {
     font-family: 'Sono-Regular';
-    color: #555;
+    color: var(--invert-text-color);
     font-size: 16px;
   }

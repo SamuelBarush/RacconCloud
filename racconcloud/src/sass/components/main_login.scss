@@ -8,7 +8,7 @@
 .main-login-title{
     display: flex;
     justify-content: center;
-    color: $white;
+    color: var(--text-color);
     font-family: 'Sono-Bold';
     font-size: 20px;
 
@@ -26,7 +26,7 @@
     @media (min-width: 768px){
         width: 500px;
         height: 350px;
-        background-color: $white;
+        background-color: var(--invert-background-color-page);
         border-radius: 20px;
     }
 }
@@ -37,7 +37,7 @@
     gap: 8px;
     font-family: 'Sono-Regular';
     font-size: 14px;
-    color: $white;
+    color: var(--text-color);
     div{
         display: flex;
         width: 300px;
@@ -52,17 +52,17 @@
             border: 0;
             outline: none;
             background-color: transparent;
-            color: $white;
+            color: var(--text-color);
             font-family: 'Sono-ExtraLight';
             font-size: 18px;
         }
     }
 
     @media (min-width: 768px){
-        color: $black;
+        color: var(--invert-text-color);
         div{
             input{
-                color: $black;
+                color: var(--invert-text-color);
             }
         }
     }
@@ -76,7 +76,7 @@
     label{
         font-family: 'Sono-Regular';
         font-size: 14px;
-        color: $white;
+        color: var(--text-color);
     }
     div{
         display: flex;
@@ -92,18 +92,18 @@
             border: 0;
             outline: none;
             background-color: transparent;
-            color: $white;
+            color: var(--text-color);
             font-family: 'Sono-ExtraLight';
             font-size: 18px;
         } 
     }
     @media (min-width: 768px){
         label{
-            color: $black;
+            color: var(--invert-text-color);
         }
         div{
             input{
-                color: $black;
+                color: var(--invert-text-color);
             }
         }
     }
@@ -124,7 +124,7 @@
         width: 100%;
         height: 100%;
         border-radius: 15px;
-        color: $white;
+        color: var(--text-color);
         font-family: 'Sono-Medium';
         font-size: 16px;
         cursor: pointer;

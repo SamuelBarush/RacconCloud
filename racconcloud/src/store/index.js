@@ -25,7 +25,6 @@ export const useAuthStore = defineStore('auth',{
         })
 
         const response = await res.json()
-        console.log(response)
 
         if(res.ok){
             this.authUser = true
@@ -46,7 +45,7 @@ export const useAuthStore = defineStore('auth',{
     enabled: true,
     strategies: [
       {
-        storage: localStorage,
+        storage: sessionStorage,
       },
     ]
   }

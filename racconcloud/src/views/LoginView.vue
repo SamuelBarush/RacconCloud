@@ -33,10 +33,10 @@
     const AuthUser = async () => {
         await authStore.login(ID.value, password.value)
         if (authStore.isAuthenticated) {
-            if (authStore.role === "admin") router.push("/dashboard-admin")
-            else if (authStore.role === "academy") router.push("/dashboard-academy")
-            else if (authStore.role === "teacher") router.push("/dashboard-teacher")
-            else if (authStore.role === "student") router.push("/dashboard-student")
+            if (authStore.role === 0) router.push("/dashboard-admin")
+            else if (authStore.role === 1) router.push("/dashboard-academy")
+            else if (authStore.role === 2) router.push("/dashboard-teacher")
+            else if (authStore.role === 3) router.push("/dashboard-student")
         }
     }
 </script>

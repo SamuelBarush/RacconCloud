@@ -21,9 +21,9 @@
     height: 50px;
     width: 80%;
     margin: 0px 10px;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: var(--background-color-page);
     gap: 30px;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
     border-radius: 15px;
     img{
         position: relative;
@@ -37,7 +37,7 @@
         border: 0;
         outline: none;
         background-color: transparent;
-        color: white;
+        color: var(--text-color);
         font-family: 'Sono-ExtraLight';
         font-size: 14px;
     }
@@ -45,7 +45,7 @@
 }
 
 .main-folders-block-a{
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: var(--background-color-items);
     height: 140px;
     width: 140px;
     display: flex;
@@ -53,7 +53,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    color: white;
+    color: var(--text-color);
     border-radius: 10px;
     img{
         height: 70px;
@@ -83,13 +83,13 @@
 }
 
 .main-folders-block-b{
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: var(--background-color-items);
     height: 140px;
     width: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-color);
     border-radius: 10px;
 
     @media (min-width: 1024px){
@@ -115,6 +115,7 @@
     p{
         font-family: 'Sono-Light';
         font-size: 16px;
+        color: var(--text-color);
     }
 
     @media (min-width: 1024px){
@@ -136,6 +137,7 @@
     p{
         font-family: 'Sono-Light';
         font-size: 16px;
+        color: var(--text-color);
     }
 
     @media (min-width: 1024px){

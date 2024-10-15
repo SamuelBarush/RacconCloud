@@ -26,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     gap: 50px;
-    color: $white;
+    color: var(--text-color);
     font-family: 'Sono-Bold';
     font-size: 20px;
     div{
@@ -44,7 +44,7 @@
 
 .main-info-text{
     width: 90%;
-    color: $white;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     gap: 20px;

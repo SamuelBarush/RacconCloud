@@ -23,7 +23,7 @@ const routes = [
     component: HomeView,
     meta:{
       requireAuth: false,
-      role: 0
+      role: null
     }
   },
   {
@@ -50,7 +50,7 @@ const routes = [
     component: DashboardAdminView,
     meta:{
       requireAuth: true,
-      role: "admin"
+      role: 0
     }
   },
   {
@@ -59,7 +59,7 @@ const routes = [
     component: DashboardStudentView,
     meta:{
       requireAuth: true,
-      role: "student"
+      role: 3
     }
   },
   {
@@ -68,7 +68,7 @@ const routes = [
     component: DashboardTeacherView,
     meta:{
       requireAuth: true,
-      role: "teacher"
+      role: 2
     }
   },
   {
@@ -77,7 +77,7 @@ const routes = [
     component: DashboardAcademyView,
     meta:{
       requireAuth: true,
-      role: "academy"
+      role: 1
     }
   },
   {
@@ -86,7 +86,7 @@ const routes = [
     component: InfoStudentView,
     meta:{
       requireAuth: true,
-      role: "student"
+      role: 3
     }
   },
   {
@@ -95,7 +95,7 @@ const routes = [
     component: InfoTeacherView,
     meta:{
       requireAuth: true,
-      role: "teacher"
+      role: 2
     }
   },
   {
@@ -104,7 +104,7 @@ const routes = [
     component: InfoAcademyView,
     meta:{
       requireAuth: true,
-      role: "academy"
+      role: 1
     }
   },
   {
@@ -113,7 +113,7 @@ const routes = [
     component: FolderStudentView,
     meta:{
       requireAuth: true,
-      role: "student"
+      role: 3
     }
   },
   {
@@ -122,7 +122,7 @@ const routes = [
     component: FolderTeacherView,
     meta:{
       requireAuth: true,
-      role: "teacher"
+      role: 2
     }
   },
   {
@@ -131,7 +131,7 @@ const routes = [
     component: FolderAcademyView,
     meta:{
       requireAuth: true,
-      role: "academy"
+      role: 1
     }
   },
   {
@@ -140,7 +140,7 @@ const routes = [
     component: EventsAcademyView,
     meta:{
       requireAuth: true,
-      role: "academy"
+      role: 1
     }
   },
   {
@@ -149,7 +149,7 @@ const routes = [
     component: EventsAdminView,
     meta:{
       requireAuth: true,
-      role: "admin"
+      role: 0
     }
   }
 ]

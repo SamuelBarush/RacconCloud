@@ -7,7 +7,7 @@
     transform: translate(-50%, -50%);
     width: 700px;
     height: 400px;
-    background-color: $white;
+    background-color: var(--invert-background-color-page);
     border-radius: 20px;
     z-index: 1000;
     gap: 15px;
@@ -15,14 +15,14 @@
 
 .modal-folder-title{
     margin: 30px 0px 0px 30px;
-    color: $black;
+    color: var(--invert-text-color);
     font-family: 'Sono-Bold';
     font-size: 36px;
 }
 
 .modal-folder-title-folder{
     margin: 0px 30px;
-    color: $black;
+    color: var(--invert-text-color);
     font-family: 'Sono-ExtraLight';
     font-size: 18px;
 }
@@ -35,6 +35,7 @@
     input{
         width: 90%;
         height: 35px;
+        background-color: transparent;
         border: 1px solid $color-7;
         border-radius: 10px;
         margin: 10px;
@@ -55,7 +56,7 @@
     border: 1px solid $color-7;
     background-color: transparent;
     border-radius: 10px;
-    color: $black;
+    color: var(--invert-text-color);
     font-family: 'Sono-Light';
     font-size: 16px;
 }
@@ -66,7 +67,7 @@
     background-color: $color-7;
     border: none;
     border-radius: 10px;
-    color: $white;
+    color: var(--text-color);
     font-family: 'Sono-Regular';
     font-size: 16px;
 }
@@ -85,7 +86,7 @@
 
 /* Estilo de la pista (track) del scrollbar */
 ::-webkit-scrollbar-track {
-    background-color: $black; /* Color de la pista */
+    background-color: var(--invert-text-color); /* Color de la pista */
     border-radius: 10px; /* Bordes redondeados */
 }
 

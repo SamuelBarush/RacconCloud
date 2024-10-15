@@ -262,6 +262,7 @@
               C256.972992,695.949707 253.172714,689.932983 249.722778,682.910095 
             z"/>
           </svg>
+          <ThemeSwitcherComponent/>
           <router-link :to="{name:'login'}">
             <button class="header-home-sign-in">
               Sign In
@@ -416,5 +417,6 @@
     </main>
 </template>
 
-<script>
+<script setup>
+  import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 </script>

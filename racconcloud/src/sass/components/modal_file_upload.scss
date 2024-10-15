@@ -7,7 +7,7 @@
     transform: translate(-50%, -50%);
     width: 900px;
     height: 510px;
-    background-color: $white;
+    background-color: var(--invert-background-color-page);
     border-radius: 20px;
     z-index: 1000;
     gap: 15px;
@@ -17,7 +17,7 @@
     margin: 30px 0px 0px 30px;
     font-family: 'Sono-Bold';
     font-size: 36px;
-    color: $black;
+    color: var(--invert-text-color);
 }
 
 .modal-file-principal{
@@ -36,13 +36,13 @@
 
     p{
         margin-top: 10px;
-        color: $black;
+        color: var(--invert-text-color);
         font-family: 'Sono-ExtraLight';
     }
 
     h3{
         margin-top: 10px;
-        color: $black;
+        color: var(--invert-text-color);
         font-family: 'Sono-Regular';
     }
 
@@ -109,7 +109,7 @@
     justify-content: space-between;
     width: 270px;
     p{
-        color: $black;
+        color: var(--invert-text-color);
         font-family: 'Sono-ExtraLight';
     }
 }
@@ -133,7 +133,7 @@
         border: 1px solid $color-7;
         background-color: transparent;
         border-radius: 10px;
-        color: $black;
+        color: var(--invert-text-color);
         font-family: 'Sono-Light';
         font-size: 16px;
     }

@@ -12,7 +12,7 @@
 }
 
 body{
-  background-color: $black;
+  background-color: var(--background-color-page);
 }
 
 a{

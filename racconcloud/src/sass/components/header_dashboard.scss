@@ -5,8 +5,8 @@
     gap: 50px;
     height: 90px;
     width: 100%;
-    background-color: #ffffff15;
-    color: $white;
+    background-color: var(--background-color-items);
+    color: var(--text-color);
     @media(min-width: 1024px)
     {
         justify-content: space-between;
@@ -92,9 +92,9 @@
         height: 50px;
         width: 35%;
         margin: 0px 10px;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: var(--background-color-page);
         gap: 30px;
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--text-color);
         border-radius: 15px;
         img{
             position: relative;
@@ -108,7 +108,7 @@
             border: 0;
             outline: none;
             background-color: transparent;
-            color: white;
+            color: var(--text-color);
             font-family: 'Sono-ExtraLight';
             font-size: 14px;
         }
@@ -226,7 +226,7 @@
         height: 80px;
         padding: 5px 5px;
         gap: 15px;
-        background-color: $black;
+        background-color: var(--background-color-page);
         border-radius: 20px;
 
         img{
@@ -249,7 +249,7 @@
         height: 80px;
         padding: 5px 5px;
         gap: 15px;
-        background-color: $black;
+        background-color: var(--background-color-page);
         border-radius: 20px;
 
         img{
@@ -277,9 +277,9 @@
         height: 50px;
         width: 35%;
         margin: 0px 10px;
-        background-color: rgba(255, 255, 255, 0.15);
+        background-color: var(--background-color-page);
         gap: 30px;
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--text-color);
         border-radius: 15px;
         img{
             position: relative;
@@ -293,7 +293,7 @@
             border: 0;
             outline: none;
             background-color: transparent;
-            color: white;
+            color: var(--text-color);
             font-family: 'Sono-ExtraLight';
             font-size: 14px;
         }
