@@ -1,6 +1,8 @@
 .main-folders-container{
     display: flex;
     width: 100%;
+    transition: width 0.5s ease;
+
     @media (min-width: 1024px){
         height: 85vh;
     }
@@ -8,10 +10,18 @@
 
 .main-folder-principal{
     width: 100%;
+    transition: width 0.5s ease;
+
     @media (min-width: 1024px){
         height: 100%;
         width: 80%;
         overflow: scroll;
+    }
+}
+
+.main-folder-principal.shrinked {
+    @media (min-width: 1024px) {
+      width: 60%; /* Cambia el tamaño al 60% cuando el modal está abierto */
     }
 }
 

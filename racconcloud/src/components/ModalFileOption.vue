@@ -32,8 +32,10 @@
         <p>Descargar Archivo</p>
       </div>
     </div>
-    <div class="modal-file-option">
-      <button @click="closeModalFileOption">Cancelar</button>
+    <div class="modal-file-option-button">
+      <button @click="closeModalFileOption">
+        <img src="" alt="">
+      </button>
     </div>
   </div>
 </template>
