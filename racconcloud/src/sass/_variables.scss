@@ -11,7 +11,7 @@ $color-10: #7D1F11;
 $white: #FFF;
 $black: #000;
 
-[data-theme='dark']{
+:root{
     --background-color-page: #000;
     --invert-background-color-page: #FFF;
     --text-color: #FFF;
@@ -20,7 +20,7 @@ $black: #000;
     --background-color-items: #262626;
 }
 
-:root{
+[data-theme='light']{
     --background-color-page: #FFF;
     --invert-background-color-page: #000;
     --text-color: #000;

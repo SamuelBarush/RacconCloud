@@ -32,20 +32,25 @@
                     <p>Perfil</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'home'}">
-                <div class="menu-dashboard-options-options">
-                    <img src="../assets/images/salida.png" alt="">
-                    <p>Log Out</p>
-                </div>
-            </router-link>
+            <button @click="Sesion">
+                Esta en Sesion
+            </button>
+            <div class="menu-dashboard-options-options" @click="LogOut">
+                <img src="../assets/images/salida.png" alt="">
+                <p>Log Out</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-    import { defineEmits } from 'vue';
+    import { defineEmits } from 'vue'
+    import { useAuthStore } from '@/store'
+    import { useRouter } from 'vue-router'
     
     const emit = defineEmits(['open-Modal1', 'open-Modal2'])
+    const authStore = useAuthStore()
+    const router = useRouter()
 
     function openModal1() {
         emit('open-Modal1')
@@ -53,5 +58,16 @@
 
     function openModal2() {
         emit('open-Modal2')
+    }
+
+    function LogOut() {
+        authStore.logout()
+        router.push('/')
+
+    }
+
+    function Sesion() {
+        authStore.isAuth()
+        authStore.info()
     }
 </script>
