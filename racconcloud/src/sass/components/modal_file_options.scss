@@ -1,0 +1,39 @@
+.modal-file-options {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 15%;  
+    height: 100vh; 
+    background-color: var(--background-color-items);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+    z-index: 1001;
+}
+
+.modal-file-options-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.modal-file-options-action-img {
+    width: 50px;
+    height: 50px;
+    background-color: $color-7; /* Color de fondo del botón rojo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.modal-file-options-action-text p {
+    font-family: 'Sono-Regular';
+    font-size: 18px;
+    color: #fff; /* Texto en blanco */
+}

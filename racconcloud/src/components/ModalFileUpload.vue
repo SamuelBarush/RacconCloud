@@ -37,7 +37,6 @@
         </div>
       </div>
     </div>
-
     <div class="modal-file-option">
       <button @click="closeModal2">Cancelar</button>
     </div>
