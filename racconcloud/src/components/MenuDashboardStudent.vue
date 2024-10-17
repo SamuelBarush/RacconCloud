@@ -1,15 +1,18 @@
 <template>
     <div class="menu-dashboard-student-container">
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-student'">
-            <button class="menu-dashboard-actions-options" @click="openModal1">
-                <img src="" alt="">
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="openModal1">
+                    <img src="../assets/icons/agregar-carpeta.png" alt="" >
+                </button>
                 <p>Crear Carpeta</p>
-            </button>
-
-            <button class="menu-dashboard-actions-options" @click="openModal2">
-                <img src="" alt="">
+            </div>
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="openModal2">
+                    <img src="../assets/icons/subir.png" alt="" >
+                </button>
                 <p>Subir Archivo</p>
-            </button>
+            </div>
         </div>
         <div class="menu-dashboard-student-nav">
             <router-link :to="{name:'folders-student'}">
@@ -32,9 +35,6 @@
                     <p>Perfil</p>
                 </div>
             </router-link>
-            <button @click="Sesion">
-                Esta en Sesion
-            </button>
             <div class="menu-dashboard-options-options" @click="LogOut">
                 <img src="../assets/images/salida.png" alt="">
                 <p>Log Out</p>
@@ -64,10 +64,5 @@
         authStore.logout()
         router.push('/')
 
-    }
-
-    function Sesion() {
-        authStore.isAuth()
-        authStore.info()
     }
 </script>
