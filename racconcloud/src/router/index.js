@@ -108,8 +108,17 @@ const routes = [
     }
   },
   {
-    path: '/folders-student',
-    name: 'folders-student',
+    path: '/folders-student-subjects',
+    name: 'folders-student-subjects',
+    component: FolderStudentView,
+    meta:{
+      requireAuth: true,
+      role: 3
+    }
+  },
+  {
+    path: '/folders-student-personal',
+    name: 'folders-student-personal',
     component: FolderStudentView,
     meta:{
       requireAuth: true,

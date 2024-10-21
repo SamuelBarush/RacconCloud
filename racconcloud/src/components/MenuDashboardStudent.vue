@@ -1,6 +1,6 @@
 <template>
     <div class="menu-dashboard-student-container">
-        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-student'">
+        <div class="menu-dashboard-student-actions" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'">
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" @click="openModal1">
                     <img src="../assets/icons/agregar-carpeta.png" alt="" >
@@ -15,13 +15,13 @@
             </div>
         </div>
         <div class="menu-dashboard-student-nav">
-            <router-link :to="{name:'folders-student'}">
+            <router-link :to="{name:'folders-student-personal'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Personal</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'folders-student'}">
+            <router-link :to="{name:'folders-student-subjects'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Materias</p>

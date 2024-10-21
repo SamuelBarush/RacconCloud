@@ -15,20 +15,20 @@
             <p>RacconCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>
-        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders-student'"><p>Personal</p></div>
-        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path === '/folders-student'"><p>Materias</p></div>
-        <div class="header-user-2" v-if="$route.path === '/folders-student'">
+        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'"><p>Personal</p></div>
+        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'"><p>Materias</p></div>
+        <div class="header-user-2" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'">
             <img src="../assets/icons/avatar-student.png" alt="">
             <div class="header-dashboard-user-text">
                 <p>Bienvenido</p>
                 <p>Usuario</p>
             </div> 
         </div>
-        <div class="header-search-2" v-if="$route.path === '/folders-student'">
+        <div class="header-search-2" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'">
             <img src="../assets/images/busqueda.png" alt="">
             <input type="search" value="Buscar">
         </div>
-        <div class="header-img-2" v-if="$route.path === '/folders-student'">
+        <div class="header-img-2" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'">
             <p>RacconCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>

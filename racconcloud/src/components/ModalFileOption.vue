@@ -45,19 +45,19 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from 'vue'
+  import { defineEmits, defineProps } from 'vue'
 
-const emit = defineEmits(['close-ModalFileOption'])
-const props = defineProps({
-  type: {
-    type: String,
-    required: true
+  const emit = defineEmits(['close-ModalFileOption'])
+  const props = defineProps({
+    type: {
+      type: String,
+      required: true
+    }
+  })
+
+  console.log(props.type)
+
+  function closeModalFileOption() {
+    emit('close-ModalFileOption')
   }
-})
-
- console.log(props.type)
-
-function closeModalFileOption() {
-  emit('close-ModalFileOption')
-}
 </script>

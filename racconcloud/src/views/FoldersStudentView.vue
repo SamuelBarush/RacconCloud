@@ -55,7 +55,7 @@
   <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
   <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
 
-  <div v-if="showModal1 || showModal2 " class="overlay"></div>
+  <div v-if="showModal1 || showModal2" class="overlay"></div>
 </template>
 
 <script setup>
@@ -67,8 +67,8 @@ import ModalFileUpload from '@/components/ModalFileUpload.vue'
 import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
 import { ref } from 'vue'
 
-const showModal1 = ref(false);
-const showModal2 = ref(false);
+const showModal1 = ref(false)
+const showModal2 = ref(false)
 const showModalFileOption = ref(false); // Estado para controlar si el modal está abierto
 const selectedType = ref(''); // Estado para almacenar si se seleccionó una carpeta o archivo
 
