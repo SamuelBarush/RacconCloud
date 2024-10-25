@@ -63,6 +63,5 @@
     function LogOut() {
         authStore.logout()
         router.push('/')
-
     }
 </script>

@@ -15,7 +15,12 @@
           v-for="(file, index) in files" 
           :key="index" 
           class="modal-file-preview-file" 
-          :style="{ borderColor: file.status === 'completed' ? '#EC3A0A' : '#FFCCA9' }">
+          :style="{ 
+            borderColor: 
+            file.status === 'completed' ? '#EC3A0A' :
+            file.status === 'error-upload' ? '#7D1F11' :
+            file.status === 'error-connection' ? '#000' : '#FFCCA9'
+            }">
           <!-- Muestra el ícono basado en la extensión del archivo -->
           <div class="modal-file-preview-img">
             <img :src="file.icon" alt="icono de archivo" />
@@ -28,7 +33,7 @@
             </div>
             <div class="modal-file-preview-progress">
               <div 
-                v-if="file.progress > 0" 
+                v-if="file.progress > 0 && file.status !== 'error-upload' && file.status !== 'error-connection'" 
                 class="progress-bar" 
                 :style="{ width: file.progress + '%' }"
               ></div>
@@ -45,12 +50,14 @@
 
 <script setup>
   import { ref } from 'vue';
-  import { defineEmits } from 'vue';
-  import FileIconMapper from '@/services/FileIconMapper';
+  import { defineEmits } from 'vue'
+  import { useAuthStore } from '@/store'
+  import FileIconMapper from '@/services/FileIconMapper'
 
-  const fileIconMapper = new FileIconMapper();
+  const fileIconMapper = new FileIconMapper()
   const emit = defineEmits(['close-Modal2'])
-  const files = ref([]);
+  const authStore = useAuthStore()
+  const files = ref([])
 
   function closeModal2() {
       emit('close-Modal2')
@@ -74,7 +81,7 @@
           });
       }
   }
-
+  /*
   async function uploadFile(file, index) {
     if (file.status === 'completed') return;
 
@@ -86,5 +93,41 @@
       files.value[index].status = 'completed';
       files.value[index].progress = 100;
     }, 1000);
+  }*/
+
+  async function uploadFile(file) {
+    //if (file.status === 'completed') return;
+
+    const FileName = file.name
+    const Base64 = await toBase64(file.file)
+    const path = ''
+
+    await authStore.uploadFile(Base64, FileName, path)
+
   }
+
+
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64String = reader.result;
+        // Eliminar el prefijo del base64 si es necesario
+        const base64WithoutPrefix = base64String.split(',')[1]; // Eliminar el "data:image/png;base64,"
+        resolve(base64WithoutPrefix);
+      };
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /*function getEndpointByFileSize(fileSize){
+    const MAX_SIZE_SINGLE = 350 * 1024 * 1024
+    if(fileSize > MAX_SIZE_SINGLE){
+      return 'chunk'
+    } else {
+      return 'single'
+    }
+  }*/
+
 </script>

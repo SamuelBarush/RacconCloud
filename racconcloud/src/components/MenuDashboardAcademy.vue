@@ -1,18 +1,24 @@
 <template>
     <div class="menu-dashboard-student-container">
-        <div class="menu-dashboard-student-actions" v-if="$route.path == '/folders-academy' || '/dashboard-academy'">
-            <button class="menu-dashboard-actions-options" v-if="$route.path == '/dashboard-academy' || '/folders-academy'">
-                <img src="" alt="">
-                <p>Crear Materia</p>
-            </button>  
-            <button class="menu-dashboard-actions-options" @click="openModal1" v-if="$route.path === '/folders-academy'">
-                <img src="" alt="">
+        <div class="menu-dashboard-student-actions" v-if="$route.path == '/folders-academy' || '/dashboard-academy' || '/events-academy'">
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" >
+                    <img src="../assets/icons/subir.png" alt="" @click="openModal1">
+                </button>
                 <p>Crear Carpeta</p>
-            </button>
-            <button class="menu-dashboard-actions-options" @click="openModal2" v-if="$route.path === '/folders-academy'">
-                <img src="" alt="">
+            </div>
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" >
+                    <img src="../assets/icons/subir.png" alt="" @click="openModal2">
+                </button>
                 <p>Subir Archivo</p>
-            </button>
+            </div>
+            <div class="menu-dashboard-student-actions-container" v-if="$route.path == '/dashboard-academy' || '/events-academy'">
+                <button class="menu-dashboard-actions-options" >
+                    <img src="../assets/icons/subir.png" alt="" >
+                </button>
+                <p>Crear Materias</p>
+            </div>
         </div>
         <div class="menu-dashboard-student-nav">
             <router-link :to="{name:'folders-academy'}">
@@ -41,20 +47,22 @@
                     <p>Perfil</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'home'}">
-                <div class="menu-dashboard-options-options">
-                    <img src="../assets/images/salida.png" alt="">
-                    <p>Log Out</p>
-                </div>
-            </router-link>
+            <div class="menu-dashboard-options-options" @click="LogOut">
+                <img src="../assets/images/salida.png" alt="">
+                <p>Log Out</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-    import { defineEmits } from 'vue';
+    import { defineEmits } from 'vue'
+    import { useAuthStore } from '@/store'
+    import { useRouter } from 'vue-router'
     
     const emit = defineEmits(['open-Modal1', 'open-Modal2'])
+    const authStore = useAuthStore()
+    const router = useRouter()
 
     function openModal1() {
         emit('open-Modal1')
@@ -62,5 +70,10 @@
 
     function openModal2() {
         emit('open-Modal2')
+    }
+
+    function LogOut() {
+        authStore.logout()
+        router.push('/')
     }
 </script>

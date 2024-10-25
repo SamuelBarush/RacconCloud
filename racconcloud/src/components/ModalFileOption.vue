@@ -1,6 +1,6 @@
 <template>
   <div class="modal-file-options">
-    <div v-if="type === 'carpeta'" class="modal-file-options-action">
+    <div v-if="type === 'carpeta'" class="modal-file-options-action" @click="openDeleteModal('carpeta')">
       <div class="modal-file-options-action-img">
         <img src="../assets/icons/basura.png" alt="Icono Eliminar Carpeta">
       </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div v-if="type === 'archivo'" class="modal-file-options-action">
+    <div v-if="type === 'archivo'" class="modal-file-options-action" @click="openDeleteModal('archivo')">
       <div class="modal-file-options-action-img">
         <img src="../assets/icons/basura.png" alt="Icono Eliminar Archivo">
       </div>
@@ -38,26 +38,31 @@
 
     <div class="modal-file-option-button">
       <button @click="closeModalFileOption">
-        <img src="../assets/icons/cruz.png" alt="">
+        <img src="../assets/icons/cruz.png" alt="Cerrar">
       </button>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { defineEmits, defineProps } from 'vue'
+import { defineEmits, defineProps } from 'vue'
 
-  const emit = defineEmits(['close-ModalFileOption'])
-  const props = defineProps({
-    type: {
-      type: String,
-      required: true
-    }
-  })
-
-  console.log(props.type)
-
-  function closeModalFileOption() {
-    emit('close-ModalFileOption')
+const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal']) // Emitimos un evento para abrir el modal de eliminación
+const props = defineProps({
+  type: {
+    type: String,
+    required: true
   }
+})
+
+console.log(props.type)
+
+// Emitir para abrir el modal de eliminación
+function openDeleteModal(type) {
+  emit('open-DeleteModal', type)
+}
+
+function closeModalFileOption() {
+  emit('close-ModalFileOption')
+}
 </script>

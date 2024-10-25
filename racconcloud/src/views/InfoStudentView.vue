@@ -5,13 +5,16 @@
         <div class="main-info-principal">
             <div class="main-info-user">
                 <div><img src="../assets/icons/avatar-student.png" alt=""></div>
-                <p>Nombre Completo del usuario</p>
+                <p>{{ userName }}</p>
             </div>
             <div class="main-info-text">
                 <h3>Información Básica</h3>
-                <div><img src="../assets/images/id-insignia.png" alt=""><p>Boleta: </p></div>
-                <div><img src="../assets/images/sobre.png" alt=""><p>Email: </p></div>
-                <div><img src="../assets/images/llave.png" alt=""><p>CURP: </p></div>
+                <div><img src="../assets/images/id-insignia.png" alt="">
+                  <p>Boleta: {{ userBoleta }}</p>
+                </div>
+                <div><img src="../assets/images/sobre.png" alt="">
+                  <p>Email: {{ userEmail }}</p>
+                </div>
             </div>
         </div>
     </main>
@@ -22,14 +25,34 @@
 </template>
 
 <script setup>
+    import { ref, onMounted } from "vue"
+    import { useAuthStore } from '@/store'
+
     import HeaderComponent from '@/components/HeaderStudentComponent.vue'
     import FooterComponent from '@/components/FooterStudentComponent.vue'
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
 
-    import { ref } from "vue";
+    const showModal1 = ref(false)
+    const showModal2 = ref(false)
 
-    const showModal1 = ref(false);
-    const showModal2 = ref(false);
+    // Variables para almacenar la información del usuario
+    const userName = ref('')
+    const userBoleta = ref('')
+    const userEmail = ref('')
+
+    // Instancia del store
+    const authStore = useAuthStore()
+
+    // Llamar a la función info() cuando se cargue la vista
+    onMounted(async () => {
+    const userInfo = await authStore.info()
+    if (userInfo) {
+        // Asignar los valores devueltos por el store a las variables locales
+        userName.value = userInfo.name
+        userBoleta.value = userInfo.boleta
+        userEmail.value = userInfo.email
+    }
+    });
 </script>
