@@ -18,20 +18,38 @@
       </div>
   
       <!-- Mostrar elementos en /folders-teacher -->
-      <div class="header-folders-title" id="header-folders-title-a" v-if="$route.name === 'folders-teacher'"><p>Personal</p></div>
-      <div class="header-folders-title" id="header-folders-title-b" v-if="$route.name === 'folders-teacher'"><p>Materias</p></div>
-      <div class="header-user-2" v-if="$route.name === 'folders-teacher'">
+      <div class="header-folders-title" id="header-folders-title-a" v-if="$route.name === 'folders-teacher-personal'"><p>Personal</p></div>
+      <div class="header-folders-title" id="header-folders-title-b" v-if="$route.name === 'folders-teacher-personal'"><p>Materias</p></div>
+      <div class="header-user-2" v-if="$route.name === 'folders-teacher-personal'">
         <img src="../assets/icons/avatar-teacher.png" alt="">
         <div class="header-dashboard-user-text">
           <p>Bienvenido</p>
           <p>Usuario</p>
         </div> 
       </div>
-      <div class="header-search-2" v-if="$route.name === 'folders-teacher'">
+      <div class="header-search-2" v-if="$route.name === 'folders-teacher-personal'">
         <img src="../assets/images/busqueda.png" alt="">
         <input type="search" value="Buscar">
       </div>
-      <div class="header-img-2" v-if="$route.name === 'folders-teacher'">
+      <div class="header-img-2" v-if="$route.name === 'folders-teacher-personal'">
+        <p>RacconCloud</p>
+        <img src="../assets/icons/avatar-teacher.png" alt="">
+      </div>
+
+      <div class="header-folders-title" id="header-folders-title-a" v-if="$route.name === 'folders-teacher-subjects'"><p>Personal</p></div>
+      <div class="header-folders-title" id="header-folders-title-b" v-if="$route.name === 'folders-teacher-subjects'"><p>Materias</p></div>
+      <div class="header-user-2" v-if="$route.name === 'folders-teacher-subjects'">
+        <img src="../assets/icons/avatar-teacher.png" alt="">
+        <div class="header-dashboard-user-text">
+          <p>Bienvenido</p>
+          <p>Usuario</p>
+        </div> 
+      </div>
+      <div class="header-search-2" v-if="$route.name === 'folders-teacher-subjects'">
+        <img src="../assets/images/busqueda.png" alt="">
+        <input type="search" value="Buscar">
+      </div>
+      <div class="header-img-2" v-if="$route.name === 'folders-teacher-subjects'">
         <p>RacconCloud</p>
         <img src="../assets/icons/avatar-teacher.png" alt="">
       </div>

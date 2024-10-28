@@ -2,7 +2,6 @@
   <HeaderComponent />
   <main class="main-folders-container">
     <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true" />
-
     <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <div class="main-folders-search">
         <img src="../assets/images/busqueda.png" alt="" />
@@ -11,7 +10,11 @@
 
       <!-- Mostrar Carpetas -->
       <div class="main-dashboard-title">
-        <p>Mis Carpetas</p>
+        <p class="breadcrumbs">
+          <span v-for="(crumb, index) in breadcrumbs" :key="index" @click="navigateTo(index)">
+            {{ crumb }}<span v-if="index < breadcrumbs.length - 1"> / </span>
+          </span>
+        </p>
       </div>
       <div class="main-container-grid-a">
         <div
@@ -19,6 +22,7 @@
           :key="index"
           class="main-folders-block-a"
           :class="{ 'selected': selectedItem === folder }"
+          @click="openFolder(folder)"
           @dblclick="openModal('carpeta', folder)"
         >
           <img src="../assets/images/carpeta.png" alt="Carpeta" />
@@ -59,15 +63,13 @@
   </main>
 
   <FooterComponent />
-
   <ModalFileOption
     v-if="showModalFileOption"
     :type="selectedType"
     @close-ModalFileOption="closeModalFileOption"
     @open-DeleteModal="openDeleteModal"
   />
-
-  <ModalDelete v-if="showModalDelete" :type="deleteType" @close-ModalDelete="closeModalDelete" />
+  <ModalDelete v-if="showModalDelete" :type="deleteType" @close-ModalDelete="closeModalDelete"/>
   <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false" />
   <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false" />
 
@@ -82,8 +84,8 @@
   import ModalFileUpload from '@/components/ModalFileUpload.vue'
   import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
   import ModalDelete from '@/components/ModalFileDelete.vue'
-  import { ref } from 'vue'
-  import { onMounted } from 'vue'
+  
+  import { ref , computed , onMounted} from 'vue'
   import { useAuthStore } from '@/store'
 
   const showModal1 = ref(false)
@@ -94,8 +96,22 @@
   const selectedItem = ref('') // Estado para almacenar el ítem seleccionado
   const deleteType = ref('')
   const authStore = useAuthStore()
-  const files = ref([])
-  const folders = ref([])
+
+  // Obtener las carpetas y archivos del directorio actual
+  const folders = computed(() => authStore.getCurrentFolderContent.folders)
+  const files = computed(() => authStore.getCurrentFolderContent.files)
+  const breadcrumbs = computed(() => authStore.getBreadcrumbs)
+  
+  function openFolder(folder) {
+    // Cambiar a la carpeta seleccionada
+    authStore.changeDirectory(folder)
+  }
+
+  function navigateTo(index) {
+    // Navegar a un nivel anterior en la ruta
+    const newPath = breadcrumbs.value.slice(1, index + 1).join('/')
+    authStore.changeDirectory(newPath)
+  }
 
   function openModal(type, itemName) {
     selectedType.value = type;
@@ -120,9 +136,7 @@
   }
 
   onMounted( async () => {
-    const userInfo = await authStore.getFiles();
-    files.value = userInfo[""].files;
-    folders.value = userInfo[""].folders;
+    await authStore.getFiles();
   })
 </script>
 
@@ -133,5 +147,13 @@
   }
   .selected p{
     color: var(--invert-text-color) !important;
+  }
+  .breadcrumbs {
+    span {
+      cursor: pointer;
+    }
+    span:hover {
+      text-decoration: underline;
+    }
   }
 </style>

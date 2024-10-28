@@ -36,6 +36,23 @@
       </div>
     </div>
 
+    <div v-if="type === 'usuario'" class="modal-file-options-action">
+      <div class="modal-file-options-action-img">
+        <img src="../assets/icons/descargar.png" alt="Icono Descargar Archivo">
+      </div>
+      <div class="modal-file-options-action-text">
+        <p>Modificar Usuario</p>
+      </div>
+    </div>
+    <div v-if="type === 'usuario'" class="modal-file-options-action">
+      <div class="modal-file-options-action-img">
+        <img src="../assets/icons/descargar.png" alt="Icono Descargar Archivo">
+      </div>
+      <div class="modal-file-options-action-text">
+        <p>Eliminar Usuario</p>
+      </div>
+    </div>
+
     <div class="modal-file-option-button">
       <button @click="closeModalFileOption">
         <img src="../assets/icons/cruz.png" alt="Cerrar">

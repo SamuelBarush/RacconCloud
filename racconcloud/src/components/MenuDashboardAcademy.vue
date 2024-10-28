@@ -1,6 +1,6 @@
 <template>
     <div class="menu-dashboard-student-container">
-        <div class="menu-dashboard-student-actions" v-if="$route.path == '/folders-academy' || '/dashboard-academy' || '/events-academy'">
+        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-academy-personal'">
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" >
                     <img src="../assets/icons/subir.png" alt="" @click="openModal1">
@@ -13,7 +13,9 @@
                 </button>
                 <p>Subir Archivo</p>
             </div>
-            <div class="menu-dashboard-student-actions-container" v-if="$route.path == '/dashboard-academy' || '/events-academy'">
+        </div>
+        <div class="menu-dashboard-student-actions" v-if="$route.path === '/dashboard-academy'">
+            <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" >
                     <img src="../assets/icons/subir.png" alt="" >
                 </button>
@@ -21,13 +23,13 @@
             </div>
         </div>
         <div class="menu-dashboard-student-nav">
-            <router-link :to="{name:'folders-academy'}">
+            <router-link :to="{name:'folders-academy-personal'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Personal</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'folders-academy'}">
+            <router-link :to="{name:'folders-academy-subjects'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Materias</p>

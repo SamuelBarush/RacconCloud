@@ -1,6 +1,20 @@
 <template>
     <div class="menu-dashboard-student-container">
-        <div class="menu-dashboard-student-actions" v-if="$route.path == '/folders-student-personal' || '/folders-student-subjects'">
+        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-student-personal'">
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="openModal1">
+                    <img src="../assets/icons/agregar-carpeta.png" alt="" >
+                </button>
+                <p>Crear Carpeta</p>
+            </div>
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="openModal2">
+                    <img src="../assets/icons/subir.png" alt="" >
+                </button>
+                <p>Subir Archivo</p>
+            </div>
+        </div>
+        <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-student-subjects'">
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" @click="openModal1">
                     <img src="../assets/icons/agregar-carpeta.png" alt="" >

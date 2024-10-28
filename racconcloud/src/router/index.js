@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from "@/store"
+
 import DashboardStudentView from '@/views/DashboardStudentView.vue'
 import DashboardAcademyView from '@/views/DashboardAcademyView.vue'
 import DashboardTeacherView from '@/views/DashboardTeacherView.vue'
@@ -12,6 +13,7 @@ import InfoTeacherView from '@/views/InfoTeacherView.vue'
 import InfoAcademyView from '@/views/InfoAcademyView.vue'
 import EventsAcademyView from '@/views/EventsAcademyView.vue'
 import EventsAdminView from '@/views/EventsAdminView.vue'
+import UserListAdminView from '@/views/UserListAdminView.vue'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import ForgotPasswordView from '@/views/ForgotPasswordView.vue'
@@ -126,8 +128,8 @@ const routes = [
     }
   },
   {
-    path: '/folders-teacher',
-    name: 'folders-teacher',
+    path: '/folders-teacher-personal',
+    name: 'folders-teacher-personal',
     component: FolderTeacherView,
     meta:{
       requireAuth: true,
@@ -135,8 +137,26 @@ const routes = [
     }
   },
   {
-    path: '/folders-academy',
-    name: 'folders-academy',
+    path: '/folders-teacher-subjects',
+    name: 'folders-teacher-subjects',
+    component: FolderTeacherView,
+    meta:{
+      requireAuth: true,
+      role: 2
+    }
+  },
+  {
+    path: '/folders-academy-personal',
+    name: 'folders-academy-personal',
+    component: FolderAcademyView,
+    meta:{
+      requireAuth: true,
+      role: 1
+    }
+  },
+  {
+    path: '/folders-academy-subjects',
+    name: 'folders-academy-subjects',
     component: FolderAcademyView,
     meta:{
       requireAuth: true,
@@ -160,6 +180,15 @@ const routes = [
       requireAuth: true,
       role: 0
     }
+  },
+  {
+    path: '/user-list-admin',
+    name: 'user-list-admin',
+    component: UserListAdminView,
+    meta:{
+      requireAuth: true,
+      role: 0
+    }
   }
 ]
 
@@ -175,13 +204,10 @@ router.beforeEach((to, from, next) => {
   const roleRequired = to.meta.role;
 
   if (needAuth && !auth) {
-    //console.log('Not authenticated, redirecting to login');
     next('/login'); // Redirigir si no está autenticado
   } else if (needAuth && roleRequired !== role) {
-    //console.log('Role mismatch, redirecting to login');
     next('/login'); // Redirigir si el rol no coincide
   } else {
-    //console.log('Access granted');
     next();
   }
 });

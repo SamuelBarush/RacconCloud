@@ -15,7 +15,7 @@
                     <p>Revisar Eventos</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'events-admin'}">
+            <router-link :to="{name:'user-list-admin'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Revisar Usuarios</p>

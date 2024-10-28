@@ -22,7 +22,7 @@
   </template>
   
 <script setup>
-  import { defineEmits, defineProps } from 'vue'
+  import { defineEmits, defineProps , onMounted} from 'vue'
   const emit = defineEmits(['close-ModalDelete'])
   const props = defineProps({
     type: {
@@ -36,4 +36,8 @@
   function closeModalDelete() {
     emit('close-ModalDelete')
   }
+
+  onMounted(() => {
+    
+  })
 </script>

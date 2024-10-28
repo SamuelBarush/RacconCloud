@@ -32,20 +32,35 @@
             <img src="../assets/icons/avatar-academy.png" alt="">
         </div>
 
-        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders-academy'"><p>Personal</p></div>
-        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path === '/folders-academy'"><p>Materias</p></div>
-        <div class="header-user-2" v-if="$route.path === '/folders-academy'">
+        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders-academy-personal'"><p>Personal</p></div>
+        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path === '/folders-academy-personal'"><p>Materias</p></div>
+        <div class="header-user-2" v-if="$route.path === '/folders-academy-personal'">
             <img src="../assets/icons/avatar-academy.png" alt="">
             <div class="header-dashboard-user-text">
                 <p>Bienvenido</p>
                 <p>Usuario</p>
             </div> 
         </div>
-        <div class="header-search-2" v-if="$route.path === '/folders-academy'">
+        <div class="header-search-2" v-if="$route.path === '/folders-academy-personal'">
             <img src="../assets/images/busqueda.png" alt="">
             <input type="search" value="Buscar">
         </div>
-        <div class="header-img-2" v-if="$route.path === '/folders-academy'">
+        <div class="header-img-2" v-if="$route.path === '/folders-academy-personal'">
+            <p>RacconCloud</p>
+            <img src="../assets/icons/avatar-academy.png" alt="">
+        </div>
+        <div class="header-user-2" v-if="$route.path === '/folders-academy-subjects'">
+            <img src="../assets/icons/avatar-academy.png" alt="">
+            <div class="header-dashboard-user-text">
+                <p>Bienvenido</p>
+                <p>Usuario</p>
+            </div> 
+        </div>
+        <div class="header-search-2" v-if="$route.path === '/folders-academy-subjects'">
+            <img src="../assets/images/busqueda.png" alt="">
+            <input type="search" value="Buscar">
+        </div>
+        <div class="header-img-2" v-if="$route.path === '/folders-academy-subjects'">
             <p>RacconCloud</p>
             <img src="../assets/icons/avatar-academy.png" alt="">
         </div>

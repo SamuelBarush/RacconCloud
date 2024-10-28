@@ -9,7 +9,6 @@
         <p>Tamaño Maximo 50Mb</p>
         <input type="file" multiple @change="handleFileSelect" />
       </div>
-
       <div class="modal-file-preview">
         <div 
           v-for="(file, index) in files" 
@@ -17,19 +16,21 @@
           class="modal-file-preview-file" 
           :style="{ 
             borderColor: 
-            file.status === 'completed' ? '#EC3A0A' :
-            file.status === 'error-upload' ? '#7D1F11' :
-            file.status === 'error-connection' ? '#000' : '#FFCCA9'
-            }">
-          <!-- Muestra el ícono basado en la extensión del archivo -->
+            file.status === 'completed' ? '#EC3A0A' : // Color de borde cuando está completado
+            file.status === 'error-upload' ? '#7D1F11' : // Color de borde cuando hubo error en la subida
+            file.status === 'error-connection' ? '#000' : // Color de borde cuando hay error de conexión
+            file.status === 'uploading' ? '#FFCCA9' : '#FFCCA9' // Color de borde cuando se está subiendo
+          }">
           <div class="modal-file-preview-img">
             <img :src="file.icon" alt="icono de archivo" />
           </div>
-
           <div class="modal-file-preview-description">
             <div class="modal-file-preview-text">
               <p>{{ file.name }}</p>
-              <p @click="uploadFile(file, index)">{{ file.status === 'completed' ? 'Completado' : 'Subir' }}</p>
+              <p v-if="file.status !== 'completed'" @click="uploadFile(file, index)">
+                {{ file.status === 'uploading' ? 'Subiendo...' : 'Subir' }}
+              </p>
+              <p v-else>Completado</p>
             </div>
             <div class="modal-file-preview-progress">
               <div 
@@ -49,12 +50,14 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+  import { ref } from 'vue'
   import { defineEmits } from 'vue'
   import { useAuthStore } from '@/store'
+
   import FileIconMapper from '@/services/FileIconMapper'
 
   const fileIconMapper = new FileIconMapper()
+
   const emit = defineEmits(['close-Modal2'])
   const authStore = useAuthStore()
   const files = ref([])
@@ -65,11 +68,11 @@
 
   // Selecciona archivos
   function handleFileSelect(event) {
-      const selectedFiles = event.target.files;
+      const selectedFiles = event.target.files
       for (let i = 0; i < selectedFiles.length; i++) {
-          const file = selectedFiles[i];
-          const extension = file.name.split('.').pop().toLowerCase();
-          const icon = fileIconMapper.getIcon(extension);
+          const file = selectedFiles[i]
+          const extension = file.name.split('.').pop().toLowerCase()
+          const icon = fileIconMapper.getIcon(extension)
           files.value.push({
             file,
             name: file.name,
@@ -78,47 +81,41 @@
             status: 'pending',
             progress: 0,
             preview: URL.createObjectURL(file)
-          });
+          })
       }
   }
-  /*
+
   async function uploadFile(file, index) {
-    if (file.status === 'completed') return;
-
-    // Simular el progreso de subida
-    files.value[index].progress = 50;
-
-    setTimeout(() => {
-      // Simular finalización de la subida
-      files.value[index].status = 'completed';
-      files.value[index].progress = 100;
-    }, 1000);
-  }*/
-
-  async function uploadFile(file) {
-    //if (file.status === 'completed') return;
+    // Actualizar el estado del archivo a "subiendo"
+    files.value[index].status = 'uploading'
 
     const FileName = file.name
     const Base64 = await toBase64(file.file)
     const path = ''
 
-    await authStore.uploadFile(Base64, FileName, path)
+    // Función para actualizar el progreso
+    const updateProgress = (progress, status = null) => {
+      files.value[index].progress = progress
+      if (status) {
+        files.value[index].status = status // Actualizar el estado si hay cambios en el estado (completado o error)
+      }
+    };
 
+    // Llamar a la función de subir archivo en el store y pasar el callback
+    await authStore.uploadFile(Base64, FileName, path, updateProgress)
   }
-
 
   function toBase64(file) {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = () => {
-        const base64String = reader.result;
-        // Eliminar el prefijo del base64 si es necesario
-        const base64WithoutPrefix = base64String.split(',')[1]; // Eliminar el "data:image/png;base64,"
-        resolve(base64WithoutPrefix);
+        const base64String = reader.result
+        const base64WithoutPrefix = base64String.split(',')[1] // Eliminar el "data:image/png;base64,"
+        resolve(base64WithoutPrefix)
       };
-      reader.onerror = error => reject(error);
-      reader.readAsDataURL(file);
-    });
+      reader.onerror = error => reject(error)
+      reader.readAsDataURL(file)
+    })
   }
 
   /*function getEndpointByFileSize(fileSize){
