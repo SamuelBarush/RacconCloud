@@ -6,8 +6,9 @@ export const useAuthStore = defineStore('auth',{
     authUser: null,
     role: null,
     jwt: null,
-    structure: null,
+    structure: {},
     currentPath: '',
+    selectedFile: null
   }),
   getters: {
     isAuthenticated: (state) => state.authUser,
@@ -15,23 +16,17 @@ export const useAuthStore = defineStore('auth',{
     getJwt: (state) => state.jwt,
     getPath: (state) => state.currentPath,
     getCurrentFolderContent: (state) => {
-      return state.structure[state.currentPath] || {files: [], folders: []}
+      return state.structure?.[state.currentPath] || { files: [], folders: [] };  // Verificar existencia de currentPath
     },
     getBreadcrumbs: (state) => {
       const pathArray = state.currentPath ? state.currentPath.split('/').filter(Boolean) : [];
-      /*if (router.currentRoute.value.name === '/folders-student-subjects') {
-        return ['Materias', ...pathArray];
-      }
-      if (router.currentRoute.value.name === '/folders-student-personal') {
-        return ['Personal', ...pathArray];
-      }*/
       return ['Materias', ...pathArray];  // Devuelve al menos ['Personal'] para evitar undefined
     }    
   },
   actions: {
     async login(id, password){
       try {
-        const res = await fetch('http://192.168.1.68:5000/auth/login',{
+        const res = await fetch('http://192.168.1.199:5000/auth/login',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -69,7 +64,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async isAuth(){
       try {
-        const res = await fetch('http://192.168.1.68:5000/auth/verify-session',{
+        const res = await fetch('http://192.168.1.199:5000/auth/verify-session',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -91,7 +86,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async info(){
       try {
-        const res = await fetch('http://192.168.1.68:5000/users/info',{
+        const res = await fetch('http://192.168.1.199:5000/users/info',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -115,11 +110,11 @@ export const useAuthStore = defineStore('auth',{
           console.error(error)
       }
     },
-    async uploadFile(file, filename, path, updateProgressCallback) {
+    async uploadFile(file, filename,updateProgressCallback) {
       try {
         const xhr = new XMLHttpRequest();
     
-        xhr.open('POST', 'http://192.168.1.68:5000/file/upload/single', true);
+        xhr.open('POST', 'http://192.168.1.199:5000/file/upload/single', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
     
@@ -148,7 +143,7 @@ export const useAuthStore = defineStore('auth',{
         const body = JSON.stringify({
           file: file,
           filename: filename,
-          path: path
+          path: this.currentPath
         });
     
         xhr.send(body);
@@ -159,7 +154,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async getFiles() {
       try {
-        const res = await fetch('http://192.168.1.68:5000/file/full-list', {
+        const res = await fetch('http://192.168.1.199:5000/file/full-list', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -185,15 +180,15 @@ export const useAuthStore = defineStore('auth',{
     async createFolder(path_name){
 
       try {
-        const res = await fetch('http://192.168.1.68:5000/file/new_path',{
+        const res = await fetch('http://192.168.1.199:5000/file/create-folder',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json',
               'Authorization': `Bearer ${this.jwt}`
             },
             body:JSON.stringify({
-              path:this.path,
-              path_name: path_name
+              parent_dir:'/' + this.currentPath,
+              folder_name: path_name
             })
         })
 
@@ -210,8 +205,64 @@ export const useAuthStore = defineStore('auth',{
     },
     async setPath (path){
       this.currentPath = path
+    },
+    setSelectedFile(fileName) {
+      this.selectedFile = fileName
+    },
+    async downloadFile(){
+      try {
+        const res = await fetch(`http://192.168.1.199:5000/file/download?file_path=${encodeURIComponent('/' + this.currentPath +  '/' + this.selectedFile)}`,{
+            method: 'GET',
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${this.jwt}`
+            }
+        })
+
+        if(res.ok){
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url
+          a.download = this.selectedFile.split('/').pop()
+          a.click()
+          a.remove()
+        } else {
+           const errorData = res.json
+           alert(errorData.error || 'Error al descargar el archivo')
+        }
+
+      } catch (error) {
+          console.error(error)
+      }
+    },
+    async downloadFolder(){
+      try {
+        const res = await fetch(`http://192.168.1.199:5000/file/download-folder?folder_path=${encodeURIComponent(this.currentPath +  '/' + this.selectedFile)}`,{
+            method: 'GET',
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${this.jwt}`
+            }
+        })
+
+        if(res.ok){
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url
+          a.download = this.selectedFile.split('/').pop()
+          a.click()
+          a.remove()
+        } else {
+           const errorData = res.json
+           alert(errorData.error || 'Error al descargar el archivo')
+        }
+
+      } catch (error) {
+          console.error(error)
+      }
     }
-    //async downloadFile(filename,path){
   },
   persist: {
     enabled: true,

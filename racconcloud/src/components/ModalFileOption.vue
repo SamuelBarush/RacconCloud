@@ -10,7 +10,7 @@
     </div>
 
     <div v-if="type === 'carpeta'" class="modal-file-options-action">
-      <div class="modal-file-options-action-img">
+      <div class="modal-file-options-action-img" @click="DescargarCarpeta">
         <img src="../assets/icons/descargar.png" alt="Icono Descargar Carpeta">
       </div>
       <div class="modal-file-options-action-text">
@@ -28,7 +28,7 @@
     </div>
 
     <div v-if="type === 'archivo'" class="modal-file-options-action">
-      <div class="modal-file-options-action-img">
+      <div class="modal-file-options-action-img" @click="Descargar">
         <img src="../assets/icons/descargar.png" alt="Icono Descargar Archivo">
       </div>
       <div class="modal-file-options-action-text">
@@ -63,8 +63,11 @@
 
 <script setup>
 import { defineEmits, defineProps } from 'vue'
+import { useAuthStore } from '@/store'
 
 const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal']) // Emitimos un evento para abrir el modal de eliminación
+const authStore = useAuthStore()
+
 const props = defineProps({
   type: {
     type: String,
@@ -81,5 +84,13 @@ function openDeleteModal(type) {
 
 function closeModalFileOption() {
   emit('close-ModalFileOption')
+}
+
+async function Descargar() {
+  await authStore.downloadFile()
+}
+
+async function DescargarCarpeta() {
+  await authStore.downloadFolder()
 }
 </script>

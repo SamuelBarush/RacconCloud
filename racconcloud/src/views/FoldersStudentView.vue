@@ -1,7 +1,10 @@
 <template>
   <HeaderComponent />
   <main class="main-folders-container">
-    <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true" />
+    <MenuDashboardStudent 
+    @open-Modal1="showModal1 = true" 
+    @open-Modal2="showModal2 = true"
+    @refreshFolders="loadFolders"/>
     <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <div class="main-folders-search">
         <img src="../assets/images/busqueda.png" alt="" />
@@ -22,8 +25,9 @@
           :key="index"
           class="main-folders-block-a"
           :class="{ 'selected': selectedItem === folder }"
-          @click="openFolder(folder)"
-          @dblclick="openModal('carpeta', folder)"
+          @dblclick="openFolder(folder)"
+          @click="selectFile(folder)"
+          @click.right="openModal('carpeta', folder)"
         >
           <img src="../assets/images/carpeta.png" alt="Carpeta" />
           <p>{{ folder.split('/').pop() }}</p>
@@ -46,6 +50,7 @@
           class="main-folders-block-b"
           :class="{ 'selected': selectedItem === file }"
           @dblclick="openModal('archivo', file)"
+          @click="selectFile(file)"
         >
           <div class="main-folders-block-b-img">
             <img src="../assets/images/documento.png" alt="Archivo" />
@@ -114,29 +119,38 @@
   }
 
   function openModal(type, itemName) {
-    selectedType.value = type;
-    selectedItem.value = itemName; // Almacenar el ítem seleccionado
-    showModalFileOption.value = true;
+    selectedType.value = type
+    selectedItem.value = itemName // Almacenar el ítem seleccionado
+    showModalFileOption.value = true
   }
 
   function closeModalFileOption() {
-    showModalFileOption.value = false;
-    selectedType.value = '';
-    selectedItem.value = ''; // Reiniciar la selección al cerrar el modal
+    showModalFileOption.value = false
+    selectedType.value = ''
+    selectedItem.value = '' // Reiniciar la selección al cerrar el modal
   }
 
   function openDeleteModal(type) {
-    deleteType.value = type;
-    showModalFileOption.value = false;
-    showModalDelete.value = true;
+    deleteType.value = type
+    showModalFileOption.value = false
+    showModalDelete.value = true
   }
 
   function closeModalDelete() {
-    showModalDelete.value = false;
+    showModalDelete.value = false
+  }
+
+  function selectFile(fileName) {
+    authStore.setSelectedFile(fileName) // Guardar el archivo seleccionado en el store
+    selectedItem.value = fileName // Actualizar visualmente el archivo seleccionado
+  }
+
+  function loadFolders() {
+    authStore.getFiles()
   }
 
   onMounted( async () => {
-    await authStore.getFiles();
+    await authStore.getFiles()
   })
 </script>
 

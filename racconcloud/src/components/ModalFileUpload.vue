@@ -91,7 +91,6 @@
 
     const FileName = file.name
     const Base64 = await toBase64(file.file)
-    const path = ''
 
     // Función para actualizar el progreso
     const updateProgress = (progress, status = null) => {
@@ -102,7 +101,7 @@
     };
 
     // Llamar a la función de subir archivo en el store y pasar el callback
-    await authStore.uploadFile(Base64, FileName, path, updateProgress)
+    await authStore.uploadFile(Base64, FileName, updateProgress)
   }
 
   function toBase64(file) {

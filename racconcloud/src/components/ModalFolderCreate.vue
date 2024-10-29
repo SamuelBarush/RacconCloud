@@ -7,11 +7,11 @@
             <p>Te encuentras en {{ path }}</p>
         </div>
         <div class="modal-folder-name-folder">
-            <input type="text" placeholder="Carpeta Sin Titulo">
+            <input type="text" placeholder="Carpeta Sin Titulo" v-model="folder_name">
         </div>
         <div class="modal-folder-options">
             <input type="button" value="Cancelar" @click="closeModal1" id="modal-folder-option-cancel">
-            <input type="submit" value="Crear" id="modal-folder-option-create">
+            <input type="submit" value="Crear" id="modal-folder-option-create" @click="CreateFolder">
         </div>
     </div>
 </template>
@@ -21,9 +21,10 @@
     import { useAuthStore } from '@/store'
     import { useRouter } from 'vue-router'
 
-    const emit = defineEmits(['close-Modal1'])
+    const emit = defineEmits(['close-Modal1' , 'refreshFolders'])
     const authStore = useAuthStore()
     let path = ref('')
+    let folder_name = ref('')
     const router = useRouter()
 
     function closeModal1() {
@@ -42,4 +43,10 @@
             path.value +=  aux + '/'
         }
     })
+
+    async function CreateFolder(){
+        await authStore.createFolder(folder_name.value)
+        folder_name.value = ''
+        emit('refreshFolders')
+    }
 </script>
