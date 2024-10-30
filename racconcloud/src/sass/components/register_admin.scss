@@ -1,0 +1,38 @@
+.registration-form{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 400px;
+    background-color: var(--invert-background-color-page);
+    border-radius: 20px;
+    z-index: 1000;
+    gap: 15px;
+    overflow-y: scroll;
+    padding: 25px;
+
+    h2{
+        width: 100%;
+        margin-bottom: 10px;
+        color: var(--invert-text-color);
+        font-family: 'Sono-Bold';
+        font-size: 24px;
+        text-align: center;
+    }
+}
+
+.form-group-register {
+    label{
+        color: var(--invert-text-color);
+        font-family: 'Sono-Light';
+    }
+    select{
+        appearance: none;
+        border: none;
+        outline: 0;
+        cursor: pointer;      
+    } 
+}

@@ -2,7 +2,7 @@
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAdmin @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div id="main-dashboard-principal">
+        <div :id="{'main-dashboard-principal': true , 'shrinked':showModalFileOption}">
             <div class="main-dashboard-title">
                 <p>lista de Usuarios</p>
             </div>
@@ -14,7 +14,7 @@
                 </div> 
             </div>
             <div class="main-container-grid-b">
-                <div class="main-dashboard-block-c">
+                <div class="main-dashboard-block-c" @dblclick="openModal('usuario')">
                     <div>
                         <p>Nombre de Usuario</p>
                         <p>Rol de Usuario</p>
@@ -67,22 +67,39 @@
         </div>  
     </main> 
     <FooterAdminComponent/>
-    <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
-    <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
+    <ModalFileOption
+    v-if="showModalFileOption"
+    :type="selectedType"
+    @close-ModalFileOption="closeModalFileOption"
+    />
+    <RegisterAdminComponent v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <div v-if="showModal1 || showModal2" class="overlay"></div>
 </template>
 
 <script setup>
+    import { ref } from "vue"
+
     import HeaderAdminComponent from '@/components/HeaderAdminComponent.vue'
     import FooterAdminComponent from '@/components/FooterAdminComponent.vue'
     import MenuDashboardAdmin from '@/components/MenuDashboardAdmin.vue'
-    import ModalFileUpload from '@/components/ModalFileUpload.vue'
-    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
+    import ModalFileOption from '@/components/ModalFileOption.vue'
 
-    import { ref } from "vue";
+    const showModal1 = ref(false)
+    const showModal2 = ref(false)
+    const showModalFileOption = ref(false)
+    const selectedType = ref('')
 
-    const showModal1 = ref(false);
-    const showModal2 = ref(false);
+    function openModal(type) {
+    selectedType.value = type
+    showModalFileOption.value = true
+  }
+
+  function closeModalFileOption() {
+    showModalFileOption.value = false
+    selectedType.value = ''
+  }
+
 </script>
 
 <style lang="scss">
@@ -95,6 +112,12 @@
         background-color: rgba(0, 0, 0, 0.5);
         pointer-events: all;
         z-index: 999;
+    }
+
+    #main-dashboard-principal#shrinked {
+        @media (min-width: 1024px) {
+            width: 60%; /* Cambia el tamaño al 60% cuando el modal está abierto */
+        }
     }
 </style>
 

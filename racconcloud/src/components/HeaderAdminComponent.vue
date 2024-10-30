@@ -15,20 +15,33 @@
             <p>RacconCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>
-        <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders-admin'"><p>Personal</p></div>
-        <div class="header-folders-title" id="header-folders-title-b" v-if="$route.path === '/folders-admin'"><p>Materias</p></div>
-        <div class="header-user-2" v-if="$route.path === '/folders-admin'">
+        <div class="header-user-2" v-if="$route.path === '/events-admin'">
             <img src="../assets/icons/avatar-admin.png" alt="">
             <div class="header-dashboard-user-text">
                 <p>Bienvenido</p>
                 <p>Usuario</p>
             </div> 
         </div>
-        <div class="header-search-2" v-if="$route.path === '/folders-admin'">
+        <div class="header-search-2" v-if="$route.path === '/events-admin'">
             <img src="../assets/images/busqueda.png" alt="">
             <input type="search" value="Buscar">
         </div>
-        <div class="header-img-2" v-if="$route.path === '/folders-admin'">
+        <div class="header-img-2" v-if="$route.path === '/events-admin'">
+            <p>RacconCloud</p>
+            <img src="../assets/icons/avatar-admin.png" alt="">
+        </div>
+        <div class="header-user-2" v-if="$route.path === '/user-list-admin'">
+            <img src="../assets/icons/avatar-admin.png" alt="">
+            <div class="header-dashboard-user-text">
+                <p>Bienvenido</p>
+                <p>Usuario</p>
+            </div> 
+        </div>
+        <div class="header-search-2" v-if="$route.path === '/user-list-admin'">
+            <img src="../assets/images/busqueda.png" alt="">
+            <input type="search" value="Buscar">
+        </div>
+        <div class="header-img-2" v-if="$route.path === '/user-list-admin'">
             <p>RacconCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>

@@ -75,8 +75,7 @@
         </div>  
     </main> 
     <FooterAdminComponent/>
-    <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
-    <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
+    <RegisterAdminComponent v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <div v-if="showModal1 || showModal2" class="overlay"></div>
 </template>
 
@@ -84,13 +83,12 @@
     import HeaderAdminComponent from '@/components/HeaderAdminComponent.vue'
     import FooterAdminComponent from '@/components/FooterAdminComponent.vue'
     import MenuDashboardAdmin from '@/components/MenuDashboardAdmin.vue'
-    import ModalFileUpload from '@/components/ModalFileUpload.vue'
-    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
 
-    import { ref } from "vue";
+    import { ref } from "vue"
 
-    const showModal1 = ref(false);
-    const showModal2 = ref(false);
+    const showModal1 = ref(false)
+    const showModal2 = ref(false)
 </script>
 
 <style lang="scss">
