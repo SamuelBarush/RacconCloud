@@ -28,12 +28,8 @@
       <!-- Campos para Profesor -->
       <div v-if="userType === 'profesor'">
         <div class="form-group-register">
-          <label for="profName">Nombre del Profesor:</label>
+          <label for="profName">Nombre Completo del Profesor:</label>
           <input type="text" v-model="formData.profesor.nombre" required />
-        </div>
-        <div class="form-group-register">
-          <label for="profLastName">Apellidos del Profesor:</label>
-          <input type="text" v-model="formData.profesor.apellidos" required />
         </div>
         <div class="form-group-register">
           <label for="profRFC">RFC:</label>
@@ -48,23 +44,15 @@
       <!-- Campos para Alumno -->
       <div v-if="userType === 'alumno'">
         <div class="form-group-register">
-          <label for="studentName">Nombre del Alumno:</label>
+          <label for="studentName">Nombre Completo del Alumno:</label>
           <input type="text" v-model="formData.alumno.nombre" required />
-        </div>
-        <div class="form-group-register">
-          <label for="studentLastName">Apellidos del Alumno:</label>
-          <input type="text" v-model="formData.alumno.apellidos" required />
         </div>
         <div class="form-group-register">
           <label for="studentBoleta">No. de Boleta:</label>
           <input type="text" v-model="formData.alumno.boleta" required />
         </div>
         <div class="form-group-register">
-          <label for="studentInstEmail">Correo Institucional:</label>
-          <input type="email" v-model="formData.alumno.correoInstitucional" required />
-        </div>
-        <div class="form-group-register">
-          <label for="studentAltEmail">Otro Correo:</label>
+          <label for="studentAltEmail">Correo:</label>
           <input type="email" v-model="formData.alumno.correoAlternativo" />
         </div>
       </div>
@@ -85,16 +73,16 @@
   const userType = ref('')
   const formData = ref({
     academia: { nombreAcademia: '', profesorEncargado: '' },
-    profesor: { nombre: '', apellidos: '', rfc: '', correoInstitucional: '' },
-    alumno: { nombre: '', apellidos: '', boleta: '', correoInstitucional: '', correoAlternativo: '' }
+    profesor: { nombre: '', rfc: '', correoInstitucional: '' },
+    alumno: { nombre: '', boleta: '', correoInstitucional: ''}
   })
   
   // Resetear formulario al cambiar el tipo de usuario
   const resetForm = () => {
     formData.value = {
       academia: { nombreAcademia: '', profesorEncargado: '' },
-      profesor: { nombre: '', apellidos: '', rfc: '', correoInstitucional: '' },
-      alumno: { nombre: '', apellidos: '', boleta: '', correoInstitucional: '', correoAlternativo: '' }
+      profesor: { nombre: '', rfc: '', correoInstitucional: '' },
+      alumno: { nombre: '', boleta: '', correoAlternativo: ''}
     }
   }
   

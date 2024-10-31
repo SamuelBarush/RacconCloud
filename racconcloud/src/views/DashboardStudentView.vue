@@ -2,7 +2,7 @@
     <HeaderComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div id="main-dashboard-principal">
+        <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
             </div>
@@ -35,7 +35,8 @@
                 <div class="main-dashboard-block-b"></div>
             </div>
         </div>  
-    </main> 
+    </main>
+    <ThemeSwitcherComponent/>
     <FooterComponent/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
@@ -48,6 +49,7 @@
     import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     import { ref } from "vue";
 

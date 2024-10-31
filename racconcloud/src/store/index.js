@@ -31,7 +31,6 @@ export const useAuthStore = defineStore('auth',{
             headers:{
               'Content-Type':'application/json'
             },
-            //credentials:'include',
             body:JSON.stringify({
               boleta:id,
               password:password
@@ -78,6 +77,31 @@ export const useAuthStore = defineStore('auth',{
             alert(response.authenticated)
         } else {
             alert(response.authenticated || response.error)
+        }
+
+      } catch (error) {
+          console.error(error)
+      }
+    },
+    async ForgetPassword(id){
+      try {
+        const res = await fetch('http://192.168.1.199:5000/auth/forget_password',{
+            method: 'POST',
+            headers:{
+              'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+              boleta:id
+            })
+        })
+
+        const response = await res.json()
+
+        if(res.ok){
+          alert(response.message)
+          return response.email
+        } else {
+            alert(response.message || response.error)
         }
 
       } catch (error) {
@@ -261,6 +285,37 @@ export const useAuthStore = defineStore('auth',{
 
       } catch (error) {
           console.error(error)
+      }
+    },
+    async createUser(id,email,name,role){
+      try {
+        const res = await fetch('http://192.168.1.199:5000/users/',{
+          method : 'POST',
+          headers:{
+            'Content-Type':'application/json',
+            'Authorization': `Bearer ${this.jwt}`
+          },
+          body:JSON.stringify({
+            boleta:id,
+            email:email,
+            password:id,
+            nombre:name,
+            role_ide:role
+          })
+        })
+
+        const response = await res.json()
+
+        if (res.ok){
+          alert(response.message)
+        }
+        else{
+          alert(response.error)
+        }
+
+      } catch (error) {
+          console.error(error)
+          alert("Error en la conexión con la API")
       }
     }
   },

@@ -2,7 +2,7 @@
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAdmin @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div id="main-dashboard-principal">
+        <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Registro de Eventos</p>
             </div>
@@ -73,7 +73,8 @@
                 </div>
             </div>
         </div>  
-    </main> 
+    </main>
+    <ThemeSwitcherComponent/>
     <FooterAdminComponent/>
     <RegisterAdminComponent v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <div v-if="showModal1 || showModal2" class="overlay"></div>
@@ -84,6 +85,7 @@
     import FooterAdminComponent from '@/components/FooterAdminComponent.vue'
     import MenuDashboardAdmin from '@/components/MenuDashboardAdmin.vue'
     import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     import { ref } from "vue"
 

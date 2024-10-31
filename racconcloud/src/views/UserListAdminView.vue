@@ -2,7 +2,7 @@
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAdmin @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div :id="{'main-dashboard-principal': true , 'shrinked':showModalFileOption}">
+        <div :class="{'main-dashboard-principal': true , 'shrinked':showModalFileOption}">
             <div class="main-dashboard-title">
                 <p>lista de Usuarios</p>
             </div>
@@ -65,7 +65,8 @@
                 </div>
             </div>
         </div>  
-    </main> 
+    </main>
+    <ThemeSwitcherComponent/>
     <FooterAdminComponent/>
     <ModalFileOption
     v-if="showModalFileOption"
@@ -84,6 +85,7 @@
     import MenuDashboardAdmin from '@/components/MenuDashboardAdmin.vue'
     import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
     import ModalFileOption from '@/components/ModalFileOption.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     const showModal1 = ref(false)
     const showModal2 = ref(false)
@@ -114,7 +116,7 @@
         z-index: 999;
     }
 
-    #main-dashboard-principal#shrinked {
+    .main-dashboard-principal.shrinked {
         @media (min-width: 1024px) {
             width: 60%; /* Cambia el tamaño al 60% cuando el modal está abierto */
         }

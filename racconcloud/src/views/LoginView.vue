@@ -17,13 +17,16 @@
             <div class="main-login-BT"><input type="submit" value="Sign Up"></div>
         </form>
     </main>
+    <ThemeSwitcherComponent/>
 </template>
 
 <script setup>
     import { ref } from "vue"
     import { useAuthStore } from "@/store"
     import { useRouter } from "vue-router"
+
     import HeaderLoginComponent from '@/components/HeaderLoginComponent.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     let ID = ref("")
     let password = ref("")

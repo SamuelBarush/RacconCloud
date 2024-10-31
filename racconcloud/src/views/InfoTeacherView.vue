@@ -18,6 +18,7 @@
             </div>
         </div>
     </main>
+    <ThemeSwitcherComponent/>
     <FooterTeacherComponent/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
@@ -33,6 +34,7 @@
     import MenuDashboardTeacher from '@/components/MenuDashboardTeacher.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     const showModal1 = ref(false)
     const showModal2 = ref(false)

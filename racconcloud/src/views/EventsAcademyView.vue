@@ -2,7 +2,7 @@
     <HeaderAcademyComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAcademy @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div id="main-dashboard-principal">
+        <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Registro de Eventos</p>
             </div>
@@ -73,7 +73,8 @@
                 </div>
             </div>
         </div>  
-    </main> 
+    </main>
+    <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
@@ -86,6 +87,7 @@
     import MenuDashboardAcademy from '@/components/MenuDashboardAcademy.vue'
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     import { ref } from "vue";
 

@@ -61,6 +61,7 @@
       </div>
     </div>   
     </main>
+    <ThemeSwitcherComponent/>
     <FooterTeacherComponent/>
     <ModalFileOption
     v-if="showModalFileOption"
@@ -82,6 +83,7 @@
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
     import ModalDelete from '@/components/ModalFileDelete.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     import { ref , computed , onMounted} from 'vue'
     import { useAuthStore } from '@/store'
