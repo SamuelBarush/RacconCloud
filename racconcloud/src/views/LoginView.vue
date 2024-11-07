@@ -22,7 +22,7 @@
 
 <script setup>
     import { ref } from "vue"
-    import { useAuthStore } from "@/store"
+    import { useAuthStore } from "@/store/AuthStore"
     import { useRouter } from "vue-router"
 
     import HeaderLoginComponent from '@/components/HeaderLoginComponent.vue'

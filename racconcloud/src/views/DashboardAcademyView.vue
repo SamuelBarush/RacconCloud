@@ -1,7 +1,12 @@
 <template>
     <HeaderAcademyComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardAcademy @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardAcademy 
+            @open-Modal1="showModal1 = true" 
+            @open-Modal2="showModal2 = true"
+            @open-Modal3="showModal3 = true"
+            @open-Modal4="showModal4 = true"
+            @open-Modal5="showModal5 = true"/>
         <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
@@ -31,27 +36,34 @@
     </main>
     <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
+    <AddStudentComponent v-if="showModal4" @close-Modal="showModal4 = false"/>
+    <AddTeacherComponent v-if="showModal5" @close-Modal="showModal5 = false"/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
-    <div v-if="showModal1 || showModal2" class="overlay"></div>
+    <div v-if="showModal1 || showModal2 || showModal3 || showModal4 || showModal5" class="overlay"></div>
 </template>
 
 <script setup>
-    import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
-    import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'
-    import MenuDashboardAcademy from '@/components/MenuDashboardAcademy.vue'
-    import ModalFileUpload from '@/components/ModalFileUpload.vue'
-    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
-    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+import { ref } from "vue"
 
-    import { ref } from "vue";
+import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
+import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'
+import MenuDashboardAcademy from '@/components/MenuDashboardAcademy.vue'
+import ModalFileUpload from '@/components/ModalFileUpload.vue'
+import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+import AddStudentComponent from '@/components/AddStudentComponent.vue'
+import AddTeacherComponent from '@/components/AddTeacherComponent.vue'
 
-    const showModal1 = ref(false);
-    const showModal2 = ref(false);
+const showModal1 = ref(false)
+const showModal2 = ref(false)
+const showModal3 = ref(false)
+const showModal4 = ref(false)
+const showModal5 = ref(false)
 </script>
 
 <style lang="scss">
-    .overlay{
+    .overlay {
         position: fixed;
         top: 0;
         left: 0;

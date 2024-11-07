@@ -18,11 +18,11 @@
 
 <script setup>
     import { defineEmits, onMounted , ref } from 'vue'
-    import { useAuthStore } from '@/store'
+    import { useFileStore } from '@/store/FileStore'
     import { useRouter } from 'vue-router'
 
-    const emit = defineEmits(['close-Modal1' , 'refreshFolders'])
-    const authStore = useAuthStore()
+    const emit = defineEmits(['close-Modal1'])
+    const fileStore = useFileStore()
     let path = ref('')
     let folder_name = ref('')
     const router = useRouter()
@@ -32,21 +32,29 @@
     }
 
     onMounted(() => {
-        const aux = authStore.getPath
+        const aux = fileStore.getPath
     
         if (router.currentRoute.value.path === '/folders-student-personal'){
             path.value = 'Personal/'
-            path.value +=  aux + '/'
+            if (aux != '') path.value +=  aux + '/'
         }
         if (router.currentRoute.value.path === '/folders-student-subjects'){
             path.value = 'Materias/'
-            path.value +=  aux + '/'
+            if (aux != '') path.value +=  aux + '/'
+        }
+        if (router.currentRoute.value.path === '/folders-teacher-personal'){
+            path.value = 'Personal/'
+            if (aux != '') path.value +=  aux + '/'
+        }
+        if (router.currentRoute.value.path === '/folders-academy-personal'){
+            path.value = 'Personal/'
+            if (aux != '') path.value +=  aux + '/'
         }
     })
 
     async function CreateFolder(){
-        await authStore.createFolder(folder_name.value)
+        await fileStore.createFolder(folder_name.value)
         folder_name.value = ''
-        emit('refreshFolders')
+        closeModal1()
     }
 </script>

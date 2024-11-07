@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from "@/store"
+import { useAuthStore } from "@/store/AuthStore"
 
 import DashboardStudentView from '@/views/DashboardStudentView.vue'
 import DashboardAcademyView from '@/views/DashboardAcademyView.vue'
@@ -211,7 +211,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
-
-
 
 export default router

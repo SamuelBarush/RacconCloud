@@ -29,13 +29,17 @@
             </div>
         </div>
         <div class="menu-dashboard-student-nav">
-            <router-link :to="{name:'folders-teacher-personal'}">
+            <router-link 
+            :to="{name:'folders-teacher-personal'}"
+            :class="{active: $route.path === '/folders-teacher-personal'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Personal</p>
                 </div>
             </router-link>
-            <router-link :to="{name:'folders-teacher-subjects'}">
+            <router-link 
+            :to="{name:'folders-teacher-subjects'}"
+            :class="{active: $route.path === '/folders-teacher-subjects'}">
                 <div class="menu-dashboard-nav-options">
                     <img src="../assets/images/carpeta.png" alt="">
                     <p>Carpeta Materias</p>
@@ -59,7 +63,7 @@
 
 <script setup>
     import { defineEmits } from 'vue'
-    import { useAuthStore } from '@/store'
+    import { useAuthStore } from '@/store/AuthStore'
     import { useRouter } from 'vue-router'
     
     const emit = defineEmits(['open-Modal1', 'open-Modal2'])

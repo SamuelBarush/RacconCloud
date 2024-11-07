@@ -25,14 +25,60 @@
 }
 
 .form-group-register {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
     label{
         color: var(--invert-text-color);
         font-family: 'Sono-Light';
+        font-size: 16px;
     }
     select{
-        appearance: none;
         border: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid $color-7;
+        border-radius: 5px;  
+        font-family: 'Sono-Light';
+        font-size: 14px;
+    }
+    input{
+        width: 100%;
+        height: 25px;
+        border: 1px solid $color-7;
+        border-radius: 5px;
         outline: 0;
-        cursor: pointer;      
-    } 
+        font-family: 'Sono-Light';
+        font-size: 14px;
+    }
+}
+
+.form-type-register{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-actions{
+    display: flex;
+    justify-content: space-between;
+
+    button{
+        width: 100px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        background-color: $color-7;
+        color: var(--text-color);
+        font-family: 'Sono-Bold';
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover{
+            background-color: $color-5;
+        }
+    }
 }

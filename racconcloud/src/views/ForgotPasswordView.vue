@@ -23,11 +23,10 @@
   
 <script setup>
   import { ref } from 'vue'
-  import { useAuthStore } from '@/store'
+  import { useAuthStore } from '@/store/AuthStore'
 
   import HeaderForgotPasswordComponent from '../components/HeaderForgotPasswordComponent.vue'
   import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
-  
   
   const userId = ref("")
   const message = ref(false)
@@ -37,9 +36,6 @@
   // Función para enviar el formulario
   async function submitForm() {
     const email = await authStore.ForgetPassword(userId.value);
-    console.log(email)
-    
-    // Enmascarar el correo para mostrar algo como u*****@e*****.com
     maskedEmail.value = maskEmail(email);
     message.value = true;
   }
@@ -56,7 +52,3 @@
       return `${maskedLocal}@${maskedDomain}`;
   }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

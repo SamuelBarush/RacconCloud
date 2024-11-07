@@ -1,6 +1,6 @@
 export default class FileIconMapper {
     constructor() {
-      // Definir el mapa de extensiones e íconos
+      // Definición del mapa de extensiones e íconos
       this.iconMap = {
         pdf: require('@/assets/icons/pdf.png'),
         docx: require('@/assets/icons/docx.png'),
@@ -38,7 +38,7 @@ export default class FileIconMapper {
         // Puedes añadir más extensiones e íconos aquí
       };
   
-      // Definir el ícono por defecto
+      // Definición del ícono por defecto
       this.defaultIcon = require('@/assets/icons/default.png');
     }
   
@@ -48,4 +48,3 @@ export default class FileIconMapper {
       return this.iconMap[extension.toLowerCase()] || this.defaultIcon;
     }
   }
-  

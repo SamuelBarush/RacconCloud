@@ -1,65 +1,65 @@
 <template>
     <HeaderTeacherComponent/>
     <main class="main-folders-container">
-        <MenuDashboardTeacher @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
-        <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
-      <div class="main-folders-search">
-        <img src="../assets/images/busqueda.png" alt="" />
-        <input type="search" value="Buscar" />
-      </div>
+      <MenuDashboardTeacher @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+      <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
+        <div class="main-folders-search">
+          <img src="../assets/images/busqueda.png" alt="" />
+          <input type="search" value="Buscar" />
+        </div>
 
-      <!-- Mostrar Carpetas -->
-      <div class="main-dashboard-title">
-        <p class="breadcrumbs">
-          <span v-for="(crumb, index) in breadcrumbs" :key="index" @click="navigateTo(index)">
-            {{ crumb }}<span v-if="index < breadcrumbs.length - 1"> / </span>
-          </span>
-        </p>
-      </div>
-      <div class="main-container-grid-a">
-        <div
-          v-for="(folder, index) in folders"
-          :key="index"
-          class="main-folders-block-a"
-          :class="{ 'selected': selectedItem === folder }"
-          @click="openFolder(folder)"
-          @dblclick="openModal('carpeta', folder)"
-        >
-          <img src="../assets/images/carpeta.png" alt="Carpeta" />
-          <p>{{ folder.split('/').pop() }}</p>
+        <!-- Mostrar Carpetas -->
+        <div class="main-dashboard-title">
+          <p class="breadcrumbs">
+            <span v-for="(crumb, index) in breadcrumbs" :key="index" @click="navigateTo(index)">
+              {{ crumb }}<span v-if="index < breadcrumbs.length - 1"> / </span>
+            </span>
+          </p>
         </div>
-      </div>
+        <div class="main-container-grid-a">
+          <div
+            v-for="(folder, index) in folders"
+            :key="index"
+            class="main-folders-block-a"
+            :class="{ 'selected': selectedItem === folder }"
+            @click="openFolder(folder)"
+            @dblclick="openModal('carpeta', folder)"
+          >
+            <img src="../assets/images/carpeta.png" alt="Carpeta" />
+            <p>{{ folder.split('/').pop() }}</p>
+          </div>
+        </div>
 
-      <!-- Mostrar Archivos -->
-      <div class="main-dashboard-title">
-        <p>Mis Archivos</p>
-        <div class="main-dashboard-title-description">
-          <p>Nombre</p>
-          <p>Fecha de Subida</p>
-          <p>Tamaño</p>
-        </div>
-      </div>
-      <div class="main-container-grid-b">
-        <div
-          v-for="(file, index) in files"
-          :key="index"
-          class="main-folders-block-b"
-          :class="{ 'selected': selectedItem === file }"
-          @dblclick="openModal('archivo', file)"
-        >
-          <div class="main-folders-block-b-img">
-            <img src="../assets/images/documento.png" alt="Archivo" />
-            <p>{{ file.split('/').pop() }}</p>
-          </div>
-          <div class="main-folders-block-b-txt">
-            <p>08 - 10 - 2024</p> <!-- Fecha de ejemplo -->
-          </div>
-          <div class="main-folders-block-b-txt">
-            <p>34 Kb</p> <!-- Tamaño de ejemplo -->
+        <!-- Mostrar Archivos -->
+        <div class="main-dashboard-title">
+          <p>Mis Archivos</p>
+          <div class="main-dashboard-title-description">
+            <p>Nombre</p>
+            <p>Fecha de Subida</p>
+            <p>Tamaño</p>
           </div>
         </div>
-      </div>
-    </div>   
+        <div class="main-container-grid-b">
+          <div
+            v-for="(file, index) in files"
+            :key="index"
+            class="main-folders-block-b"
+            :class="{ 'selected': selectedItem === file }"
+            @dblclick="openModal('archivo', file)"
+          >
+            <div class="main-folders-block-b-img">
+              <img src="../assets/images/documento.png" alt="Archivo" />
+              <p>{{ file.split('/').pop() }}</p>
+            </div>
+            <div class="main-folders-block-b-txt">
+              <p>08 - 10 - 2024</p> <!-- Fecha de ejemplo -->
+            </div>
+            <div class="main-folders-block-b-txt">
+              <p>34 Kb</p> <!-- Tamaño de ejemplo -->
+            </div>
+          </div>
+        </div>
+      </div>   
     </main>
     <ThemeSwitcherComponent/>
     <FooterTeacherComponent/>
@@ -86,7 +86,7 @@
     import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
     import { ref , computed , onMounted} from 'vue'
-    import { useAuthStore } from '@/store'
+    import { useAuthStore } from '@/store/AuthStore'
 
     const showModal1 = ref(false)
     const showModal2 = ref(false)

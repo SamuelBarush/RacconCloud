@@ -50,16 +50,15 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
-  import { defineEmits } from 'vue'
-  import { useAuthStore } from '@/store'
+  import { ref , defineEmits } from 'vue'
+  import { useFileStore } from '@/store/FileStore'
 
   import FileIconMapper from '@/services/FileIconMapper'
 
   const fileIconMapper = new FileIconMapper()
 
   const emit = defineEmits(['close-Modal2'])
-  const authStore = useAuthStore()
+  const fileStore = useFileStore()
   const files = ref([])
 
   function closeModal2() {
@@ -101,7 +100,7 @@
     };
 
     // Llamar a la función de subir archivo en el store y pasar el callback
-    await authStore.uploadFile(Base64, FileName, updateProgress)
+    await fileStore.uploadFile(Base64, FileName, updateProgress)
   }
 
   function toBase64(file) {

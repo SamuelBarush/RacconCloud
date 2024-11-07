@@ -27,7 +27,7 @@
 
 <script setup>
     import { onMounted, ref } from "vue"
-    import { useAuthStore } from '@/store'
+    import { useAuthStore } from '@/store/AuthStore'
 
     import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
     import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'

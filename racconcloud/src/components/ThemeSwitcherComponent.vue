@@ -22,7 +22,7 @@
     top: 20px;
     right: 20px;
     padding: 5px 5px;
-    background-color: var(--primary-color, #3498db);
+    background-color: $color-7;
     border: none;
     border-radius: 50%;
     cursor: pointer;

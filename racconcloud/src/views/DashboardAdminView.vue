@@ -1,7 +1,9 @@
 <template>
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardAdmin @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardAdmin 
+        @open-Modal1="showModal1 = true" 
+        @open-Modal2="showModal2 = true"/>
         <div class="main-dashboard-principal">
         </div>  
     </main>

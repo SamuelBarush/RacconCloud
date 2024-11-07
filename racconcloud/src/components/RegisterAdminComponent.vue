@@ -1,8 +1,7 @@
 <template>
     <div class="registration-form">
       <h2>Registro de Usuario</h2>
-  
-      <!-- Selección del Tipo de Usuario -->
+      
       <div class="form-group-register">
         <label for="userType">Tipo de Usuario:</label>
         <select v-model="userType" @change="resetForm" required>
@@ -14,7 +13,7 @@
       </div>
   
       <!-- Campos para Academia -->
-      <div v-if="userType === 'academia'">
+      <div v-if="userType === 'academia'" class="form-type-register">
         <div class="form-group-register">
           <label for="academyName">Nombre de la Academia:</label>
           <input type="text" v-model="formData.academia.nombreAcademia" required />
@@ -26,7 +25,7 @@
       </div>
   
       <!-- Campos para Profesor -->
-      <div v-if="userType === 'profesor'">
+      <div v-if="userType === 'profesor'" class="form-type-register">
         <div class="form-group-register">
           <label for="profName">Nombre Completo del Profesor:</label>
           <input type="text" v-model="formData.profesor.nombre" required />
@@ -42,25 +41,25 @@
       </div>
   
       <!-- Campos para Alumno -->
-      <div v-if="userType === 'alumno'">
+      <div v-if="userType === 'alumno'" class="form-type-register">
         <div class="form-group-register">
           <label for="studentName">Nombre Completo del Alumno:</label>
           <input type="text" v-model="formData.alumno.nombre" required />
         </div>
         <div class="form-group-register">
           <label for="studentBoleta">No. de Boleta:</label>
-          <input type="text" v-model="formData.alumno.boleta" required />
+          <input type="number" v-model="formData.alumno.boleta" required />
         </div>
         <div class="form-group-register">
           <label for="studentAltEmail">Correo:</label>
-          <input type="email" v-model="formData.alumno.correoAlternativo" />
+          <input type="email" v-model="formData.alumno.correoAlternativo" required/>
         </div>
       </div>
   
       <!-- Botones -->
       <div class="form-actions">
-        <button @click="submitForm" type="button">Enviar</button>
         <button @click="closeModal1" type="button">Cancelar</button>
+        <button @click="submitForm" type="button">Enviar</button>
       </div>
     </div>
 </template>

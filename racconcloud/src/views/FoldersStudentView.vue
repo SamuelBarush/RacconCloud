@@ -3,8 +3,7 @@
   <main class="main-folders-container">
     <MenuDashboardStudent 
     @open-Modal1="showModal1 = true" 
-    @open-Modal2="showModal2 = true"
-    @refreshFolders="loadFolders"/>
+    @open-Modal2="showModal2 = true"/>
     <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <div class="main-folders-search">
         <img src="../assets/images/busqueda.png" alt="" />
@@ -30,6 +29,7 @@
           @click.right="openModal('carpeta', folder)"
         >
           <img src="../assets/images/carpeta.png" alt="Carpeta" />
+          
           <p>{{ folder.split('/').pop() }}</p>
         </div>
       </div>
@@ -92,31 +92,31 @@
   import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
   
   import { ref , computed , onMounted} from 'vue'
-  import { useAuthStore } from '@/store'
+  import { useFileStore } from '@/store/FileStore'
 
   const showModal1 = ref(false)
   const showModal2 = ref(false)
   const showModalFileOption = ref(false)
   const showModalDelete = ref(false)
   const selectedType = ref('')
-  const selectedItem = ref('') // Estado para almacenar el ítem seleccionado
+  const selectedItem = ref('')
   const deleteType = ref('')
-  const authStore = useAuthStore()
+  const fileStore = useFileStore()
 
   // Obtener las carpetas y archivos del directorio actual
-  const folders = computed(() => authStore.getCurrentFolderContent.folders)
-  const files = computed(() => authStore.getCurrentFolderContent.files)
-  const breadcrumbs = computed(() => authStore.getBreadcrumbs)
+  const folders = computed(() => fileStore.getCurrentFolderContent.folders)
+  const files = computed(() => fileStore.getCurrentFolderContent.files)
+  const breadcrumbs = computed(() => fileStore.getBreadcrumbs)
   
   function openFolder(folder) {
     // Cambiar a la carpeta seleccionada
-    authStore.changeDirectory(folder)
+    fileStore.changeDirectory(folder)
   }
 
   function navigateTo(index) {
     // Navegar a un nivel anterior en la ruta
     const newPath = breadcrumbs.value.slice(1, index + 1).join('/')
-    authStore.changeDirectory(newPath)
+    fileStore.changeDirectory(newPath)
   }
 
   function openModal(type, itemName) {
@@ -142,16 +142,12 @@
   }
 
   function selectFile(fileName) {
-    authStore.setSelectedFile(fileName) // Guardar el archivo seleccionado en el store
+    fileStore.setSelectedFile(fileName) // Guardar el archivo seleccionado en el store
     selectedItem.value = fileName // Actualizar visualmente el archivo seleccionado
   }
 
-  function loadFolders() {
-    authStore.getFiles()
-  }
-
   onMounted( async () => {
-    await authStore.getFiles()
+    await fileStore.getFiles()
   })
 </script>
 

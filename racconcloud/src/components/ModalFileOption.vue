@@ -63,7 +63,7 @@
 
 <script setup>
 import { defineEmits, defineProps } from 'vue'
-import { useAuthStore } from '@/store'
+import { useAuthStore } from '@/store/AuthStore'
 
 const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal']) // Emitimos un evento para abrir el modal de eliminación
 const authStore = useAuthStore()

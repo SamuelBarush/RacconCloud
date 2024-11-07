@@ -27,7 +27,7 @@
 
 <script setup>
     import { ref, onMounted } from "vue"
-    import { useAuthStore } from '@/store'
+    import { useAuthStore } from '@/store/AuthStore'
 
     import HeaderComponent from '@/components/HeaderStudentComponent.vue'
     import FooterComponent from '@/components/FooterStudentComponent.vue'
@@ -49,12 +49,12 @@
 
     // Llamar a la función info() cuando se cargue la vista
     onMounted(async () => {
-    const userInfo = await authStore.info()
-    if (userInfo) {
-        // Asignar los valores devueltos por el store a las variables locales
-        userName.value = userInfo.name
-        userBoleta.value = userInfo.boleta
-        userEmail.value = userInfo.email
-    }
-    });
+        const userInfo = await authStore.info()
+        if (userInfo) {
+            // Asignar los valores devueltos por el store a las variables locales
+            userName.value = userInfo.name
+            userBoleta.value = userInfo.boleta
+            userEmail.value = userInfo.email
+        }
+    })
 </script>

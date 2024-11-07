@@ -27,7 +27,7 @@
 
 <script setup>
     import { onMounted, ref } from "vue"
-    import { useAuthStore } from '@/store'
+    import { useAuthStore } from '@/store/AuthStore'
 
     import HeaderTeacherComponent from '@/components/HeaderTeacherComponent.vue'
     import FooterTeacherComponent from '@/components/FooterTeacherComponent.vue'
@@ -49,11 +49,10 @@
 
     onMounted(async () => {
     const userInfo = await authStore.info()
-    if (userInfo) {
-        // Asignar los valores devueltos por el store a las variables locales
-        userName.value = userInfo.name
-        userBoleta.value = userInfo.boleta
-        userEmail.value = userInfo.email
-    }
+        if (userInfo) {
+            userName.value = userInfo.name
+            userBoleta.value = userInfo.boleta
+            userEmail.value = userInfo.email
+        }
     });
 </script>
