@@ -23,7 +23,7 @@ export const useFileStore = defineStore('file',{
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'http://192.168.1.199:5000/file/upload/single', true);
+          xhr.open('POST', 'http://192.168.1.68:5000/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
       
@@ -63,7 +63,7 @@ export const useFileStore = defineStore('file',{
       },
       async getFiles() {
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/full-list', {
+          const res = await fetch('http://192.168.1.68:5000/file/list', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export const useFileStore = defineStore('file',{
       },
       async createFolder(path_name){
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/create-folder',{
+          const res = await fetch('http://192.168.1.68:5000/file/create-folder',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -119,7 +119,7 @@ export const useFileStore = defineStore('file',{
       },
       async downloadFile(){
         try {
-          const res = await fetch(`http://192.168.1.199:5000/file/download?file_path=${encodeURIComponent('/' + this.currentPath +  '/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.68:5000/file/download?file_path=${encodeURIComponent('/' + this.currentPath +  '/' + this.selectedFile)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -146,7 +146,7 @@ export const useFileStore = defineStore('file',{
       },
       async downloadFolder(){
         try {
-          const res = await fetch(`http://192.168.1.199:5000/file/download-folder?folder_path=${encodeURIComponent(this.currentPath +  '/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.68:5000/file/download-folder?folder_path=${encodeURIComponent(this.currentPath +  '/' + this.selectedFile)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -173,7 +173,7 @@ export const useFileStore = defineStore('file',{
       },
       async createUser(id,email,name,role){
         try {
-          const res = await fetch('http://192.168.1.199:5000/users/',{
+          const res = await fetch('http://192.168.1.68:5000/users/',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',

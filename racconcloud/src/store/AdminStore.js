@@ -4,36 +4,42 @@ import { useAuthStore } from './AuthStore'
 export const useAdminStore = defineStore('admin',{
     state: () => ({
         jwt: useAuthStore().getJwt,
-        structure: {},
-        currentPath: '',
-        selectedFile: null
     }),
-    getters: {
-        getPath: (state) => state.currentPath,
-        getCurrentFolderContent: (state) => {
-            return state.structure?.[state.currentPath] || { files: [], folders: [] };  // Verificar existencia de currentPath
-        },
-        getBreadcrumbs: (state) => {
-            const pathArray = state.currentPath ? state.currentPath.split('/').filter(Boolean) : [];
-            return ['Materias', ...pathArray];  // Devuelve al menos ['Personal'] para evitar undefined
-        }    
+    getters: {  
     },
     actions: {
-      async createUser(id,email,name,role){
+      async createUser(typeuser,id,name,email){
+        let body = {}
+
+        if (typeuser == 'alumno'){
+          body = {
+            boleta:id,
+            email:email,
+            username:name,
+            role_id:'3'
+          }
+        } else if (typeuser == 'profesor'){
+          body = {
+            rfc:id,
+            email:email,
+            username:name,
+            role_id:'2'
+          }
+        } else if (typeuser == 'academia'){
+          body = {
+            name:name,
+            main_teacher_rfc:id,
+          }
+        }
+
         try {
-          const res = await fetch('http://192.168.1.199:5000/users/',{
+          const res = await fetch('http://192.168.1.68:5000/users/',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
               'Authorization': `Bearer ${this.jwt}`
             },
-            body:JSON.stringify({
-              boleta:id,
-              email:email,
-              password:id,
-              nombre:name,
-              role_ide:role
-            })
+            body:JSON.stringify(body)
           })
   
           const response = await res.json()
