@@ -16,14 +16,16 @@ export const useAdminStore = defineStore('admin',{
             boleta:id,
             email:email,
             username:name,
-            role_id:'3'
+            password:id,
+            role_id: 3
           }
         } else if (typeuser == 'profesor'){
           body = {
             rfc:id,
             email:email,
             username:name,
-            role_id:'2'
+            password:id,
+            role_id: 2
           }
         } else if (typeuser == 'academia'){
           body = {
@@ -31,6 +33,8 @@ export const useAdminStore = defineStore('admin',{
             main_teacher_rfc:id,
           }
         }
+
+        
 
         try {
           const res = await fetch('http://192.168.1.68:5000/users/',{
@@ -83,7 +87,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getAcademy(academy_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/<int:academy_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${academy_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -108,7 +112,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async deleteAcademy(academy_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/$<int:academy_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${academy_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
@@ -133,7 +137,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async actuAcademy(academy_id,name,description,main_teacher){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/$<int:academy_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${academy_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -188,7 +192,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getUser(user_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/<int:user_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${user_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -213,7 +217,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async actuUser(user_id,name,email,password){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/$<int:user_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${user_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -243,7 +247,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async deleteUser(user_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/academy/$<int:user_id>',{
+          const res = await fetch(`http://192.168.1.68:5000/academy/${user_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',

@@ -3,12 +3,15 @@ import { useAuthStore } from './AuthStore'
 
 export const useFileStore = defineStore('file',{
     state: () => ({
-        jwt: useAuthStore().getJwt,
+      jwt: useAuthStore().getJwt,
       structure: {},
       currentPath: '',
-      selectedFile: null
+      selectedFile: null,
+      selectedFolder: null
     }),
     getters: {
+      getSelectedFile: (state) => state.selectedFile,
+      getSelectedFolder: (state) => state.selectedFolder,
       getPath: (state) => state.currentPath,
       getCurrentFolderContent: (state) => {
         return state.structure?.[state.currentPath] || { files: [], folders: [] };  // Verificar existencia de currentPath
@@ -63,7 +66,7 @@ export const useFileStore = defineStore('file',{
       },
       async getFiles() {
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/list', {
+          const res = await fetch('http://192.168.1.68:5000/file/full-list', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -99,11 +102,13 @@ export const useFileStore = defineStore('file',{
                 folder_name: path_name
               })
           })
+
+          const response = await res.json()
   
           if(res.ok){
-            console.log("Se creo la Carpeta")
+            alert(response.message)
           } else {
-              console.log("No se creo la Carpeta")
+            alert(response.error)
           }
   
         } catch (error) {
@@ -117,9 +122,13 @@ export const useFileStore = defineStore('file',{
       setSelectedFile(fileName) {
         this.selectedFile = fileName
       },
+      setSelectedFolder(folderName) {
+        alert(folderName)
+        this.selectedFolder = folderName
+      },
       async downloadFile(){
         try {
-          const res = await fetch(`http://192.168.1.68:5000/file/download?file_path=${encodeURIComponent('/' + this.currentPath +  '/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.68:5000/file/download?file_path=${encodeURIComponent('/' + this.selectedFile)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -146,7 +155,7 @@ export const useFileStore = defineStore('file',{
       },
       async downloadFolder(){
         try {
-          const res = await fetch(`http://192.168.1.68:5000/file/download-folder?folder_path=${encodeURIComponent(this.currentPath +  '/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.68:5000/file/download-folder?folder_path=${encodeURIComponent(this.selectedFolder)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -159,11 +168,11 @@ export const useFileStore = defineStore('file',{
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url
-            a.download = this.selectedFile.split('/').pop()
+            a.download = this.selectedFolder.split('/').pop()
             a.click()
             a.remove()
           } else {
-             const errorData = res.json
+             const errorData = res.json|
              alert(errorData.error || 'Error al descargar el archivo')
           }
   
@@ -189,6 +198,56 @@ export const useFileStore = defineStore('file',{
           }
         } catch (error) {
           console.error(error);
+        }
+      },
+      async deleteFolder(){
+        try {
+          const res = await fetch('http://192.168.1.68:5000/file/delete',{
+              method: 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify({
+                target_path: '/' + this.selectedFolder
+              })
+          })
+
+          const response = await res.json()
+  
+          if(res.ok){
+            alert(response.message)
+          } else {
+            alert(response.error)
+          }
+  
+        } catch (error) {
+            console.error(error)
+        }
+      },
+      async deleteFile(){
+        try {
+          const res = await fetch('http://192.168.1.68:5000/file/delete',{
+              method: 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify({
+                target_path: '/' + this.selectedFile
+              })
+          })
+
+          const response = await res.json()
+  
+          if(res.ok){
+            alert(response.message)
+          } else {
+            alert(response.error)
+          }
+  
+        } catch (error) {
+            console.error(error)
         }
       },
     },

@@ -112,10 +112,16 @@
   const submitForm = () => {
 
     if ( userType.value === 'academia'){
+      console.log(academia.value)
       adminStore.createUser(userType.value,academia.value.profesorEncargado,academia.value.nombreAcademia,'')
     } else if ( userType.value === 'profesor'){
+      console.log(profesor.value)
+      console.log(profesor.value.rfc)
+      console.log(profesor.value.nombre)
+      console.log(profesor.value.correoInstitucional)
       adminStore.createUser(userType.value,profesor.value.rfc,profesor.value.nombre,profesor.value.correoInstitucional)
     } else if ( userType.value === 'alumno'){
+      console.log(alumno.value)
       adminStore.createUser(userType.value,alumno.value.boleta,alumno.value.nombre,alumno.value.correoAlternativo)
     }
   }

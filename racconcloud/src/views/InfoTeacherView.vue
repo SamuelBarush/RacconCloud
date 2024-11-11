@@ -10,7 +10,7 @@
             <div class="main-info-text">
                 <h3>Información Básica</h3>
                 <div><img src="../assets/images/id-insignia.png" alt="">
-                  <p>Boleta: {{ userBoleta }}</p>
+                  <p>RFC: {{ userBoleta }}</p>
                 </div>
                 <div><img src="../assets/images/sobre.png" alt="">
                   <p>Email: {{ userEmail }}</p>

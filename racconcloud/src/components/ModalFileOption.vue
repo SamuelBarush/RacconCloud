@@ -63,10 +63,10 @@
 
 <script setup>
 import { defineEmits, defineProps } from 'vue'
-import { useAuthStore } from '@/store/AuthStore'
+import { useFileStore } from '@/store/FileStore'
 
 const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal']) // Emitimos un evento para abrir el modal de eliminación
-const authStore = useAuthStore()
+const fileStore = useFileStore()
 
 const props = defineProps({
   type: {
@@ -87,10 +87,10 @@ function closeModalFileOption() {
 }
 
 async function Descargar() {
-  await authStore.downloadFile()
+  await fileStore.downloadFile()
 }
 
 async function DescargarCarpeta() {
-  await authStore.downloadFolder()
+  await fileStore.downloadFolder()
 }
 </script>
