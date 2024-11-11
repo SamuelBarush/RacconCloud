@@ -123,7 +123,6 @@ export const useFileStore = defineStore('file',{
         this.selectedFile = fileName
       },
       setSelectedFolder(folderName) {
-        alert(folderName)
         this.selectedFolder = folderName
       },
       async downloadFile(){
@@ -235,6 +234,32 @@ export const useFileStore = defineStore('file',{
               },
               body:JSON.stringify({
                 target_path: '/' + this.selectedFile
+              })
+          })
+
+          const response = await res.json()
+  
+          if(res.ok){
+            alert(response.message)
+          } else {
+            alert(response.error)
+          }
+  
+        } catch (error) {
+            console.error(error)
+        }
+      },
+      async moveFile(){
+        try {
+          const res = await fetch('http://192.168.1.68:5000/file/move',{
+              method: 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify({
+                source_path: this.selectedFile,
+                destination_path: this.selectedFolder
               })
           })
 

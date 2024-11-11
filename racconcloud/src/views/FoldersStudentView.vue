@@ -30,8 +30,10 @@
           @dblclick="openFolder(folder)"
           @click.right="selectFolder(folder)"
           @contextmenu.prevent="openModal('carpeta', folder)"
+          draggable="true"
           @dragover.prevent
           @drop="handleDrop(folder)"
+          @dragstart="handleDragStart(folder)"
         >
           <img src="../assets/images/carpeta.png" alt="Carpeta" />
           <p>{{ folder.split('/').pop() }}</p>
@@ -56,7 +58,9 @@
           @dblclick="openModal('archivo', file.path)"
           @click="selectFile(file.path)"
           draggable="true"
+          @dragover.prevent
           @dragstart="handleDragStart(file.path)"
+          @drop="handleDrop(file.path)"
         >
           <div class="main-folders-block-b-img">
             <img src="../assets/images/documento.png" alt="Archivo" />
@@ -163,12 +167,16 @@ function selectFolder(folderName) {
   selectedItem.value = folderName // Actualizar visualmente la carpeta seleccionada
 }
 
-function handleDragStart (fileName){
-  fileStore.setSelectedFile(fileName)
+function handleDragStart (source_path){
+  fileStore.setSelectedFile(source_path)
 }
 
-function handleDrop(folder) {
-  fileStore.setSelectedFolder(folder)
+function handleDrop(destination_path) {
+  fileStore.setSelectedFolder(destination_path)
+  fileStore.moveFile()
+  fileStore.setSelectedFile('')
+  fileStore.setSelectedFolder('')
+  fileStore.getFiles()
 }
 
 onMounted(async () => {
