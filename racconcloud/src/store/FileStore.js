@@ -171,37 +171,26 @@ export const useFileStore = defineStore('file',{
             console.error(error)
         }
       },
-      async createUser(id,email,name,role){
+      async getSubjects() {
         try {
-          const res = await fetch('http://192.168.1.68:5000/users/',{
-            method : 'POST',
-            headers:{
-              'Content-Type':'application/json',
+          const res = await fetch('http://192.168.1.68:5000/enrollment/get-enrolled-subjects', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
               'Authorization': `Bearer ${this.jwt}`
-            },
-            body:JSON.stringify({
-              boleta:id,
-              email:email,
-              password:id,
-              nombre:name,
-              role_ide:role
-            })
+            }
           })
+          const data = await res.json();
   
-          const response = await res.json()
-  
-          if (res.ok){
-            alert(response.message)
+          if (res.ok) {
+            return data.subjects.subjects
+          } else {
+            throw new Error(res.error);
           }
-          else{
-            alert(response.error)
-          }
-  
         } catch (error) {
-            console.error(error)
-            alert("Error en la conexión con la API")
+          console.error(error);
         }
-      }
+      },
     },
     persist: {
       enabled: true,

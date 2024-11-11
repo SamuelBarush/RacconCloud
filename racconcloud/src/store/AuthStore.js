@@ -111,14 +111,12 @@ export const useAuthStore = defineStore('auth',{
         if(res.ok){
 
           if (this.role == '2'){
-            console.log("entro profesor")
             return {
               boleta: response.rfc,
               name: response.username,
               email: response.email
             }
           } else if (this.role == '3'){
-            console.log("entro alumno")
             return {
               boleta: response.boleta,
               name: response.username,
