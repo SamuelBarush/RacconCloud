@@ -40,13 +40,13 @@
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-academy-subjects'">
             <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="openModal4">
+                <button class="menu-dashboard-actions-options" @click="openAddStudent">
                     <img src="../assets/icons/subir.png" alt="" >
                 </button>
                 <p>Asignar Alumno</p>
             </div>
             <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="openModal5">
+                <button class="menu-dashboard-actions-options" @click="openAddTeacher">
                     <img src="../assets/icons/subir.png" alt="" >
                 </button>
                 <p>Asignar Profesor</p>
@@ -104,9 +104,17 @@
     import { useAuthStore } from '@/store/AuthStore'
     import { useRouter } from 'vue-router'
 
-    const emit = defineEmits(['open-Modal1', 'open-Modal2', 'open-Modal3', 'open-Modal4', 'open-Modal5'])
+    const emit = defineEmits(['openAddStudent', 'openAddTeacher', 'open-Modal1', 'open-Modal2', 'open-Modal3'])
     const authStore = useAuthStore()
     const router = useRouter()
+
+    function openAddStudent() {
+    emit('openAddStudent')
+    }
+
+    function openAddTeacher() {
+        emit('openAddTeacher')
+    }
 
     function openModal1() {
         emit('open-Modal1')
@@ -118,14 +126,6 @@
 
     function openModal3() {
         emit('open-Modal3')
-    }
-
-    function openModal4() {
-        emit('open-Modal4')
-    }
-
-    function openModal5() {
-        emit('open-Modal5')
     }
 
     async function LogOut() {

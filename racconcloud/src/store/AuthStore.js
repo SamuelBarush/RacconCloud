@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth',{
   state: () => ({
+    flag: null,
     authUser: null,
     role: null,
     jwt: null
@@ -9,7 +10,8 @@ export const useAuthStore = defineStore('auth',{
   getters: {
     isAuthenticated: (state) => state.authUser,
     getRole: (state) => state.role,
-    getJwt: (state) => state.jwt,   
+    getJwt: (state) => state.jwt,
+    getFlag: (state) => state.flag
   },
   actions: {
     async login(id, password){
@@ -30,7 +32,8 @@ export const useAuthStore = defineStore('auth',{
         if(res.ok){
             this.authUser = true
             this.role = response.user_type
-            this.jwt = response.access_token
+            this.jwt = response.access_token 
+            this.flag = response.flag //Bandera para saber si es la primera vez que inicia sesión
             alert(response.message)
         } else {
             alert(response.message || response.error)
@@ -46,8 +49,33 @@ export const useAuthStore = defineStore('auth',{
       this.authUser = null
       this.role = null
       this.jwt = null
+      this.flag = null
       alert('Sesión cerrada')
-      console.log('Adios Tonoto')
+    },
+    async newPassowrd(newPassword){
+      try {
+        const res = await fetch('http://192.168.1.68:5000/auth/',{
+            method: 'POST',
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${this.jwt}`
+            },
+            body:JSON.stringify({
+              password: newPassword
+            })
+        })
+
+        const response = await res.json()
+
+        if(res.ok){
+            alert("Contraseña actualizada\nPor favor inicia sesión de nuevo")
+        } else {
+            alert(response.error || response.message)
+        }
+
+      } catch (error) {
+          console.error(error)
+      }
     },
     async isAuth(){
       try {

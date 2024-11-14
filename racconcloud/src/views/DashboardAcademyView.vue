@@ -5,8 +5,8 @@
             @open-Modal1="showModal1 = true" 
             @open-Modal2="showModal2 = true"
             @open-Modal3="showModal3 = true"
-            @open-Modal4="showModal4 = true"
-            @open-Modal5="showModal5 = true"/>
+            @openAddStudent="showModal4 = true"
+            @openAddTeacher="showModal5 = true"/>
         <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Mis Carpetas</p>
@@ -36,8 +36,8 @@
     </main>
     <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
-    <AddStudentComponent v-if="showModal4" @close-Modal="showModal4 = false"/>
-    <AddTeacherComponent v-if="showModal5" @close-Modal="showModal5 = false"/>
+    <AddStudentComponent v-if="showModal4" @closeAddStudent="showModal4 = false"/>
+    <AddTeacherComponent v-if="showModal5" @closeAddTeacher="showModal5 = false"/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
     <div v-if="showModal1 || showModal2 || showModal3 || showModal4 || showModal5" class="overlay"></div>

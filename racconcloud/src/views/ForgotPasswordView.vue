@@ -25,7 +25,7 @@
   import { ref } from 'vue'
   import { useAuthStore } from '@/store/AuthStore'
 
-  import HeaderForgotPasswordComponent from '../components/HeaderForgotPasswordComponent.vue'
+  import HeaderForgotPasswordComponent from '@/components/HeaderForgotPasswordComponent.vue'
   import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
   
   const userId = ref("")

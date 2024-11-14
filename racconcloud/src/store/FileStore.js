@@ -179,6 +179,7 @@ export const useFileStore = defineStore('file',{
             console.error(error)
         }
       },
+      //Probar
       async getSubjects() {
         try {
           const res = await fetch('http://192.168.1.68:5000/enrollment/get-enrolled-subjects', {
@@ -258,8 +259,8 @@ export const useFileStore = defineStore('file',{
                 'Authorization': `Bearer ${this.jwt}`
               },
               body:JSON.stringify({
-                source_path: this.selectedFile,
-                destination_path: this.selectedFolder
+                source_path: '/' + this.selectedFile,
+                destination_path: '/' + this.selectedFolder
               })
           })
 

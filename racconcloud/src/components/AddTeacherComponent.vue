@@ -10,7 +10,7 @@
         </div>
 
         <div class="form-actions">
-            <button @click="closeModal" type="button">Cancelar</button>
+            <button @click="closeAddTeacher" type="button">Cancelar</button>
             <button type="button">Enviar</button>
         </div>
     </div>
@@ -18,9 +18,10 @@
 
 <script setup>
     import { defineEmits } from 'vue'
-    const emit = defineEmits(['close-Modal'])
 
-    function closeModal() {
-        emit('close-Modal')
+    const emit = defineEmits(['closeAddTeacher'])
+
+    function closeAddTeacher() {
+        emit('closeAddTeacher')
     }
 </script>

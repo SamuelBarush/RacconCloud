@@ -17,6 +17,7 @@ import UserListAdminView from '@/views/UserListAdminView.vue'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
 import ForgotPasswordView from '@/views/ForgotPasswordView.vue'
+import ChangePasswordView from '@/views/ChangePasswordView.vue'
 
 const routes = [
   {
@@ -41,6 +42,15 @@ const routes = [
     path: '/forgot',
     name: 'forgot-password',
     component: ForgotPasswordView,
+    meta:{
+      requireAuth: null,
+      role: null
+    }
+  },
+  {
+    path: '/change-password',
+    name: 'change-password',
+    component: ChangePasswordView,
     meta:{
       requireAuth: null,
       role: null
