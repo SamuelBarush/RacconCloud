@@ -21,6 +21,18 @@
                 </button>
                 <p>Crear Materias</p>
             </div>
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="$emit('openAddStudent')">
+                    <img src="../assets/icons/subir.png" alt="" >
+                </button>
+                <p>Asignar Alumno</p>
+            </div>
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="$emit('openAddTeacher')">
+                    <img src="../assets/icons/subir.png" alt="" >
+                </button>
+                <p>Asignar Profesor</p>
+            </div>
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/info-academy'">
             <div class="menu-dashboard-student-actions-container" >
@@ -40,13 +52,13 @@
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-academy-subjects'">
             <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="openAddStudent">
+                <button class="menu-dashboard-actions-options" @click="$emit('openAddStudent')">
                     <img src="../assets/icons/subir.png" alt="" >
                 </button>
                 <p>Asignar Alumno</p>
             </div>
             <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="openAddTeacher">
+                <button class="menu-dashboard-actions-options" @click="$emit('openAddTeacher')">
                     <img src="../assets/icons/subir.png" alt="" >
                 </button>
                 <p>Asignar Profesor</p>
@@ -104,17 +116,9 @@
     import { useAuthStore } from '@/store/AuthStore'
     import { useRouter } from 'vue-router'
 
-    const emit = defineEmits(['openAddStudent', 'openAddTeacher', 'open-Modal1', 'open-Modal2', 'open-Modal3'])
+    const emit = defineEmits(['open-Modal1', 'open-Modal2', 'open-Modal3'])
     const authStore = useAuthStore()
     const router = useRouter()
-
-    function openAddStudent() {
-    emit('openAddStudent')
-    }
-
-    function openAddTeacher() {
-        emit('openAddTeacher')
-    }
 
     function openModal1() {
         emit('open-Modal1')

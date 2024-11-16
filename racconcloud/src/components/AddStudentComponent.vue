@@ -10,18 +10,11 @@
         </div>
 
         <div class="form-actions">
-            <button @click="closeAddStudent" type="button">Cancelar</button>
+            <button @click="$emit('close')" type="button">Cancelar</button>
             <button type="button">Enviar</button> 
         </div>
     </div>
 </template>
 
 <script setup>
-    import { defineEmits } from 'vue'
-    
-    const emit = defineEmits(['closeAddStudent'])
-
-    function closeAddStudent() {
-        emit('closeAddStudent')
-    }
 </script>

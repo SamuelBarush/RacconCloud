@@ -1,7 +1,12 @@
 <template>
     <HeaderAcademyComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardAcademy @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardAcademy 
+            @open-Modal1="showModal1 = true" 
+            @open-Modal2="showModal2 = true"
+            @open-Modal3="showModal3 = true"
+            @openAddStudent="showModal4 = true"
+            @openAddTeacher="showModal5 = true"/>
         <div class="main-dashboard-principal">
             <div class="main-dashboard-title">
                 <p>Registro de Eventos</p>
@@ -76,9 +81,11 @@
     </main>
     <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
+    <AddStudentComponent v-if="showModal4" @close="showModal4 = false"/>
+    <AddTeacherComponent v-if="showModal5" @close="showModal5 = false"/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
-    <div v-if="showModal1 || showModal2" class="overlay"></div>
+    <div v-if="showModal1 || showModal2 || showModal3 || showModal4 || showModal5" class="overlay"></div>
 </template>
 
 <script setup>
@@ -88,6 +95,8 @@
     import ModalFileUpload from '@/components/ModalFileUpload.vue'
     import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
     import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+    import AddStudentComponent from '@/components/AddStudentComponent.vue'
+    import AddTeacherComponent from '@/components/AddTeacherComponent.vue'
 
     import { ref } from "vue";
 

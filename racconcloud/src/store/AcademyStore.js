@@ -11,7 +11,7 @@ export const useAcademyStore = defineStore('academy',{
     actions: {
       async info(){
         try {
-            const res = await fetch('http://192.168.1.68:5000/academy/info',{
+            const res = await fetch('http://192.168.1.245:5000/academy/info',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -40,7 +40,7 @@ export const useAcademyStore = defineStore('academy',{
       },
       async createSubject(subject_name,academy_id,group_id,teacher_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/subject/create-subject',{
+          const res = await fetch('http://192.168.1.245:5000/subject/create-subject',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -70,7 +70,7 @@ export const useAcademyStore = defineStore('academy',{
       },
       async getSubjects(){
         try {
-          const res = await fetch('http://192.168.1.68:5000/subject/subjects',{
+          const res = await fetch('http://192.168.1.245:5000/subject/subjects',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -96,7 +96,7 @@ export const useAcademyStore = defineStore('academy',{
       //duda AQUI
       async getSubjectGroup(group_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/subject/subject-by-group/<int:group_id>',{
+          const res = await fetch('http://192.168.1.245:5000/subject/subject-by-group/<int:group_id>',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -123,7 +123,7 @@ export const useAcademyStore = defineStore('academy',{
       
       async addUserSubject(subject_id,user_id){
         try {
-          const res = await fetch('http://192.168.1.68:5000/enrollment/enroll',{
+          const res = await fetch('http://192.168.1.245:5000/enrollment/enroll',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -152,7 +152,7 @@ export const useAcademyStore = defineStore('academy',{
       },
       async getStudents(){
         try {
-          const res = await fetch('http://192.168.1.68:5000/enrollment/get-enrolled-students',{
+          const res = await fetch('http://192.168.1.245:5000/enrollment/get-enrolled-students',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',

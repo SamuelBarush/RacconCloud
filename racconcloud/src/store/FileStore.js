@@ -26,7 +26,7 @@ export const useFileStore = defineStore('file',{
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'http://192.168.1.68:5000/file/upload/single', true);
+          xhr.open('POST', 'http://192.168.1.245:5000/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
       
@@ -66,7 +66,7 @@ export const useFileStore = defineStore('file',{
       },
       async getFiles() {
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/full-list', {
+          const res = await fetch('http://192.168.1.245:5000/file/full-list', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ export const useFileStore = defineStore('file',{
       },
       async createFolder(path_name){
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/create-folder',{
+          const res = await fetch('http://192.168.1.245:5000/file/create-folder',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -127,7 +127,7 @@ export const useFileStore = defineStore('file',{
       },
       async downloadFile(){
         try {
-          const res = await fetch(`http://192.168.1.68:5000/file/download?file_path=${encodeURIComponent('/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.245:5000/file/download?file_path=${encodeURIComponent('/' + this.selectedFile)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -154,7 +154,7 @@ export const useFileStore = defineStore('file',{
       },
       async downloadFolder(){
         try {
-          const res = await fetch(`http://192.168.1.68:5000/file/download-folder?folder_path=${encodeURIComponent(this.selectedFolder)}`,{
+          const res = await fetch(`http://192.168.1.245:5000/file/download-folder?folder_path=${encodeURIComponent(this.selectedFolder)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -182,7 +182,7 @@ export const useFileStore = defineStore('file',{
       //Probar
       async getSubjects() {
         try {
-          const res = await fetch('http://192.168.1.68:5000/enrollment/get-enrolled-subjects', {
+          const res = await fetch('http://192.168.1.245:5000/enrollment/get-enrolled-subjects', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -202,7 +202,7 @@ export const useFileStore = defineStore('file',{
       },
       async deleteFolder(){
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/delete',{
+          const res = await fetch('http://192.168.1.245:5000/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -227,7 +227,7 @@ export const useFileStore = defineStore('file',{
       },
       async deleteFile(){
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/delete',{
+          const res = await fetch('http://192.168.1.245:5000/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -252,7 +252,7 @@ export const useFileStore = defineStore('file',{
       },
       async moveFile(){
         try {
-          const res = await fetch('http://192.168.1.68:5000/file/move',{
+          const res = await fetch('http://192.168.1.245:5000/file/move',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',

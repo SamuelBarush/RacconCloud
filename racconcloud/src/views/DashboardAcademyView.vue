@@ -36,8 +36,8 @@
     </main>
     <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
-    <AddStudentComponent v-if="showModal4" @closeAddStudent="showModal4 = false"/>
-    <AddTeacherComponent v-if="showModal5" @closeAddTeacher="showModal5 = false"/>
+    <AddStudentComponent v-if="showModal4" @close="showModal4 = false"/>
+    <AddTeacherComponent v-if="showModal5" @close="showModal5 = false"/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
     <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false"/>
     <div v-if="showModal1 || showModal2 || showModal3 || showModal4 || showModal5" class="overlay"></div>
