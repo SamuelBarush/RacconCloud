@@ -1,7 +1,8 @@
 <template>
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
-        <MenuDashboardAdmin @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardAdmin 
+        @openRegister="showModal1 = true"/>
         <div :class="{'main-dashboard-principal': true , 'shrinked':showModalFileOption}">
             <div class="main-dashboard-title">
                 <p>lista de Usuarios</p>
@@ -72,9 +73,13 @@
     v-if="showModalFileOption"
     :type="selectedType"
     @close-ModalFileOption="closeModalFileOption"
+    @openUpdateUser="openUpdateUser"
+    @openDeleteUser="openDeleteUser"
     />
-    <RegisterAdminComponent v-if="showModal1" @close-Modal1="showModal1 = false"/>
-    <div v-if="showModal1 || showModal2" class="overlay"></div>
+    <UserUpdateComponent v-if="showUpdateUser" :type="updateType" @close="showUpdateUser = false"/>
+    <ModalUserDelete v-if="showDeleteUser" @close="showDeleteUser = false"/>
+    <RegisterAdminComponent v-if="showModal1" @close="showModal1 = false"/>
+    <div v-if="showModal1 || showUpdateUser || showDeleteUser" class="overlay"></div>
 </template>
 
 <script setup>
@@ -86,21 +91,36 @@
     import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
     import ModalFileOption from '@/components/ModalFileOption.vue'
     import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+    import UserUpdateComponent from "@/components/ModalUserUpdate.vue"
+    import ModalUserDelete from "@/components/ModalUserDelete.vue"
 
     const showModal1 = ref(false)
-    const showModal2 = ref(false)
+    const showDeleteUser = ref(false)
     const showModalFileOption = ref(false)
+    const showUpdateUser = ref(false)
     const selectedType = ref('')
+    const updateType = ref('')
 
     function openModal(type) {
-    selectedType.value = type
-    showModalFileOption.value = true
-  }
+        selectedType.value = type
+        showModalFileOption.value = true
+    }
 
-  function closeModalFileOption() {
-    showModalFileOption.value = false
-    selectedType.value = ''
-  }
+    function openDeleteUser() {
+        showDeleteUser.value = true
+        showModalFileOption.value = false
+    }
+
+    function closeModalFileOption() {
+        showModalFileOption.value = false
+        selectedType.value = ''
+    }
+
+    function openUpdateUser(type) {
+        updateType.value = type
+        showModalFileOption.value = false
+        showUpdateUser.value = true
+    }
 
 </script>
 
@@ -118,7 +138,7 @@
 
     .main-dashboard-principal.shrinked {
         @media (min-width: 1024px) {
-            width: 60%; /* Cambia el tamaño al 60% cuando el modal está abierto */
+            width: 60%;
         }
     }
 </style>

@@ -4,8 +4,10 @@ import { useAuthStore } from './AuthStore'
 export const useAdminStore = defineStore('admin',{
     state: () => ({
         jwt: useAuthStore().getJwt,
+        selectedUser: null
     }),
     getters: {  
+      getSelectedUser: (state) => state.selectedUser
     },
     actions: {
       async createUser(typeuser,id,name,email){
@@ -244,6 +246,9 @@ export const useAdminStore = defineStore('admin',{
             console.error(error)
             alert("Error en la conexión con la API")
         }
+      },
+      setSelectUser(user){
+        this.selectedUser = user
       },
       async deleteUser(user_id){
         try {

@@ -2,15 +2,14 @@
     <HeaderAdminComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAdmin 
-        @open-Modal1="showModal1 = true" 
-        @open-Modal2="showModal2 = true"/>
+        @openRegister="showModal1 = true"/>
         <div class="main-dashboard-principal">
         </div>  
     </main>
     <ThemeSwitcherComponent/>
     <FooterAdminComponent/>
-    <RegisterAdminComponent v-if="showModal1" @close-Modal1="showModal1 = false"/>
-    <div v-if="showModal1 || showModal2" class="overlay"></div>
+    <RegisterAdminComponent v-if="showModal1" @close="showModal1 = false"/>
+    <div v-if="showModal1" class="overlay"></div>
 </template>
 
 <script setup>
@@ -23,7 +22,6 @@
     import { ref } from "vue";
 
     const showModal1 = ref(false)
-    const showModal2 = ref(false)
 </script>
 
 <style lang="scss">

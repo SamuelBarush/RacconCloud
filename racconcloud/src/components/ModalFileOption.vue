@@ -1,7 +1,7 @@
 <template>
   <div class="modal-file-options">
-    <div v-if="type === 'carpeta'" class="modal-file-options-action" @click="openDeleteModal('carpeta')">
-      <div class="modal-file-options-action-img">
+    <div v-if="type === 'carpeta'" class="modal-file-options-action" >
+      <div class="modal-file-options-action-img" @click="openDeleteModal('carpeta')">
         <img src="../assets/icons/basura.png" alt="Icono Eliminar Carpeta">
       </div>
       <div class="modal-file-options-action-text">
@@ -18,8 +18,8 @@
       </div>
     </div>
 
-    <div v-if="type === 'archivo'" class="modal-file-options-action" @click="openDeleteModal('archivo')">
-      <div class="modal-file-options-action-img">
+    <div v-if="type === 'archivo'" class="modal-file-options-action" >
+      <div class="modal-file-options-action-img" @click="openDeleteModal('archivo')">
         <img src="../assets/icons/basura.png" alt="Icono Eliminar Archivo">
       </div>
       <div class="modal-file-options-action-text">
@@ -38,15 +38,15 @@
 
     <div v-if="type === 'usuario'" class="modal-file-options-action">
       <div class="modal-file-options-action-img">
-        <img src="../assets/icons/descargar.png" alt="Icono Descargar Archivo">
+        <img src="../assets/icons/edit-user.png" alt="Icono Descargar Archivo" @click="openUpdateUser('archivo')">
       </div>
       <div class="modal-file-options-action-text">
         <p>Modificar Usuario</p>
       </div>
     </div>
     <div v-if="type === 'usuario'" class="modal-file-options-action">
-      <div class="modal-file-options-action-img">
-        <img src="../assets/icons/descargar.png" alt="Icono Descargar Archivo">
+      <div class="modal-file-options-action-img" @click="$emit('openDeleteUser')">
+        <img src="../assets/icons/delete-user.png" alt="Icono Descargar Archivo">
       </div>
       <div class="modal-file-options-action-text">
         <p>Eliminar Usuario</p>
@@ -65,7 +65,7 @@
 import { defineEmits, defineProps } from 'vue'
 import { useFileStore } from '@/store/FileStore'
 
-const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal']) // Emitimos un evento para abrir el modal de eliminación
+const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal' , 'openUpdateUser', 'openDeleteUser'])
 const fileStore = useFileStore()
 
 const props = defineProps({
@@ -84,6 +84,10 @@ function openDeleteModal(type) {
 
 function closeModalFileOption() {
   emit('close-ModalFileOption')
+}
+
+function openUpdateUser(type) {
+  emit('openUpdateUser', type)
 }
 
 async function Descargar() {

@@ -58,7 +58,7 @@
   
       <!-- Botones -->
       <div class="form-actions">
-        <button @click="closeModal1" type="button">Cancelar</button>
+        <button @click="closeModal" type="button">Cancelar</button>
         <button @click="submitForm" type="button">Enviar</button>
       </div>
     </div>
@@ -70,7 +70,7 @@
   
 
   const adminStore = useAdminStore()
-  const emit = defineEmits(['close-Modal1'])
+  const emit = defineEmits(['close'])
   const userType = ref('')
 
   const alumno = ref({
@@ -120,9 +120,9 @@
   }
   
   // Cancelar formulario
-  const closeModal1 = () => {
+  const closeModal = () => {
     userType.value = ''
     resetForm()
-    emit('close-Modal1')
+    emit('close')
   }
 </script>

@@ -2,7 +2,7 @@
     <div class="menu-dashboard-student-container">
         <div class="menu-dashboard-student-actions" v-if="$route.path == '/events-admin' || '/dashboard-admin'">
             <div class="menu-dashboard-student-actions-container" v-if="$route.path == '/dashboard-admin' || '/events-admin'">
-                <button class="menu-dashboard-actions-options" @click="openModal1">
+                <button class="menu-dashboard-actions-options" @click="openModal">
                     <img src="../assets/icons/add-user.png" alt="" >
                 </button>
                 <p>Registrar Usuarios</p>
@@ -42,12 +42,12 @@
     import { useAuthStore } from '@/store/AuthStore'
     import { useRouter } from 'vue-router'
     
-    const emit = defineEmits(['open-Modal1'])
+    const emit = defineEmits(['openRegister'])
     const authStore = useAuthStore()
     const router = useRouter()
 
-    function openModal1() {
-        emit('open-Modal1')
+    function openModal() {
+        emit('openRegister')
     }
 
     function LogOut() {
