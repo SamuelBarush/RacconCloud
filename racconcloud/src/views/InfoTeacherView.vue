@@ -1,7 +1,9 @@
 <template>
     <HeaderTeacherComponent/>
     <main class="main-info-container">
-        <MenuDashboardTeacher @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardTeacher 
+        @open-Modal1="showModal1 = true" 
+        @open-Modal2="showModal2 = true"/>
         <div class="main-info-principal">
             <div class="main-info-user">
                 <div><img src="../assets/icons/avatar-teacher.png" alt=""></div>

@@ -2,9 +2,9 @@
     <HeaderAcademyComponent/>
     <main class="main-dashboard-container">
         <MenuDashboardAcademy 
-            @open-Modal1="showModal1 = true" 
-            @open-Modal2="showModal2 = true"
-            @open-Modal3="showModal3 = true"
+            @openCreateFolder="showModal1 = true" 
+            @openUploadFile="showModal2 = true"
+            @openCreateSubject="showModal3 = true"
             @openAddStudent="showModal4 = true"
             @openAddTeacher="showModal5 = true"/>
         <div class="main-dashboard-principal">
@@ -36,6 +36,7 @@
     </main>
     <ThemeSwitcherComponent/>
     <FooterAcademyComponent/>
+    <SubjectRegisterComponent v-if="showModal3" @close="showModal3 = false"/>
     <AddStudentComponent v-if="showModal4" @close="showModal4 = false"/>
     <AddTeacherComponent v-if="showModal5" @close="showModal5 = false"/>
     <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false"/>
@@ -44,22 +45,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+    import { ref } from "vue"
 
-import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
-import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'
-import MenuDashboardAcademy from '@/components/MenuDashboardAcademy.vue'
-import ModalFileUpload from '@/components/ModalFileUpload.vue'
-import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
-import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
-import AddStudentComponent from '@/components/AddStudentComponent.vue'
-import AddTeacherComponent from '@/components/AddTeacherComponent.vue'
+    import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
+    import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'
+    import MenuDashboardAcademy from '@/components/MenuDashboardAcademy.vue'
+    import ModalFileUpload from '@/components/ModalFileUpload.vue'
+    import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+    import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+    import AddStudentComponent from '@/components/AddStudentComponent.vue'
+    import AddTeacherComponent from '@/components/AddTeacherComponent.vue'
+    import SubjectRegisterComponent from "@/components/SubjectRegisterComponent.vue"
 
-const showModal1 = ref(false)
-const showModal2 = ref(false)
-const showModal3 = ref(false)
-const showModal4 = ref(false)
-const showModal5 = ref(false)
+    const showModal1 = ref(false)
+    const showModal2 = ref(false)
+    const showModal3 = ref(false)
+    const showModal4 = ref(false)
+    const showModal5 = ref(false)
 </script>
 
 <style lang="scss">

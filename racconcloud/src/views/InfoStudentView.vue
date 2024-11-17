@@ -1,7 +1,9 @@
 <template>
     <HeaderComponent/>
     <main class="main-info-container">
-        <MenuDashboardStudent @open-Modal1="showModal1 = true" @open-Modal2="showModal2 = true"/>
+        <MenuDashboardStudent 
+        @open-Modal1="showModal1 = true" 
+        @open-Modal2="showModal2 = true"/>
         <div class="main-info-principal">
             <div class="main-info-user">
                 <div><img src="../assets/icons/avatar-student.png" alt=""></div>

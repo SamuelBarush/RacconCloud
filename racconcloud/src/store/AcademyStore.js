@@ -93,10 +93,9 @@ export const useAcademyStore = defineStore('academy',{
             alert("Error en la conexión con la API")
         }
       },
-      //duda AQUI
       async getSubjectGroup(group_id){
         try {
-          const res = await fetch('http://192.168.1.245:5000/subject/subject-by-group/<int:group_id>',{
+          const res = await fetch(`http://192.168.1.245:5000/subject/subject-by-group/${group_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',

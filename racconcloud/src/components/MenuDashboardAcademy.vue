@@ -3,7 +3,7 @@
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-academy-personal'">
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" @click="openModal1">
-                    <img src="../assets/icons/subir.png" alt="" >
+                    <img src="../assets/icons/agregar-carpeta.png" alt="">
                 </button>
                 <p>Crear Carpeta</p>
             </div>
@@ -16,36 +16,24 @@
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/dashboard-academy'">
             <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options"  @click="openModal3">
-                    <img src="../assets/icons/subir.png" alt="" >
+                <button class="menu-dashboard-actions-options"  @click="$emit('openCreateSubject')">
+                    <img src="../assets/icons/create.png" alt="">
                 </button>
                 <p>Crear Materias</p>
             </div>
-            <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="$emit('openAddStudent')">
-                    <img src="../assets/icons/subir.png" alt="" >
-                </button>
-                <p>Asignar Alumno</p>
-            </div>
-            <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" @click="$emit('openAddTeacher')">
-                    <img src="../assets/icons/subir.png" alt="" >
-                </button>
-                <p>Asignar Profesor</p>
-            </div>
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/info-academy'">
-            <div class="menu-dashboard-student-actions-container" >
-                <button class="menu-dashboard-actions-options" @click="openModal3">
-                    <img src="../assets/icons/subir.png" alt="" >
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="$emit('openCreateSubject')">
+                    <img src="../assets/icons/create.png" alt="">
                 </button>
                 <p>Crear Materias</p>
             </div>
         </div>
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/events-academy'">
-            <div class="menu-dashboard-student-actions-container" >
-                <button class="menu-dashboard-actions-options" @click="openModal3">
-                    <img src="../assets/icons/subir.png" alt="" >
+            <div class="menu-dashboard-student-actions-container">
+                <button class="menu-dashboard-actions-options" @click="$emit('openCreateSubject')">
+                    <img src="../assets/icons/create.png" alt="">
                 </button>
                 <p>Crear Materias</p>
             </div>
@@ -53,19 +41,19 @@
         <div class="menu-dashboard-student-actions" v-if="$route.path === '/folders-academy-subjects'">
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" @click="$emit('openAddStudent')">
-                    <img src="../assets/icons/subir.png" alt="" >
+                    <img src="../assets/icons/add-user.png" alt="" >
                 </button>
                 <p>Asignar Alumno</p>
             </div>
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" @click="$emit('openAddTeacher')">
-                    <img src="../assets/icons/subir.png" alt="" >
+                    <img src="../assets/icons/add-user.png" alt="">
                 </button>
                 <p>Asignar Profesor</p>
             </div>
             <div class="menu-dashboard-student-actions-container">
                 <button class="menu-dashboard-actions-options" >
-                    <img src="../assets/icons/subir.png" alt="" >
+                    <img src="../assets/icons/descargar.png" alt="">
                 </button>
                 <p>Descargar Materia</p>
             </div>
@@ -116,20 +104,16 @@
     import { useAuthStore } from '@/store/AuthStore'
     import { useRouter } from 'vue-router'
 
-    const emit = defineEmits(['open-Modal1', 'open-Modal2', 'open-Modal3'])
+    const emit = defineEmits(['openCreateFolder', 'openUploadFile', 'openCreateSubject', 'openAddStudent', 'openAddTeacher'])
     const authStore = useAuthStore()
     const router = useRouter()
 
     function openModal1() {
-        emit('open-Modal1')
+        emit('openCreateFolder')
     }
 
     function openModal2() {
-        emit('open-Modal2')
-    }
-
-    function openModal3() {
-        emit('open-Modal3')
+        emit('openUploadFile')
     }
 
     async function LogOut() {
