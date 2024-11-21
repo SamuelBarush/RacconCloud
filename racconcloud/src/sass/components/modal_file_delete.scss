@@ -1,0 +1,60 @@
+.modal-delete-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px;
+    background-color: var(--invert-background-color-page);
+    border-radius: 20px;
+    z-index: 1002;
+}
+  
+.modal-delete-title h2 {
+    font-size: 24px;
+    color: var(--invert-text-color);
+    font-family: 'Sono-Bold';
+    margin-bottom: 10px;
+}
+  
+.modal-delete-text p {
+    font-size: 14px;
+    color: var(--invert-text-color);
+    font-family: 'Sono-ExtraLight';
+    margin-bottom: 10px;
+}
+  
+.modal-delete-options {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 80px;
+}
+
+.modal-delete-options input {
+    width: 100px;
+    border: 1px solid $color-7;
+    background-color: transparent;
+    border-radius: 10px;
+    color: var(--invert-text-color);
+    font-family: 'Sono-Light';
+    font-size: 16px;
+}
+
+.modal-delete-options button {
+    background-color: $color-7;
+    width: 100px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    img{
+        width: 35px;
+        height: 35px;
+    }
+}
+
+#modal-folder-option-cancel {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}

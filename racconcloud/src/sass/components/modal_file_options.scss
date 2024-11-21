@@ -1,0 +1,76 @@
+.modal-file-options {
+    position: fixed;
+    margin-top: 15vh;
+    top: 0;
+    right: 0;
+    width: 15%;  
+    height: 100vh; 
+    background-color: var(--background-color-items);
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    border-top: 2px solid var(--text-color);
+    border-left: var(--text-color);
+    border-right: var(--text-color);
+    border-bottom: var(--text-color);
+    align-items: center;
+    padding: 0px 20px;
+    z-index: 99;
+}
+
+.modal-file-options-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.modal-file-options-action-img {
+    width: 50px;
+    height: 50px;
+    background-color: $color-7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-right: 10px;
+
+    img{
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.modal-file-options-action-text p {
+    font-family: 'Sono-Regular';
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.modal-file-option-button{
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
+}
+
+
+
+.modal-file-option-button button{
+    background-color: $color-5;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+
+    img{
+        width: 30px;
+        height: 30px;
+    }
+}
+  
+.modal-file-option-button button:hover {
+    background-color: $color-7;
+    transition: background-color 0.3s;
+}

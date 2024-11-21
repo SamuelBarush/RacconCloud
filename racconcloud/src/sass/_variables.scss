@@ -1,0 +1,30 @@
+$color-1: #FFF5ED;
+$color-2: #FFE7D5;
+$color-3: #FFCCA9;
+$color-4: #FEAC7A;
+$color-5: #FC783B;
+$color-6: #FB5414;
+$color-7: #EC3A0A;
+$color-8: #C32B0B;
+$color-9: #9B2211;
+$color-10: #7D1F11;
+$white: #FFF;
+$black: #000;
+
+:root{
+    --background-color-page: #000;
+    --invert-background-color-page: #FFF;
+    --text-color: #FFF;
+    --invert-text-color: #000;
+    --background-color-notpage: #404040;
+    --background-color-items: #262626;
+}
+
+[data-theme='light']{
+    --background-color-page: #FFF;
+    --invert-background-color-page: #000;
+    --text-color: #000;
+    --invert-text-color: #fff;
+    --backgroud-color-notpage: #BFBFBF;
+    --background-color-items: #D9D9D9;
+}

@@ -1,0 +1,151 @@
+.main-login-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-login-title{
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+    font-family: 'Sono-Bold';
+    font-size: 20px;
+
+}
+
+.main-login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 350px;
+    overflow: hidden;
+
+    @media (min-width: 768px){
+        width: 500px;
+        height: 350px;
+        background-color: var(--invert-background-color-page);
+        border-radius: 20px;
+    }
+}
+
+.main-login-ID{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'Sono-Regular';
+    font-size: 14px;
+    color: var(--text-color);
+    div{
+        display: flex;
+        width: 300px;
+        height: 40px;
+        border-style: solid;
+        border-color: $color-7;
+        border-radius: 5px;
+        padding: 0px 10px;
+
+        input{
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: var(--text-color);
+            font-family: 'Sono-ExtraLight';
+            font-size: 18px;
+        }
+    }
+
+    @media (min-width: 768px){
+        color: var(--invert-text-color);
+        div{
+            input{
+                color: var(--invert-text-color);
+            }
+        }
+    }
+}
+
+.main-login-PW{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+    label{
+        font-family: 'Sono-Regular';
+        font-size: 14px;
+        color: var(--text-color);
+    }
+    div{
+        display: flex;
+        width: 300px;
+        height: 40px;
+        border-style: solid;
+        border-color: $color-7;
+        border-radius: 5px;
+        padding: 0px 10px;
+
+        input{
+            width: 100%;
+            border: 0;
+            outline: none;
+            background-color: transparent;
+            color: var(--text-color);
+            font-family: 'Sono-ExtraLight';
+            font-size: 18px;
+        } 
+    }
+    @media (min-width: 768px){
+        label{
+            color: var(--invert-text-color);
+        }
+        div{
+            input{
+                color: var(--invert-text-color);
+            }
+        }
+    }
+}
+
+.main-login-BT{
+    position: relative;
+    top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    input{
+        border: 0;
+        outline: none;
+        background-color: $color-7;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        color: var(--text-color);
+        font-family: 'Sono-Medium';
+        font-size: 16px;
+        cursor: pointer;
+    }
+    input:hover{
+        background-color: $color-6;
+    }
+}
+
+#main-login-FPW{
+    position: relative;
+    left: 150px;
+    color: $color-9;
+    font-family: 'Sono-Light';
+    font-size: 14px;
+    cursor: pointer;
+    @media (min-width: 768px){
+        font-family: 'Sono-Regular';
+    }
+}
+
+#main-login-FPW:hover{
+    font-family: 'Sono-Bold';
+}
