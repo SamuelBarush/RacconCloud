@@ -7,19 +7,24 @@ export const useFileStore = defineStore('file',{
       structure: {},
       currentPath: '',
       selectedFile: null,
-      selectedFolder: null
+      selectedFolder: null,
+      currentProject: null,
+      searchQuery: '',
+      searchResults: [],
     }),
     getters: {
       getSelectedFile: (state) => state.selectedFile,
       getSelectedFolder: (state) => state.selectedFolder,
+      getCurrentProject: (state) => state.currentProject,
       getPath: (state) => state.currentPath,
       getCurrentFolderContent: (state) => {
-        return state.structure?.[state.currentPath] || { files: [], folders: [] };  // Verificar existencia de currentPath
+        return state.structure?.[state.currentPath] || { files: [], folders: [] };  
       },
       getBreadcrumbs: (state) => {
         const pathArray = state.currentPath ? state.currentPath.split('/').filter(Boolean) : [];
-        return ['Materias', ...pathArray];  // Devuelve al menos ['Personal'] para evitar undefined
-      }    
+        return pathArray;
+      },
+      getSearchResults: (state) => state.searchResults,
     },
     actions: {
       async uploadFile(file, filename,updateProgressCallback) {
@@ -55,7 +60,52 @@ export const useFileStore = defineStore('file',{
           const body = JSON.stringify({
             file: file,
             filename: filename,
-            path: this.currentPath
+            path: this.currentPath,
+            flag: true
+          });
+      
+          xhr.send(body);
+      
+        } catch (error) {
+          console.error(error);
+        }
+      },
+      async uploadFileProject(file, filename,updateProgressCallback) {
+        try {
+          const xhr = new XMLHttpRequest();
+      
+          xhr.open('POST', 'http://192.168.1.245:5000/file/upload/single', true);
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
+      
+          xhr.upload.onprogress = (event) => {
+            if (event.lengthComputable) {
+              const progressPercentage = (event.loaded / event.total) * 100;
+              updateProgressCallback(progressPercentage); // Llamada al callback para actualizar el progreso en la vista
+            }
+          };
+      
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              updateProgressCallback(100, 'completed'); // Marca el archivo como completado al 100%
+              console.log("Se subió el archivo correctamente");
+            } else {
+              updateProgressCallback(0, 'error-upload'); // Marca el archivo como error de subida
+              console.log("No se pudo subir el archivo");
+            }
+          };
+      
+          xhr.onerror = () => {
+            updateProgressCallback(0, 'error-connection'); // Marca el archivo como error de conexión
+            console.error("Error en la conexión");
+          };
+      
+          const body = JSON.stringify({
+            file: file,
+            filename: filename,
+            path: this.currentPath,
+            flag: false,
+            project_id: this.currentProject
           });
       
           xhr.send(body);
@@ -86,7 +136,6 @@ export const useFileStore = defineStore('file',{
         }
       },
       changeDirectory(newPath) {
-        // Cambiar la ruta actual
         this.currentPath = newPath;
       },
       async createFolder(path_name){
@@ -192,7 +241,7 @@ export const useFileStore = defineStore('file',{
           const data = await res.json();
   
           if (res.ok) {
-            return data.subjects.subjects
+            return data.subjects
           } else {
             throw new Error(res.error);
           }
@@ -276,6 +325,45 @@ export const useFileStore = defineStore('file',{
             console.error(error)
         }
       },
+      searchFiles(query){
+        this.searchQuery = query.toLowerCase();
+        this.searchResults = [];
+
+        const searchInStructure = (structure,currentPath = '') => {
+          if (!structure) return;
+
+          if (structure.files){
+            structure.files.forEach((file) => {
+              if (file.path.toLowerCase().includes(this.searchQuery)){
+                this.searchResults.push({
+                  ...file,
+                  directory:currentPath || '/'
+                })
+              }
+            })
+          }
+
+          if (structure.folders) {
+            structure.folders.forEach((folder) => {
+              if (folder.toLowerCase().includes(this.searchQuery)) {
+                this.searchResults.push({
+                  name: folder,
+                  directory: currentPath || 'root',
+                  isFolder: true,
+                });
+              }
+  
+              // Llamada recursiva para buscar dentro de subcarpetas
+              if (structure[folder]) {
+                searchInStructure(structure[folder], `${currentPath}/${folder}`);
+              }
+            });
+          }
+
+        }
+        searchInStructure(this.structure);
+
+      }
     },
     persist: {
       enabled: true,

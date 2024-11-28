@@ -22,11 +22,11 @@ export const useAcademyStore = defineStore('academy',{
             const response = await res.json()
     
             if (res.ok){
-              alert(response.message)
               return {
                 academy_id : response.academy_id,
                 name : response.name,
-                main_teacher_rfc:response.main_teacher_rfc
+                main_teacher_rfc:response.main_teacher_rfc,
+                description:response.description
               }
             }
             else{
@@ -38,7 +38,7 @@ export const useAcademyStore = defineStore('academy',{
               alert("Error en la conexión con la API")
           }
       },
-      async createSubject(subject_name,academy_id,group_id,teacher_id){
+      async createSubject(subject_name,group_id,teacher_id){
         try {
           const res = await fetch('http://192.168.1.245:5000/subject/create-subject',{
             method : 'POST',
@@ -48,7 +48,6 @@ export const useAcademyStore = defineStore('academy',{
             },
             body:JSON.stringify({
                 subject_name:subject_name,
-                academy_id: academy_id,
                 group_id: group_id,
                 teacher_id:teacher_id
             })
@@ -173,6 +172,35 @@ export const useAcademyStore = defineStore('academy',{
             console.error(error)
             alert("Error en la conexión con la API")
         }
+      },
+      async getLogs(){
+        try {
+            const res = await fetch('http://192.168.1.245:5000/logs',{
+              method : 'GET',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              }
+            })
+    
+            const response = await res.json()
+    
+            if (res.ok){
+              return response
+
+                //user: response.user_identifier,
+                //operation: response.operation,
+                //container: response.container_name,
+                //time: response.timestamp
+            }
+            else{
+              alert(response.message_error)
+            }
+    
+          } catch (error) {
+              console.error(error)
+              alert("Error en la conexión con la API")
+          }
       },
     },
     persist: {

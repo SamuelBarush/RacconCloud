@@ -15,13 +15,13 @@
             <div class="main-info-text">
                 <h3>Información Básica</h3>
                 <div><img src="../assets/icons/id.png" alt="">
-                  <p>Boleta: {{ userBoleta }}</p>
+                  <p>Identificador: {{ userAcademyId }}</p>
                 </div>
                 <div><img src="../assets/images/sobre.png" alt="">
-                  <p>Email: {{ userEmail }}</p>
+                  <p>Profesor Titular: {{ userTeacher }}</p>
                 </div>
                 <div><img src="../assets/icons/info.png" alt="">
-                  <p>Descripción: {{ userEmail }}</p>
+                  <p>Descripción: {{ userDescription }}</p>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
 
 <script setup>
     import { onMounted, ref } from "vue"
-    import { useAuthStore } from '@/store/AuthStore'
+    import { useAcademyStore } from '@/store/AcademyStore'
 
     import HeaderAcademyComponent from '@/components/HeaderAcademyComponent.vue'
     import FooterAcademyComponent from '@/components/FooterAcademyComponent.vue'
@@ -59,19 +59,21 @@
 
     // Variables para almacenar la información del usuario
     const userName = ref('')
-    const userBoleta = ref('')
-    const userEmail = ref('')
+    const userAcademyId = ref('')
+    const userTeacher = ref('')
+    const userDescription = ref('')
 
     // Instancia del store
-    const authStore = useAuthStore()
+    const authStore = useAcademyStore()
 
     onMounted(async () => {
     const userInfo = await authStore.info()
     if (userInfo) {
         // Asignar los valores devueltos por el store a las variables locales
         userName.value = userInfo.name
-        userBoleta.value = userInfo.boleta
-        userEmail.value = userInfo.email
+        userAcademyId.value = userInfo.academy_id
+        userTeacher.value = userInfo.main_teacher_rfc
+        userDescription.value = userInfo.description
     }
     });
 </script>

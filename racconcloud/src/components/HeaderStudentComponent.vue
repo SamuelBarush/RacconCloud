@@ -26,7 +26,10 @@
         </div>
         <div class="header-search-2" v-if="$route.path === '/folders-student-personal'">
             <img src="../assets/images/busqueda.png" alt="">
-            <input type="search" value="Buscar">
+            <input 
+            type="search" 
+            placeholder="Buscar"
+            @input="$emit('search-query', $event.target.value)">
         </div>
         <div class="header-img-2" v-if="$route.path === '/folders-student-personal'">
             <p>RacconCloud</p>
@@ -330,6 +333,5 @@
 </template>
 
 <script>
-
 </script>
 

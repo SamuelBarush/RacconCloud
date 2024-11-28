@@ -111,6 +111,7 @@
   // Enviar formulario e imprimir en consola
   const submitForm = () => {
     if ( userType.value === 'academia'){
+      console.log("academia")
       adminStore.createUser(userType.value,academia.value.profesorEncargado,academia.value.nombreAcademia,'')
     } else if ( userType.value === 'profesor'){
       adminStore.createUser(userType.value,profesor.value.rfc,profesor.value.nombre,profesor.value.correoInstitucional)

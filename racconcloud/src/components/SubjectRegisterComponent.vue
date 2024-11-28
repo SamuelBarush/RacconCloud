@@ -1,42 +1,69 @@
 <template>
     <div class="create-subject-container">
-      <h2>Crear Nueva Materia</h2>
-      <form @submit.prevent="submitForm">
-        <div class="form-group">
-          <label for="subject_name">Nombre de la Materia</label>
-          <input
-            type="text"
-            id="subject_name"
-            v-model="subject_name"
-            placeholder="Nombre de la Materia"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="group_id">Grupo</label>
-          <input
-            type="text"
-            id="group_id"
-            v-model="group_id"
-            placeholder="ID del Grupo"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="teacher_id">RFC del Profesor Titular</label>
-          <input
-            type="text"
-            id="teacher_id"
-            v-model="teacher_id"
-            placeholder="RFC del Profesor"
-            required
-          />
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="submit-button">Crear Materia</button>
-          <button type="button" class="cancel-button" @click="$emit('close')">Cancelar</button>
-        </div>
-      </form>
+        <h2>Crear Nueva Materia</h2>
+        <form @submit.prevent="submitForm">
+            <div class="form-group">
+                <label for="semester_name">No. del Semestre</label>
+                <input
+                    type="number"
+                    id="semester_name"
+                    v-model="semester_number"
+                    placeholder="No. del Semestre"
+                    required
+                />
+            </div>
+            <div class="form-group">
+                <label for="carreer_name">Carrera</label>
+                <select v-model="carreer_name" required>
+                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="C">Sistemas Computacionales</option>
+                    <option value="AI">Inteligencia Artificial</option>
+                    <option value="CD">Ciencia de Datos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="turn">Turno</label>
+                <select v-model="turn" required>
+                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="M">Matutino</option>
+                    <option value="V">Vespertino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="group_id">No. del Grupo</label>
+                <input
+                    type="number"
+                    id="group_id"
+                    v-model="group_id"
+                    placeholder="No. del Grupo"
+                    required
+                    
+                />
+            </div>
+            <div class="form-group">
+            <label for="subject_name">Nombre de la Materia</label>
+            <input
+                type="text"
+                id="subject_name"
+                v-model="subject_name"
+                placeholder="Nombre de la Materia"
+                required
+            />
+            </div>
+            <div class="form-group">
+                <label for="teacher_id">RFC del Profesor Titular</label>
+                <input
+                    type="text"
+                    id="teacher_id"
+                    v-model="teacher_id"
+                    placeholder="RFC del Profesor"
+                />
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="submit-button">Crear Materia</button>
+                <button type="button" class="cancel-button" @click="$emit('close')">Cancelar</button>
+            </div>
+        </form>
     </div>
 </template>
   
@@ -44,22 +71,26 @@
     import { ref , defineEmits } from 'vue'
     import { useAcademyStore } from '@/store/AcademyStore'
     
+    const semester_number = ref('')
+    const turn = ref('')
+    const carreer_name = ref('')
     const subject_name = ref('')
     const group_id = ref('')
     const teacher_id = ref('')
     const emit = defineEmits(['close'])
     
-    const academyStore = useAcademyStore();
+    const academyStore = useAcademyStore()
+
     
     async function submitForm() {
+        group_id.value = `${semester_number.value}${carreer_name.value}${turn.value}${group_id.value}`
         try {
             await academyStore.createSubject(
                 subject_name.value,
-                academyStore.academy_id, // Supongo que academy_id está en el store
                 group_id.value,
                 teacher_id.value
             )
-            emit('close'); // Cierra el modal
+            emit('close');
         } catch (error) {
             console.error(error);
         }

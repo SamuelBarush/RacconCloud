@@ -13,7 +13,7 @@ export const useAdminStore = defineStore('admin',{
       async createUser(typeuser,id,name,email){
         let body = {}
 
-        if (typeuser == 'alumno'){
+        if (typeuser === 'alumno'){
           body = {
             boleta:id,
             email:email,
@@ -21,7 +21,33 @@ export const useAdminStore = defineStore('admin',{
             password:id,
             role_id: 3
           }
-        } else if (typeuser == 'profesor'){
+
+          console.log("alumno")
+
+          try {
+            const res = await fetch('http://192.168.1.245:5000/users/',{
+              method : 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify(body)
+            })
+    
+            const response = await res.json()
+    
+            if (res.ok){
+              alert(response.message)
+            }
+            else{
+              alert(response.error)
+            }
+    
+          } catch (error) {
+              console.error(error)
+              alert("Error en la conexión con la API")
+          }
+        } else if (typeuser === 'profesor'){
           body = {
             rfc:id,
             email:email,
@@ -29,38 +55,65 @@ export const useAdminStore = defineStore('admin',{
             password:id,
             role_id: 2
           }
-        } else if (typeuser == 'academia'){
+
+          console.log("profesor")
+
+          try {
+            const res = await fetch('http://192.168.1.245:5000/users/',{
+              method : 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify(body)
+            })
+    
+            const response = await res.json()
+    
+            if (res.ok){
+              alert(response.message)
+            }
+            else{
+              alert(response.error)
+            }
+    
+          } catch (error) {
+              console.error(error)
+              alert("Error en la conexión con la API")
+          }
+        } else if (typeuser === 'academia'){
           body = {
             name:name,
             main_teacher_rfc:id,
           }
+
+          console.log("academia")
+
+          try {
+            const res = await fetch('http://192.168.1.245:5000/academy/',{
+              method : 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              },
+              body:JSON.stringify(body)
+            })
+    
+            const response = await res.json()
+    
+            if (res.ok){
+              alert(response.message)
+            }
+            else{
+              alert(response.error)
+            }
+    
+          } catch (error) {
+              console.error(error)
+              alert("Error en la conexión con la API")
+          }
         }
 
-        
-
-        try {
-          const res = await fetch('http://192.168.1.245:5000/users/',{
-            method : 'POST',
-            headers:{
-              'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
-            },
-            body:JSON.stringify(body)
-          })
-  
-          const response = await res.json()
-  
-          if (res.ok){
-            alert(response.message)
-          }
-          else{
-            alert(response.error)
-          }
-  
-        } catch (error) {
-            console.error(error)
-            alert("Error en la conexión con la API")
-        }
       },
       async getAcademys(){
         try {
@@ -274,6 +327,37 @@ export const useAdminStore = defineStore('admin',{
             console.error(error)
             alert("Error en la conexión con la API")
         }
+      },
+      async getLogs(){
+        try {
+            const res = await fetch('http://192.168.1.245:5000/logs',{
+              method : 'GET',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${this.jwt}`
+              }
+            })
+    
+            const response = await res.json()
+    
+            if (res.ok){
+              return {
+                id : response.id,
+                user: response.user_identifier,
+                operation: response.operation,
+                container: response.container_name,
+                object: response.object_name,
+                time: response.timestamp,
+              }
+            }
+            else{
+              alert(response.message_error)
+            }
+    
+          } catch (error) {
+              console.error(error)
+              alert("Error en la conexión con la API")
+          }
       },
     },
     persist: {

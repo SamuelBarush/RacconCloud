@@ -1,11 +1,20 @@
 <template>
-  <HeaderComponent />
-  <main class="main-folders-container">
+  <HeaderComponent 
+  @search-query="performSearch"/>
+  <main class="main-folders-container" v-if="!loading">
     <MenuDashboardStudent 
       @open-Modal1="showModal1 = true" 
       @open-Modal2="showModal2 = true"/>
+
+    <div v-if="isSearching">
+      <h3>Resultados de la Búsqueda</h3>
+      <div v-for="(result, index) in searchResults" :key="index">
+        <p v-if="result.isFolder">Carpeta: {{ result.name }} (Directorio: {{ result.directory }})</p>
+        <p v-else>Archivo: {{ result.path }} (Directorio: {{ result.directory }})</p>
+      </div>
+    </div>
     
-    <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
+    <div  v-else :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <div class="main-folders-search">
         <img src="../assets/images/busqueda.png" alt="" />
         <input type="search" placeholder="Buscar" />
@@ -76,10 +85,13 @@
       </div>
     </div>
   </main>
+  <div v-else class="loading">
+    <p>Cargando archivos...</p>
+  </div>
 
   <ThemeSwitcherComponent/>
   <FooterComponent />
-  
+
   <!-- Modales -->
   <ModalFileOption
     v-if="showModalFileOption"
@@ -103,8 +115,8 @@ import ModalFileUpload from '@/components/ModalFileUpload.vue'
 import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
 import ModalDelete from '@/components/ModalFileDelete.vue'
 import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
-import { ref , computed , onMounted } from 'vue'
-// import { useRouter } from 'vue-router'
+import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useFileStore } from '@/store/FileStore'
 
 const showModal1 = ref(false)
@@ -115,36 +127,80 @@ const selectedType = ref('')
 const selectedItem = ref('')
 const deleteType = ref('')
 const fileStore = useFileStore()
-// const router = useRouter()
+const router = useRouter()
+
+// Estado de carga
+const loading = ref(true)
 
 // Obtener las carpetas y archivos del directorio actual
-const folders = computed(() => fileStore.getCurrentFolderContent.folders)
-const files = computed(() => fileStore.getCurrentFolderContent.files)
-const breadcrumbs = computed(() => fileStore.getBreadcrumbs)
+const folders = computed(() => {
+  return isSearching.value
+    ? fileStore.searchResults.filter((item) => item.isFolder).map((item) => item.name)
+    : fileStore.getCurrentFolderContent.folders;
+});
+
+const files = computed(() => {
+  return isSearching.value
+    ? fileStore.searchResults.filter((item) => !item.isFolder)
+    : fileStore.getCurrentFolderContent.files;
+});
+
+const breadcrumbs = computed(() => {
+  const baseBreadcrumbs = fileStore.getBreadcrumbs;
+  if (router.currentRoute.value.name === 'folders-student-personal' || router.currentRoute.value.name === 'folders-teacher-personal' || router.currentRoute.value.name === 'folders-academy-personal') {
+    return ['Personal', ...baseBreadcrumbs];
+  } else if (router.currentRoute.value.name === 'folders-student-subjects' || router.currentRoute.value.name === 'folders-teacher-subjects' || router.currentRoute.value.name === 'folders-academy-subjects') {
+    return ['Materias', ...baseBreadcrumbs];
+  }
+  return baseBreadcrumbs;
+})
+const searchResults = computed(() => fileStore.getSearchResults)
+const isSearching = computed(() => fileStore.searchQuery.length > 0)
+
+
+const performSearch = (query) => {
+  fileStore.searchFiles(query); // Trigger search in the store
+};
+
+
+async function loadFiles() {
+  try {
+    if (router.currentRoute.value.path === '/folders-student-personal') {
+      await fileStore.getFiles()
+    } else if (router.currentRoute.value.path === '/folders-student-subjects') {
+      await fileStore.getSubjects()
+    }
+    loading.value = false
+  } catch (error) {
+    console.error('Error al cargar los archivos:', error)
+  }
+}
+
+onMounted(async () => {
+  await loadFiles()
+})
 
 function openFolder(folder) {
-  // Cambiar a la carpeta seleccionada
   fileStore.setSelectedFile('')
   fileStore.setSelectedFolder('')
   fileStore.changeDirectory(folder)
 }
 
 function navigateTo(index) {
-  // Navegar a un nivel anterior en la ruta
   const newPath = breadcrumbs.value.slice(1, index + 1).join('/')
   fileStore.changeDirectory(newPath)
 }
 
 function openModal(type, itemName) {
   selectedType.value = type
-  selectedItem.value = itemName // Almacenar el ítem seleccionado
+  selectedItem.value = itemName
   showModalFileOption.value = true
 }
 
 function closeModalFileOption() {
   showModalFileOption.value = false
   selectedType.value = ''
-  selectedItem.value = '' // Reiniciar la selección al cerrar el modal
+  selectedItem.value = ''
 }
 
 function openDeleteModal(type) {
@@ -158,16 +214,16 @@ function closeModalDelete() {
 }
 
 function selectFile(fileName) {
-  fileStore.setSelectedFile(fileName) // Guardar el archivo seleccionado en el store
-  selectedItem.value = fileName // Actualizar visualmente el archivo seleccionado
+  fileStore.setSelectedFile(fileName)
+  selectedItem.value = fileName
 }
 
 function selectFolder(folderName) {
-  fileStore.setSelectedFolder(folderName) // Guardar la carpeta seleccionada en el store
-  selectedItem.value = folderName // Actualizar visualmente la carpeta seleccionada
+  fileStore.setSelectedFolder(folderName)
+  selectedItem.value = folderName
 }
 
-function handleDragStart (source_path){
+function handleDragStart(source_path) {
   fileStore.setSelectedFile(source_path)
 }
 
@@ -178,14 +234,19 @@ function handleDrop(destination_path) {
   fileStore.setSelectedFolder('')
   fileStore.getFiles()
 }
-
-onMounted(async () => {
-  await fileStore.getFiles()
-})
 </script>
 
 <style scoped lang="scss">
-  .selected {
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+.selected {
     background-color: var(--invert-background-color-page);
     color: var(--invert-text-color);
   }

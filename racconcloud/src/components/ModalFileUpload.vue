@@ -51,6 +51,7 @@
 
 <script setup>
   import { ref , defineEmits } from 'vue'
+  import { useRouter } from 'vue-router'
   import { useFileStore } from '@/store/FileStore'
 
   import FileIconMapper from '@/services/FileIconMapper'
@@ -60,6 +61,7 @@
   const emit = defineEmits(['close-Modal2'])
   const fileStore = useFileStore()
   const files = ref([])
+  const router = useRouter()
 
   function closeModal2() {
       emit('close-Modal2')
@@ -100,7 +102,20 @@
     };
 
     // Llamar a la función de subir archivo en el store y pasar el callback
-    await fileStore.uploadFile(Base64, FileName, updateProgress)
+    //await fileStore.uploadFile(Base64, FileName, updateProgress)
+
+    if (router.currentRoute.value.path === '/folders-student-personal') {
+      await fileStore.uploadFile(Base64, FileName, updateProgress)
+    }
+    else if (router.currentRoute.value.path === '/folders-student-subjects') {
+      await fileStore.uploadFileProject(Base64, FileName, updateProgress)
+    }
+    else if (router.currentRoute.value.path === '/folders-teacher-personal') {
+      await fileStore.uploadFile(Base64, FileName, updateProgress)
+    }
+    else if (router.currentRoute.value.path === '/folders-academy-personal') {
+      await fileStore.uploadFile(Base64, FileName, updateProgress)
+    }
   }
 
   function toBase64(file) {

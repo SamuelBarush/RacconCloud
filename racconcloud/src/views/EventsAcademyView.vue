@@ -101,13 +101,27 @@
     import SubjectRegisterComponent from "@/components/SubjectRegisterComponent.vue"
     
 
-    import { ref } from "vue"
+    import { ref , onMounted} from "vue"
+    import { useAcademyStore } from '@/store/AcademyStore'
 
     const showModal1 = ref(false)
     const showModal2 = ref(false)
     const showModal3 = ref(false)
     const showModal4 = ref(false)
     const showModal5 = ref(false)
+    const academyStore = useAcademyStore()
+
+    onMounted(async () => {
+        // Cargar la información del usuario
+        // await authStore.loadUser()
+        // userName.value = authStore.user.name
+        // userAcademyId.value = authStore.user.academyId
+        // userTeacher.value = authStore.user.teacher
+        // userDescription.value = authStore.user.description
+        const logs = await academyStore.getLogs()
+        console.log(logs)
+    })
+
 
 </script>
 
