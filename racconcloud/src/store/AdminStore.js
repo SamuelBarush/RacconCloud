@@ -25,7 +25,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("alumno")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/users/',{
+            const res = await fetch('http://192.168.1.199:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -59,7 +59,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("profesor")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/users/',{
+            const res = await fetch('http://192.168.1.199:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -90,7 +90,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("academia")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/academy/',{
+            const res = await fetch('http://192.168.1.199:5000/academy/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -117,7 +117,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getAcademys(){
         try {
-          const res = await fetch('http://192.168.1.245:5000/academy',{
+          const res = await fetch('http://192.168.1.199:5000/academy',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -142,7 +142,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getAcademy(academy_id){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -167,7 +167,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async deleteAcademy(academy_id){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
@@ -192,7 +192,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async actuAcademy(academy_id,name,description,main_teacher){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -222,7 +222,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getUsers(){
         try {
-          const res = await fetch('http://192.168.1.245:5000/users',{
+          const res = await fetch('http://192.168.1.199:5000/users',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -247,7 +247,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getUser(user_id){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -272,7 +272,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async actuUser(user_id,name,email,password){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -305,7 +305,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async deleteUser(user_id){
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
@@ -330,7 +330,7 @@ export const useAdminStore = defineStore('admin',{
       },
       async getLogs(){
         try {
-            const res = await fetch('http://192.168.1.245:5000/logs',{
+            const res = await fetch('http://192.168.1.199:5000/logs',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',

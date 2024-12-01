@@ -5,20 +5,40 @@
     <MenuDashboardStudent 
       @open-Modal1="showModal1 = true" 
       @open-Modal2="showModal2 = true"/>
-
-    <div v-if="isSearching">
-      <h3>Resultados de la Búsqueda</h3>
-      <div v-for="(result, index) in searchResults" :key="index">
-        <p v-if="result.isFolder">Carpeta: {{ result.name }} (Directorio: {{ result.directory }})</p>
-        <p v-else>Archivo: {{ result.path }} (Directorio: {{ result.directory }})</p>
+    <div class="main-folder-principal" v-if="isSearching">
+      <div class="main-dashboard-title">
+        <p>Resultados de la Búsqueda</p>
+      </div>
+      <div class="main-container-grid-b">
+        <div class="main-folders-block-b" 
+        v-for="(result, index) in searchResults" 
+        :key="index"
+        :class="{ 'selected': selectedItem === result.name }"
+        @contextmenu.prevent="openModal('archivo', result.name)"
+          @click.right="selectFile(result.path)">
+          <div v-if="result.type === 'file'" class="main-folders-block-b-img">
+            <img src="../assets/images/documento.png" alt="Archivo" />
+            <p>{{ result.name }}</p>
+          </div>
+          <div v-if="result.type === 'file'" class="main-folders-block-b-txt">
+            <p>{{ result.date }}</p>
+          </div>
+          <div v-if="result.type === 'file'" class="main-folders-block-b-txt">
+            <p>{{ result.size }} KB</p>
+          </div>
+          <div v-if="result.type === 'folder'" class="main-folders-block-b-img">
+            <img src="../assets/images/carpeta.png" alt="Carpeta" />
+            <p>{{ result.name }}</p>
+          </div>
+        </div>
       </div>
     </div>
     
-    <div  v-else :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
+    <div v-if="!isSearching" :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <div class="main-folders-search">
         <img src="../assets/images/busqueda.png" alt="" />
         <input type="search" placeholder="Buscar" />
-      </div>
+      </div> 
 
       <!-- Mostrar Rutas (Breadcrumbs) -->
       <div class="main-dashboard-title">
@@ -64,8 +84,8 @@
           :key="index"
           class="main-folders-block-b"
           :class="{ 'selected': selectedItem === file.path }"
-          @dblclick="openModal('archivo', file.path)"
-          @click="selectFile(file.path)"
+          @contextmenu.prevent="openModal('archivo', file.path)"
+          @click.right="selectFile(file.path)"
           draggable="true"
           @dragover.prevent
           @dragstart="handleDragStart(file.path)"
@@ -100,8 +120,8 @@
     @open-DeleteModal="openDeleteModal"
   />
   <ModalDelete v-if="showModalDelete" :type="deleteType" @close-ModalDelete="closeModalDelete"/>
-  <ModalFolderCreate v-if="showModal1" @close-Modal1="showModal1 = false" />
-  <ModalFileUpload v-if="showModal2" @close-Modal2="showModal2 = false" />
+  <ModalFolderCreate v-if="showModal1" @close-Modal1="CloseModalFolderCreate" />
+  <ModalFileUpload v-if="showModal2" @close-Modal2="CloseModalFileUpload" />
 
   <div v-if="showModal1 || showModal2 || showModalDelete" class="overlay"></div>
 </template>
@@ -159,18 +179,25 @@ const isSearching = computed(() => fileStore.searchQuery.length > 0)
 
 
 const performSearch = (query) => {
-  fileStore.searchFiles(query); // Trigger search in the store
+  console.log('Buscando:', query)
+  fileStore.searchFiles(query) // Trigger search in the store
 };
 
 
 async function loadFiles() {
   try {
     if (router.currentRoute.value.path === '/folders-student-personal') {
+      fileStore.resetStrucuture()
       await fileStore.getFiles()
     } else if (router.currentRoute.value.path === '/folders-student-subjects') {
+      fileStore.resetStrucuture()
       await fileStore.getSubjects()
     }
     loading.value = false
+    fileStore.setSelectedFile('')
+    fileStore.setSelectedFolder('')
+    fileStore.setSearchQuery('')
+    fileStore.resetSearch
   } catch (error) {
     console.error('Error al cargar los archivos:', error)
   }
@@ -201,6 +228,10 @@ function closeModalFileOption() {
   showModalFileOption.value = false
   selectedType.value = ''
   selectedItem.value = ''
+  loading.value = true
+  fileStore.resetStrucuture()
+  loadFiles()
+  loading.value = false
 }
 
 function openDeleteModal(type) {
@@ -211,6 +242,10 @@ function openDeleteModal(type) {
 
 function closeModalDelete() {
   showModalDelete.value = false
+  loading.value = true
+  fileStore.resetStrucuture()
+  loadFiles()
+  loading.value = false
 }
 
 function selectFile(fileName) {
@@ -232,8 +267,28 @@ function handleDrop(destination_path) {
   fileStore.moveFile()
   fileStore.setSelectedFile('')
   fileStore.setSelectedFolder('')
-  fileStore.getFiles()
+  loading.value = true
+  fileStore.resetStrucuture()
+  loadFiles()
+  loading.value = false
 }
+
+function CloseModalFileUpload() {
+  showModal2.value = false
+  loading.value = true
+  fileStore.resetStrucuture()
+  loadFiles()
+  loading.value = false
+}
+
+function CloseModalFolderCreate() {
+  showModal1.value = false
+  loading.value = true
+  fileStore.resetStrucuture()
+  loadFiles()
+  loading.value = false
+}
+
 </script>
 
 <style scoped lang="scss">

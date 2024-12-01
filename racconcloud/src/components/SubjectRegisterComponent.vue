@@ -68,7 +68,8 @@
 </template>
   
 <script setup>
-    import { ref , defineEmits } from 'vue'
+    //import { ref , defineEmits } from 'vue'
+    import { ref } from 'vue'
     import { useAcademyStore } from '@/store/AcademyStore'
     
     const semester_number = ref('')
@@ -77,7 +78,7 @@
     const subject_name = ref('')
     const group_id = ref('')
     const teacher_id = ref('')
-    const emit = defineEmits(['close'])
+    //const emit = defineEmits(['close'])
     
     const academyStore = useAcademyStore()
 
@@ -90,7 +91,7 @@
                 group_id.value,
                 teacher_id.value
             )
-            emit('close');
+            //emit('close');
         } catch (error) {
             console.error(error);
         }
