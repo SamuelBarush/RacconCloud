@@ -64,11 +64,13 @@
 <script setup>
     import { defineEmits } from 'vue'
     import { useAuthStore } from '@/store/AuthStore'
+    import { useFileStore } from '@/store/FileStore'
     import { useRouter } from 'vue-router'
     
     const emit = defineEmits(['open-Modal1', 'open-Modal2'])
     const authStore = useAuthStore()
     const router = useRouter()
+    const fileStore = useFileStore()
 
     function openModal1() {
         emit('open-Modal1')
@@ -80,6 +82,7 @@
 
     async function LogOut() {
         await authStore.logout()
+        fileStore.resetStrucuture()
         router.push('/')
     }
 </script>

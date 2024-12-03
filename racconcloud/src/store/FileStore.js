@@ -3,7 +3,7 @@ import { useAuthStore } from './AuthStore'
 
 export const useFileStore = defineStore('file',{
     state: () => ({
-      jwt: useAuthStore().getJwt,
+      //jwt: useAuthStore().getJwt,
       structure: {},
       currentPath: '',
       selectedFile: null,
@@ -13,6 +13,9 @@ export const useFileStore = defineStore('file',{
       searchResults: [],
     }),
     getters: {
+      getJwt: () => {
+        return useAuthStore().getJwt
+      },
       getSelectedFile: (state) => state.selectedFile,
       getSelectedFolder: (state) => state.selectedFolder,
       getCurrentProject: (state) => state.currentProject,
@@ -28,12 +31,14 @@ export const useFileStore = defineStore('file',{
     },
     actions: {
       async uploadFile(file, filename,updateProgressCallback) {
+        const jwt = this.getJwt;
+        console.log(jwt)
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'http://192.168.1.199:5000/file/upload/single', true);
+          xhr.open('POST', 'http://192.168.1.245:5000/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
+          xhr.setRequestHeader('Authorization', `Bearer ${jwt}`);
       
           xhr.upload.onprogress = (event) => {
             if (event.lengthComputable) {
@@ -71,12 +76,13 @@ export const useFileStore = defineStore('file',{
         }
       },
       async uploadFileProject(file, filename,updateProgressCallback) {
+        const jwt = this.getJwt;
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'http://192.168.1.199:5000/file/upload/single', true);
+          xhr.open('POST', 'http://192.168.1.245:5000/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.setRequestHeader('Authorization', `Bearer ${this.jwt}`);
+          xhr.setRequestHeader('Authorization', `Bearer ${jwt}`);
       
           xhr.upload.onprogress = (event) => {
             if (event.lengthComputable) {
@@ -115,12 +121,13 @@ export const useFileStore = defineStore('file',{
         }
       },
       async getFiles() {
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/full-list', {
+          const res = await fetch('http://192.168.1.245:5000/file/full-list', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
           const data = await res.json();
@@ -139,12 +146,13 @@ export const useFileStore = defineStore('file',{
         this.currentPath = newPath;
       },
       async createFolder(path_name){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/create-folder',{
+          const res = await fetch('http://192.168.1.245:5000/file/create-folder',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify({
                 parent_dir:'/' + this.currentPath,
@@ -175,12 +183,13 @@ export const useFileStore = defineStore('file',{
         this.selectedFolder = folderName
       },
       async downloadFile(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/file/download?file_path=${encodeURIComponent('/' + this.selectedFile)}`,{
+          const res = await fetch(`http://192.168.1.245:5000/file/download?file_path=${encodeURIComponent('/' + this.selectedFile)}`,{
               method: 'GET',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               }
           })
   
@@ -202,13 +211,17 @@ export const useFileStore = defineStore('file',{
         }
       },
       async downloadFolder(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/file/download-folder?folder_path=${encodeURIComponent(this.selectedFolder)}`,{
-              method: 'GET',
+          const res = await fetch(`http://192.168.1.245:5000/file/download-folder`,{
+              method: 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
-              }
+                'Authorization': `Bearer ${jwt}`
+              },
+              body: JSON.stringify({
+                folder_path: this.selectedFolder
+                })
           })
   
           if(res.ok){
@@ -230,12 +243,13 @@ export const useFileStore = defineStore('file',{
       },
       //Probar
       async getSubjects() {
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/enrollment/get-enrolled-subjects', {
+          const res = await fetch('http://192.168.1.245:5000/enrollment/get-enrolled-subjects', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
           const data = await res.json();
@@ -250,12 +264,13 @@ export const useFileStore = defineStore('file',{
         }
       },
       async deleteFolder(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/delete',{
+          const res = await fetch('http://192.168.1.245:5000/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify({
                 target_path: '/' + this.selectedFolder
@@ -275,12 +290,14 @@ export const useFileStore = defineStore('file',{
         }
       },
       async deleteFile(){
+        const jwt = this.getJwt;
+        console.log(jwt)
         try {
-          const res = await fetch('http://192.168.1.199:5000/file/delete',{
+          const res = await fetch('http://192.168.1.245:5000/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify({
                 target_path: '/' + this.selectedFile
@@ -300,18 +317,18 @@ export const useFileStore = defineStore('file',{
         }
       },
       async moveFile(){
-
+        const jwt = this.getJwt;
 
         if(this.selectedFile === this.selectedFolder){
           alert('No puedes mover un archivo a la misma carpeta')
         }
         else{
           try {
-            const res = await fetch('http://192.168.1.199:5000/file/move',{
+            const res = await fetch('http://192.168.1.245:5000/file/move',{
                 method: 'POST',
                 headers:{
                   'Content-Type':'application/json',
-                  'Authorization': `Bearer ${this.jwt}`
+                  'Authorization': `Bearer ${jwt}`
                 },
                 body:JSON.stringify({
                   source_path: '/' + this.selectedFile,
@@ -385,7 +402,41 @@ export const useFileStore = defineStore('file',{
       },
       resetStrucuture(){
         this.structure = {};
-      }
+      },
+      resetJWT(){
+        this.jwt = null
+      },
+      // Función para obtener los 5 archivos más recientes
+      getRecentFiles() {
+        const allFiles = [];
+
+        // Función recursiva para obtener todos los archivos en la estructura
+        const collectFiles = (path, structure) => {
+          const files = structure[path]?.files || [];
+          files.forEach((file) => {
+            allFiles.push({
+              ...file,
+              path: file.path,
+              date: new Date(file.date), // Convertimos la fecha a objeto Date para ordenarlos
+            });
+          });
+
+          // Recursión para obtener archivos de las subcarpetas
+          const folders = structure[path]?.folders || [];
+          folders.forEach((folderPath) => {
+            collectFiles(folderPath, structure);
+          });
+        };
+
+        // Recopilamos todos los archivos desde la raíz
+        collectFiles('', this.structure);
+
+        // Ordenamos los archivos por fecha (de más reciente a más antiguo)
+        allFiles.sort((a, b) => b.date - a.date);
+
+        // Devolvemos solo los 5 más recientes
+        return allFiles.slice(0, 5);
+      },
     },
     persist: {
       enabled: true,

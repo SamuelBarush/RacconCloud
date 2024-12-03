@@ -292,22 +292,23 @@ function CloseModalFolderCreate() {
 </script>
 
 <style scoped lang="scss">
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.5rem;
-  color: var(--text-color);
-}
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 1.5rem;
+    color: var(--text-color);
+  }
 
-.selected {
-    background-color: var(--invert-background-color-page);
-    color: var(--invert-text-color);
+  .selected {
+      background-color: var(--invert-background-color-page);
+      color: var(--invert-text-color);
+
   }
   .selected p{
-    color: var(--invert-text-color) !important;
-  }
+      color: var(--invert-text-color) !important;
+    }
   .breadcrumbs {
     span {
       cursor: pointer;

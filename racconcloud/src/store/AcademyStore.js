@@ -3,19 +3,36 @@ import { useAuthStore } from './AuthStore'
 
 export const useAcademyStore = defineStore('academy',{
     state: () => ({
-        jwt: useAuthStore().getJwt,
-        academy_id : null
+        //jwt: useAuthStore().getJwt,
+        academy_id : null,
+        subjects : {},
+        students : {},
+        structure:{},
+        currentPath : '',
+        currentSubject : '',
+        isViewingSubjects: true,
+        isViewingStudents : false,
+        isViewingFoldersStudent : false,
+        subject_id : null
     }),
-    getters: {  
+    getters: {
+      getJwt: () => {
+        return useAuthStore().getJwt;
+      },
+      getBreadcrumbs: (state) => {
+        const baseBreadcrumbs = state.currentPath ? state.currentPath.split('/').filter(Boolean) : []
+        return baseBreadcrumbs;
+      },
     },
     actions: {
       async info(){
+        const jwt = this.getJwt;
         try {
-            const res = await fetch('http://192.168.1.199:5000/academy/info',{
+            const res = await fetch('http://192.168.1.245:5000/academy/info',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               }
             })
     
@@ -39,12 +56,13 @@ export const useAcademyStore = defineStore('academy',{
           }
       },
       async createSubject(subject_name,group_id,teacher_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/subject/create-subject',{
+          const res = await fetch('http://192.168.1.245:5000/subject/create-subject',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             },
             body:JSON.stringify({
                 subject_name:subject_name,
@@ -68,20 +86,24 @@ export const useAcademyStore = defineStore('academy',{
         }
       },
       async getSubjects(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/subject/subjects',{
+          const res = await fetch('http://192.168.1.245:5000/subject/subjects',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
           const response = await res.json()
   
           if (res.ok){
-            alert(response.message)
-            return response.subjects_data
+            this.subjects = response
+            this.isViewingSubjects = true
+            this.isViewingStudents = false
+            this.currentPath = ''
+            this.currentSubject = ''
           }
           else{
             alert(response.error)
@@ -93,12 +115,13 @@ export const useAcademyStore = defineStore('academy',{
         }
       },
       async getSubjectGroup(group_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/subject/subject-by-group/${group_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/subject/subject-by-group/${group_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -116,20 +139,19 @@ export const useAcademyStore = defineStore('academy',{
             console.error(error)
             alert("Error en la conexión con la API")
         }
-      },
-      //duda tambien en obtener contenedor swift_scope
-      
-      async addUserSubject(subject_id,user_id){
+      },    
+      async addStudent(user_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/enrollment/enroll',{
+          const res = await fetch('http://192.168.1.245:5000/enrollment/enroll',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             },
             body:JSON.stringify({
                 user_id:user_id,
-                subject_id:subject_id
+                subject_id:this.currentSubject
             })
           })
   
@@ -137,7 +159,6 @@ export const useAcademyStore = defineStore('academy',{
   
           if (res.ok){
             alert(response.message)
-            //actualizar vista de usuarios de la materia
           }
           else{
             alert(response.error)
@@ -148,21 +169,28 @@ export const useAcademyStore = defineStore('academy',{
             alert("Error en la conexión con la API")
         }
       },
-      async getStudents(){
+      async getStudents(subject_id,subject_name){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/enrollment/get-enrolled-students',{
-            method : 'GET',
+          const res = await fetch('http://192.168.1.245:5000/subject/subject-by-id',{
+            method : 'POST',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
-            }
+              'Authorization': `Bearer ${jwt}`
+            },
+            body:JSON.stringify({
+              subject_id:subject_id
+            })
           })
   
           const response = await res.json()
   
           if (res.ok){
-            alert(response.message)
-            return response.students.students   //verificar respuesta
+            this.students = response
+            this.currentSubject = subject_name
+            this.subject_id = subject_id
+            this.isViewingStudents = true
+            this.isViewingSubjects = false
           }
           else{
             alert(response.error)
@@ -170,16 +198,48 @@ export const useAcademyStore = defineStore('academy',{
   
         } catch (error) {
             console.error(error)
-            alert("Error en la conexión con la API")
+            alert("Error al obtener los alumnos")
+        }
+      },
+      async getStudentsFolders(student_id){
+        const jwt = this.getJwt;
+        try {
+          const res = await fetch('http://192.168.1.245:5000/file/list-student',{
+            method : 'POST',
+            headers:{
+              'Content-Type':'application/json',
+              'Authorization': `Bearer ${jwt}`
+            },
+            body:JSON.stringify({
+              user_id:student_id,
+              project_id: this.currentSubject
+            })
+          })
+  
+          const response = await res.json()
+  
+          if (res.ok){
+            this.structure = response
+            this.isViewingStudents = true
+            this.isViewingSubjects = false
+          }
+          else{
+            alert(response.error)
+          }
+  
+        } catch (error) {
+            console.error(error)
+            alert("Error al obtener los archivos del alumno")
         }
       },
       async getLogs(){
+        const jwt = this.getJwt;
         try {
-            const res = await fetch('http://192.168.1.199:5000/logs',{
+            const res = await fetch('http://192.168.1.245:5000/logs',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               }
             })
     
@@ -201,6 +261,25 @@ export const useAcademyStore = defineStore('academy',{
               console.error(error)
               alert("Error en la conexión con la API")
           }
+      },
+        // Acción para volver a mostrar las materias
+      showSubjects() {
+        this.isViewingStudents = false;
+        this.students = [];
+        this.currentSubject = ''; // Limpiamos el nombre de la materia
+      },
+      changeDirectory(newPath) {
+        // Cambiar la ruta actual
+        this.currentPath = newPath
+      },
+  
+      navigateToBreadcrumb(index) {
+        // Navegar a un breadcrumb específico
+        if (index === 0) {
+          this.getSubjects() // Si navegamos a "Academia", mostrar las materias
+        } else {
+          this.getStudents(this.subject_id,this.currentSubject); // De lo contrario, cambiar la ruta
+        }
       },
     },
     persist: {

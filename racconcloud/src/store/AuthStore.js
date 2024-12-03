@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth',{
   actions: {
     async login(id, password){
       try {
-        const res = await fetch('http://192.168.1.199:5000/auth/login',{
+        const res = await fetch('http://192.168.1.245:5000/auth/login',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -57,7 +57,7 @@ export const useAuthStore = defineStore('auth',{
       const id = await this.info()
 
       try {
-        const res = await fetch(`http://192.168.1.199:5000/users/${id.boleta}`,{
+        const res = await fetch(`http://192.168.1.245:5000/users/${id.boleta}`,{
             method: 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -82,7 +82,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async isAuth(){
       try {
-        const res = await fetch('http://192.168.1.199:5000/auth/verify-session',{
+        const res = await fetch('http://192.168.1.245:5000/auth/verify-session',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -104,7 +104,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async ForgetPassword(id){
       try {
-        const res = await fetch('http://192.168.1.199:5000/auth/forget_password',{
+        const res = await fetch('http://192.168.1.245:5000/auth/forget_password',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -129,7 +129,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async info(){
       try {
-        const res = await fetch('http://192.168.1.199:5000/users/info',{
+        const res = await fetch('http://192.168.1.245:5000/users/info',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',

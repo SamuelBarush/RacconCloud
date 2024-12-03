@@ -3,15 +3,19 @@ import { useAuthStore } from './AuthStore'
 
 export const useAdminStore = defineStore('admin',{
     state: () => ({
-        jwt: useAuthStore().getJwt,
+        //jwt: useAuthStore().getJwt,
         selectedUser: null
     }),
     getters: {  
-      getSelectedUser: (state) => state.selectedUser
+      getSelectedUser: (state) => state.selectedUser,
+      getJwt: () => {
+        return useAuthStore().getJwt;
+      },
     },
     actions: {
       async createUser(typeuser,id,name,email){
         let body = {}
+        const jwt = this.getJwt;
 
         if (typeuser === 'alumno'){
           body = {
@@ -25,11 +29,11 @@ export const useAdminStore = defineStore('admin',{
           console.log("alumno")
 
           try {
-            const res = await fetch('http://192.168.1.199:5000/users/',{
+            const res = await fetch('http://192.168.1.245:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify(body)
             })
@@ -59,11 +63,11 @@ export const useAdminStore = defineStore('admin',{
           console.log("profesor")
 
           try {
-            const res = await fetch('http://192.168.1.199:5000/users/',{
+            const res = await fetch('http://192.168.1.245:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify(body)
             })
@@ -90,11 +94,11 @@ export const useAdminStore = defineStore('admin',{
           console.log("academia")
 
           try {
-            const res = await fetch('http://192.168.1.199:5000/academy/',{
+            const res = await fetch('http://192.168.1.245:5000/academy/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               },
               body:JSON.stringify(body)
             })
@@ -116,12 +120,13 @@ export const useAdminStore = defineStore('admin',{
 
       },
       async getAcademys(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/academy',{
+          const res = await fetch('http://192.168.1.245:5000/academy',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -141,12 +146,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async getAcademy(academy_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -166,12 +172,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async deleteAcademy(academy_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -191,12 +198,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async actuAcademy(academy_id,name,description,main_teacher){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             },
             body:{
               name:name,
@@ -221,12 +229,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async getUsers(){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.199:5000/users',{
+          const res = await fetch('http://192.168.1.245:5000/users',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -246,12 +255,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async getUser(user_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -271,12 +281,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async actuUser(user_id,name,email,password){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             },
             body:{
               username:name,
@@ -304,12 +315,13 @@ export const useAdminStore = defineStore('admin',{
         this.selectedUser = user
       },
       async deleteUser(user_id){
+        const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.199:5000/academy/${user_id}`,{
+          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
-              'Authorization': `Bearer ${this.jwt}`
+              'Authorization': `Bearer ${jwt}`
             }
           })
   
@@ -329,12 +341,13 @@ export const useAdminStore = defineStore('admin',{
         }
       },
       async getLogs(){
+        const jwt = this.getJwt;
         try {
-            const res = await fetch('http://192.168.1.199:5000/logs',{
+            const res = await fetch('http://192.168.1.245:5000/logs',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
-                'Authorization': `Bearer ${this.jwt}`
+                'Authorization': `Bearer ${jwt}`
               }
             })
     
