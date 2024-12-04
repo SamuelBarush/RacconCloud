@@ -51,12 +51,6 @@
                 </button>
                 <p>Asignar Profesor</p>
             </div>
-            <div class="menu-dashboard-student-actions-container">
-                <button class="menu-dashboard-actions-options" >
-                    <img src="../assets/icons/descargar.png" alt="">
-                </button>
-                <p>Descargar Materia</p>
-            </div>
         </div>
         <div class="menu-dashboard-student-nav">
             <router-link 

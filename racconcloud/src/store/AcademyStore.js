@@ -8,6 +8,7 @@ export const useAcademyStore = defineStore('academy',{
         subjects : {},
         students : {},
         structure:{},
+        breadcrumbs: ['Academia'],
         currentPath : '',
         currentSubject : '',
         isViewingSubjects: true,
@@ -19,13 +20,14 @@ export const useAcademyStore = defineStore('academy',{
       getJwt: () => {
         return useAuthStore().getJwt;
       },
-      getCurrentFolderContent: (state) => {
-        return state.structure?.[state.currentPath] || { files: [], folders: [] };  
+      getCurrentFoldersContent: (state) => {
+        const content = state.structure?.[state.currentPath];
+        return {
+          folders: content?.folders || [],
+          files: content?.files || [],
+        }
       },
-      getBreadcrumbs: (state) => {
-        const baseBreadcrumbs = state.currentPath ? state.currentPath.split('/').filter(Boolean) : []
-        return baseBreadcrumbs;
-      },
+      getBreadcrumbs: (state) => state.breadcrumbs,
     },
     actions: {
       async info(){
@@ -108,6 +110,7 @@ export const useAcademyStore = defineStore('academy',{
             this.isViewingFoldersStudent = false
             this.currentPath = ''
             this.currentSubject = ''
+            this.breadcrumbs = ['Academia']
           }
           else{
             alert(response.error)
@@ -196,6 +199,7 @@ export const useAcademyStore = defineStore('academy',{
             this.isViewingStudents = true
             this.isViewingSubjects = false
             this.isViewingFoldersStudent = false
+            this.breadcrumbs = ['Academia',subject_name]
           }
           else{
             alert(response.error)
@@ -208,6 +212,8 @@ export const useAcademyStore = defineStore('academy',{
       },
       async getStudentsFolders(student_id){
         const jwt = this.getJwt;
+        this.structure = {}
+        this.currentPath = ''
         try {
           const res = await fetch('http://192.168.1.245:5000/file/list-student',{
             method : 'POST',
@@ -222,12 +228,13 @@ export const useAcademyStore = defineStore('academy',{
           })
   
           const response = await res.json()
-          console.log(response)
+
           if (res.ok){
             this.structure = response.structure
             this.isViewingStudents = false
             this.isViewingSubjects = false
             this.isViewingFoldersStudent = true
+            this.breadcrumbs = ['Academia',this.currentSubject,student_id]
           }
           else{
             alert(response.error)
@@ -271,14 +278,23 @@ export const useAcademyStore = defineStore('academy',{
       changeDirectory(newPath) {
         // Cambiar la ruta actual
         this.currentPath = newPath
+        if (!this.breadcrumbs.includes(newPath)) {
+          this.breadcrumbs.push(newPath)
+        }
       },
-  
       navigateToBreadcrumb(index) {
-        // Navegar a un breadcrumb específico
         if (index === 0) {
           this.getSubjects() // Si navegamos a "Academia", mostrar las materias
-        } else {
-          this.getStudents(this.subject_id,this.currentSubject); // De lo contrario, cambiar la ruta
+        } else if (index === 1) {
+          this.getStudents(this.subject_id,this.currentSubject) // Si navegamos a una materia, mostrar los alumnos
+        } else if(index === 2){
+          this.getStudentsFolders(this.breadcrumbs[index]) // Si navegamos a un alumno, mostrar sus archivos
+        } else{
+          const folder = this.breadcrumbs[index]
+          this.currentPath = folder
+          if (index < this.breadcrumbs.length - 1) {
+            this.breadcrumbs = this.breadcrumbs.slice(0, index + 1)
+          }
         }
       },
     },
