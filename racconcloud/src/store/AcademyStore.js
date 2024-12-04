@@ -19,6 +19,9 @@ export const useAcademyStore = defineStore('academy',{
       getJwt: () => {
         return useAuthStore().getJwt;
       },
+      getCurrentFolderContent: (state) => {
+        return state.structure?.[state.currentPath] || { files: [], folders: [] };  
+      },
       getBreadcrumbs: (state) => {
         const baseBreadcrumbs = state.currentPath ? state.currentPath.split('/').filter(Boolean) : []
         return baseBreadcrumbs;
@@ -102,6 +105,7 @@ export const useAcademyStore = defineStore('academy',{
             this.subjects = response
             this.isViewingSubjects = true
             this.isViewingStudents = false
+            this.isViewingFoldersStudent = false
             this.currentPath = ''
             this.currentSubject = ''
           }
@@ -191,6 +195,7 @@ export const useAcademyStore = defineStore('academy',{
             this.subject_id = subject_id
             this.isViewingStudents = true
             this.isViewingSubjects = false
+            this.isViewingFoldersStudent = false
           }
           else{
             alert(response.error)
@@ -217,11 +222,12 @@ export const useAcademyStore = defineStore('academy',{
           })
   
           const response = await res.json()
-  
+          console.log(response)
           if (res.ok){
-            this.structure = response
-            this.isViewingStudents = true
+            this.structure = response.structure
+            this.isViewingStudents = false
             this.isViewingSubjects = false
+            this.isViewingFoldersStudent = true
           }
           else{
             alert(response.error)
@@ -261,12 +267,6 @@ export const useAcademyStore = defineStore('academy',{
               console.error(error)
               alert("Error en la conexión con la API")
           }
-      },
-        // Acción para volver a mostrar las materias
-      showSubjects() {
-        this.isViewingStudents = false;
-        this.students = [];
-        this.currentSubject = ''; // Limpiamos el nombre de la materia
       },
       changeDirectory(newPath) {
         // Cambiar la ruta actual

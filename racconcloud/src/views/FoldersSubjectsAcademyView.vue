@@ -112,6 +112,8 @@
       console.error('Error al cargar las materias:', error)
     }
   }
+  //Cargar la logica de archivos del Alumno
+  //Realizar pruebas
 
   onMounted(async () => {
     await loadSubjects()
@@ -123,8 +125,8 @@
   }
 
   function openStudent(studentId) {
-    academyStore.changeDirectory(studentId)  // Cambiar el directorio actual
-    academyStore.getSubjects(studentId)  // Navegar al estudiante y cargar materias
+    //academyStore.changeDirectory(studentId)  // Cambiar el directorio actual
+    academyStore.getStudentsFolders(studentId)  // Navegar al estudiante y cargar materias
   }
 
   function navigateTo(index) {

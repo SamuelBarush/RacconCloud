@@ -16,6 +16,7 @@
             </span>
           </p>
         </div>
+
         <div class="main-container-grid-a">
           <div
             v-for="(folder, index) in folders"
@@ -29,8 +30,6 @@
             <p>{{ folder.split('/').pop() }}</p>
           </div>
         </div>
-
-        <!-- Mostrar Archivos -->
         <div class="main-dashboard-title">
           <p>Mis Archivos</p>
           <div class="main-dashboard-title-description">
