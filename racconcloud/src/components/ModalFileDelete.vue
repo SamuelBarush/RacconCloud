@@ -24,8 +24,12 @@
 <script setup>
   import { defineEmits, defineProps , onMounted , ref} from 'vue'
   import { useFileStore } from '@/store/FileStore'
+  import { useSubjectsStore } from '@/store/SubjectsStore'
+  import { useRouter } from 'vue-router'
 
   const fileStore = useFileStore()
+  const subjectsStore = useSubjectsStore()
+  const router = useRouter()
   const file = ref('')
   const folder = ref('')
   const emit = defineEmits(['close-ModalDelete'])
@@ -42,13 +46,24 @@
     emit('close-ModalDelete')
   }
 
-  function Eliminar() {
+  async function Eliminar() {
     if (props.type === 'archivo') {
-      fileStore.deleteFile()
+      if (router.currentRoute.value.path === '/folders-student-personal' === '/folders-student-personal'){
+        console.log('delete file personal')
+        await fileStore.deleteFile()
+      }
+      console.log('delete file subjects')
+      await subjectsStore.deleteFile()
     } else {
-      console.log('Eliminar carpeta')
-      fileStore.deleteFolder()
+      if (router.currentRoute.value.path === '/folders-student-personal'){
+        console.log('delete folder subjects')
+        await fileStore.deleteFolder()
+      }
+      console.log('delete folder subjects')
+      await subjectsStore.deleteFolder()
     }
+
+    emit('close-ModalDelete')
   }
 
   onMounted(() => {

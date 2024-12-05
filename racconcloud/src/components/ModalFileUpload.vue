@@ -53,6 +53,7 @@
   import { ref , defineEmits } from 'vue'
   import { useRouter } from 'vue-router'
   import { useFileStore } from '@/store/FileStore'
+  import { useSubjectsStore } from '@/store/SubjectsStore'
 
   import FileIconMapper from '@/services/FileIconMapper'
 
@@ -60,6 +61,7 @@
 
   const emit = defineEmits(['close-Modal2'])
   const fileStore = useFileStore()
+  const subjectsStore = useSubjectsStore()
   const files = ref([])
   const router = useRouter()
 
@@ -108,7 +110,7 @@
       await fileStore.uploadFile(Base64, FileName, updateProgress)
     }
     else if (router.currentRoute.value.path === '/folders-student-subjects') {
-      await fileStore.uploadFileProject(Base64, FileName, updateProgress)
+      await subjectsStore.uploadFile(Base64, FileName, updateProgress)
     }
     else if (router.currentRoute.value.path === '/folders-teacher-personal') {
       await fileStore.uploadFile(Base64, FileName, updateProgress)

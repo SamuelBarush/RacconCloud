@@ -19,10 +19,12 @@
 <script setup>
     import { defineEmits, onMounted , ref } from 'vue'
     import { useFileStore } from '@/store/FileStore'
+    import { useSubjectsStore } from '@/store/SubjectsStore'
     import { useRouter } from 'vue-router'
 
     const emit = defineEmits(['close-Modal1'])
     const fileStore = useFileStore()
+    const subjectsStore = useSubjectsStore()
     let path = ref('')
     let folder_name = ref('')
     const router = useRouter()
@@ -33,6 +35,8 @@
 
     onMounted(() => {
         const aux = fileStore.getPath
+        const aux2 = subjectsStore.getPath
+        const project = subjectsStore.getCurrentSubject
     
         if (router.currentRoute.value.path === '/folders-student-personal'){
             path.value = 'Personal/'
@@ -40,7 +44,8 @@
         }
         if (router.currentRoute.value.path === '/folders-student-subjects'){
             path.value = 'Materias/'
-            if (aux != '') path.value +=  aux + '/'
+            if (project != '') path.value += project + '/'
+            if (aux2 != '') path.value +=  aux2 + '/'
         }
         if (router.currentRoute.value.path === '/folders-teacher-personal'){
             path.value = 'Personal/'
@@ -53,7 +58,12 @@
     })
 
     async function CreateFolder(){
-        await fileStore.createFolder(folder_name.value)
+
+        if (router.currentRoute.value.path === '/folders-student-personal'){
+            await fileStore.createFolder(folder_name.value)
+        } else if (router.currentRoute.value.path === '/folders-student-subjects'){
+            await subjectsStore.createFolder(folder_name.value)
+        }
         folder_name.value = ''
         closeModal1()
     }

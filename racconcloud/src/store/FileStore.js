@@ -3,7 +3,6 @@ import { useAuthStore } from './AuthStore'
 
 export const useFileStore = defineStore('file',{
     state: () => ({
-      //jwt: useAuthStore().getJwt,
       structure: {},
       currentPath: '',
       selectedFile: null,
@@ -75,47 +74,27 @@ export const useFileStore = defineStore('file',{
           console.error(error);
         }
       },
-      async uploadFileProject(file, filename,updateProgressCallback) {
+      async getSize() {
         const jwt = this.getJwt;
         try {
-          const xhr = new XMLHttpRequest();
-      
-          xhr.open('POST', 'http://192.168.1.245:5000/file/upload/single', true);
-          xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.setRequestHeader('Authorization', `Bearer ${jwt}`);
-      
-          xhr.upload.onprogress = (event) => {
-            if (event.lengthComputable) {
-              const progressPercentage = (event.loaded / event.total) * 100;
-              updateProgressCallback(progressPercentage); // Llamada al callback para actualizar el progreso en la vista
+          const res = await fetch('http://192.168.1.245:5000/file/space', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${jwt}`
             }
-          };
-      
-          xhr.onload = () => {
-            if (xhr.status === 200) {
-              updateProgressCallback(100, 'completed'); // Marca el archivo como completado al 100%
-              console.log("Se subió el archivo correctamente");
-            } else {
-              updateProgressCallback(0, 'error-upload'); // Marca el archivo como error de subida
-              console.log("No se pudo subir el archivo");
+          })
+          const data = await res.json();
+  
+          if (res.ok) {
+            return{
+              total_space : data.total_space,
+              used_space : data.used_space,
+              free_space : data.free_space
             }
-          };
-      
-          xhr.onerror = () => {
-            updateProgressCallback(0, 'error-connection'); // Marca el archivo como error de conexión
-            console.error("Error en la conexión");
-          };
-      
-          const body = JSON.stringify({
-            file: file,
-            filename: filename,
-            path: this.currentPath,
-            flag: false,
-            project_id: this.currentProject
-          });
-      
-          xhr.send(body);
-      
+          } else {
+            throw new Error(res.error);
+          }
         } catch (error) {
           console.error(error);
         }
@@ -241,7 +220,6 @@ export const useFileStore = defineStore('file',{
             console.error(error)
         }
       },
-      //Probar
       async getSubjects() {
         const jwt = this.getJwt;
         try {

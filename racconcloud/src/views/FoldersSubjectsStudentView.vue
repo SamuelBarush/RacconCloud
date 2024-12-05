@@ -1,175 +1,10 @@
 <template>
-  <HeaderComponent @search-query="performSearch" />
+  <HeaderComponent/>
   <main class="main-folders-container" v-if="!loading">
-    <MenuDashboardStudent 
+    <MenuDashboardStudent
     @open-Modal1="showModal1 = true" 
-    @open-Modal2="showModal2 = true" />
-    <div class="main-folder-principal" v-if="isSearching">
-      <div class="main-dashboard-title">
-        <p>Resultados de la Búsqueda</p>
-      </div>
-      <div class="main-container-grid-b">
-        <div class="main-folders-block-b" v-for="(result, index) in searchResults" :key="index"
-          :class="{ 'selected': selectedItem === result.name }" @contextmenu.prevent="openModal('archivo', result.name)"
-          @click.right="selectFile(result.path)">
-          <div v-if="result.type === 'file'" class="main-folders-block-b-img">
-            <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                width="100%" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
-              <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
-                d="
-              M384.000000,513.000000 
-                C299.645782,513.000000 215.291550,513.000000 130.767715,512.650391 
-                C128.662720,511.656830 126.758728,510.889374 124.787109,510.387787 
-                C101.416656,504.442749 82.022148,492.390625 66.878036,473.451263 
-                C51.707989,454.479401 43.236992,432.845581 43.148598,408.732971 
-                C42.790703,311.104309 42.948788,213.473511 43.086842,115.843735 
-                C43.099327,107.016228 44.018875,98.153381 45.060825,89.371445 
-                C47.352188,70.059036 55.938290,53.217342 68.171051,38.661034 
-                C83.939308,19.897682 104.041306,7.478417 128.528854,2.919382 
-                C129.117935,2.809709 129.513947,1.663013 130.000000,1.000001 
-                C176.687561,1.000000 223.375122,1.000000 270.231110,1.357036 
-                C272.229950,2.150220 274.057159,2.600323 275.891266,3.020437 
-                C304.815338,9.645732 330.588074,22.265980 351.803314,43.339348 
-                C375.434875,66.812897 398.841400,90.513252 422.510864,113.948288 
-                C437.425110,128.714798 449.743378,145.116211 458.270264,164.475906 
-                C466.151367,182.369415 470.691711,201.030334 470.831757,220.349609 
-                C471.283203,282.633636 471.064545,344.923157 470.910126,407.210083 
-                C470.892792,414.202362 470.336884,421.347900 468.818542,428.151886 
-                C464.801361,446.154327 457.056274,462.614929 444.836975,476.492798 
-                C428.970184,494.513367 409.426544,506.683044 385.469727,511.080933 
-                C384.882141,511.188812 384.485596,512.336975 384.000000,513.000000 
-              M427.000000,235.500916 
-                C426.999969,230.502579 426.877014,225.500259 427.038208,220.507126 
-                C427.170898,216.395950 425.753815,214.872849 421.337891,214.898697 
-                C389.179626,215.086975 357.019135,215.105743 324.860962,214.909531 
-                C318.537872,214.870941 312.128998,214.138977 305.918823,212.917679 
-                C279.386292,207.699814 256.386871,180.748718 256.864258,152.491623 
-                C257.438354,118.509048 257.000000,84.509369 257.000000,50.517101 
-                C257.000000,48.733856 257.000000,46.950611 257.000000,44.000000 
-                C242.583496,44.000000 228.688339,44.000000 214.793182,44.000000 
-                C194.964355,44.000000 175.135040,44.087688 155.306870,43.972576 
-                C139.111603,43.878559 124.311699,47.607296 111.336571,57.908661 
-                C96.328300,69.824211 87.317017,85.365784 87.226707,104.183052 
-                C86.745338,204.491257 86.988770,304.803009 87.042107,405.113495 
-                C87.044189,409.021698 87.398170,412.973907 88.039566,416.830536 
-                C93.236519,448.079163 119.196373,469.595306 149.601334,469.829956 
-                C219.248001,470.367462 288.901794,469.928009 358.552368,470.060669 
-                C372.497589,470.087219 385.625763,467.494812 397.403809,459.888641 
-                C415.675751,448.088776 426.502441,431.064789 426.763214,409.458344 
-                C427.458954,351.813202 427.000000,294.154114 427.000000,235.500916 
-              M342.000000,95.500000 
-                C328.925079,82.772125 317.025024,68.650925 300.000610,59.486153 
-                C300.000610,90.740494 299.573181,121.188873 300.232544,151.613708 
-                C300.463226,162.258392 309.234009,170.998917 320.613617,170.999496 
-                C349.243744,171.000961 377.873901,171.000000 406.504028,171.000000 
-                C407.930786,171.000000 409.357544,171.000000 410.784271,171.000000 
-                C411.137299,170.568604 411.490326,170.137192 411.843353,169.705795 
-                C406.265259,162.675613 401.217804,155.131958 395.007477,148.713516 
-                C377.763763,130.891922 360.036346,113.538422 342.000000,95.500000 
-              z"/>
-              <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
-                d="
-              M341.830933,278.000000 
-                C351.835114,277.835114 358.457947,282.399353 362.300262,290.860718 
-                C366.278351,299.621155 364.168121,307.951599 358.320709,314.856812 
-                C355.093872,318.667389 350.358765,321.088562 344.616516,321.076263 
-                C286.301147,320.951385 227.985443,321.017212 169.669876,320.981384 
-                C160.914719,320.976013 155.327286,316.283051 151.898911,308.504852 
-                C148.374130,300.507965 149.181137,292.925598 154.458099,286.123444 
-                C158.899567,280.398254 164.924957,277.900757 172.405777,277.920197 
-                C228.721664,278.066559 285.038086,278.000000 341.830933,278.000000 
-              z"/>
-              <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
-                d="
-              M300.000000,384.998047 
-                C300.513519,397.510803 290.756897,406.734497 278.957153,406.860596 
-                C243.005005,407.244873 207.041122,407.337677 171.092697,406.806915 
-                C159.370651,406.633789 151.798782,399.738373 150.143661,388.975159 
-                C148.099564,375.682678 155.470093,366.083374 166.897583,363.989166 
-                C169.112076,363.583313 171.353256,363.045776 173.582962,363.041931 
-                C208.373886,362.982056 243.165375,362.899750 277.955719,363.053101 
-                C290.531616,363.108521 300.659210,372.746979 300.000000,384.998047 
-              z"/>
-            </svg>
-            <p>{{ result.name }}</p>
-          </div>
-          <div v-if="result.type === 'file'" class="main-folders-block-b-txt">
-            <p>{{ result.date }}</p>
-          </div>
-          <div v-if="result.type === 'file'" class="main-folders-block-b-txt">
-            <p>{{ result.size }} KB</p>
-          </div>
-          <div v-if="result.type === 'folder'" class="main-folders-block-b-img">
-            <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 512 512"
-              enable-background="new 0 0 512 512" xml:space="preserve">
-              <path fill="#FFFFFF" opacity="1.000000" stroke="none" d="M1.000003,406.000000 
-                  C1.000000,306.979095 1.000000,207.958206 1.343198,108.765999 
-                  C2.990636,104.346497 4.195457,100.064751 5.615906,95.855789 
-                  C12.675550,74.937157 24.789125,57.629814 42.346096,44.109512 
-                  C61.048351,29.707258 82.146294,22.266527 105.701859,22.038574 
-                  C125.197838,21.849909 144.697174,21.964716 164.194839,22.016298 
-                  C172.729004,22.038876 180.822556,24.075893 188.459427,27.878235 
-                  C210.362747,38.783741 232.133011,49.969444 254.243195,60.437531 
-                  C259.896637,63.114162 266.606537,64.758614 272.846710,64.805878 
-                  C319.838715,65.161812 366.835083,64.906319 413.828827,65.114494 
-                  C419.939270,65.141556 426.170807,66.206253 432.126770,67.678246 
-                  C454.615936,73.236320 473.419403,84.803185 488.311768,102.739349 
-                  C499.752930,116.518906 507.840149,131.802933 511.081390,149.528015 
-                  C511.188934,150.115967 512.336975,150.513626 513.000000,151.000000 
-                  C513.000000,235.687561 513.000000,320.375122 512.656860,405.233978 
-                  C511.009491,409.653290 509.815002,413.938690 508.382843,418.143127 
-                  C500.972687,439.897308 488.232513,458.008942 469.731598,471.550323 
-                  C451.115265,485.176147 430.021240,492.043945 406.744385,492.028625 
-                  C305.432495,491.961945 204.120453,492.039215 102.808670,491.903381 
-                  C96.668373,491.895142 90.410744,491.017731 84.412048,489.649109 
-                  C62.629402,484.679260 44.049870,474.101593 28.875113,457.479828 
-                  C16.636871,444.074585 8.066161,428.869415 3.906753,411.162506 
-                  C3.472996,409.315948 1.994028,407.714935 1.000003,406.000000 
-                M448.499878,191.000000 
-                  C422.753693,191.333328 397.008423,191.800476 371.261169,191.973358 
-                  C309.357269,192.388992 247.452759,192.757919 185.547897,192.969635 
-                  C140.225906,193.124634 94.902962,193.000000 49.580441,193.000000 
-                  C47.808380,193.000000 46.036320,193.000000 44.000000,193.000000 
-                  C44.000000,195.321259 44.000000,197.125336 44.000000,198.929413 
-                  C44.000000,257.248840 43.969124,315.568268 44.043823,373.887604 
-                  C44.052040,380.301208 44.617348,386.716949 45.008713,393.126556 
-                  C45.745605,405.194916 51.037884,415.558899 58.347420,424.665405 
-                  C71.876068,441.520020 90.293076,448.897095 111.496696,448.931305 
-                  C208.473312,449.087646 305.450439,449.062531 402.426941,448.870453 
-                  C409.488678,448.856476 416.761688,447.763977 423.569122,445.859680 
-                  C452.138092,437.867981 469.704224,411.954254 469.866180,386.460022 
-                  C470.271606,322.644501 470.001373,258.824677 469.989838,195.006561 
-                  C469.989624,193.736511 469.837860,192.466476 469.744263,191.000000 
-                  C462.786346,191.000000 456.143066,191.000000 448.499878,191.000000 
-                M261.396912,149.000000 
-                  C265.813660,148.666672 270.228729,148.067902 274.647400,148.039993 
-                  C336.703430,147.647736 398.759949,147.334732 460.816284,146.987778 
-                  C461.855804,146.981964 462.894318,146.793854 464.342407,146.650238 
-                  C459.921021,137.459183 454.602722,129.875687 447.174927,123.487144 
-                  C435.325409,113.295578 421.599426,108.228508 406.360809,108.119125 
-                  C360.385010,107.789108 314.404755,107.875237 268.427551,108.086708 
-                  C256.763794,108.140358 245.998795,105.302643 235.731216,100.243706 
-                  C215.665604,90.357155 195.634583,80.395561 175.723724,70.202301 
-                  C168.593887,66.552223 161.291016,64.699074 153.304230,64.970421 
-                  C133.986649,65.626724 114.567711,63.452858 95.354927,67.003944 
-                  C75.851212,70.608803 61.915234,81.959373 52.061340,98.681870 
-                  C42.694408,114.577950 43.683090,132.138702 44.143555,149.000000 
-                  C116.409424,149.000000 188.414322,149.000000 261.396912,149.000000 
-                z" />
-            </svg>
-            <p>{{ result.name }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-if="!isSearching" :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
-      <div class="main-folders-search">
-        <img src="../assets/images/busqueda.png" alt="" />
-        <input type="search" placeholder="Buscar" />
-      </div>
-
+    @open-Modal2="showModal2 = true"/>
+    <div :class="{ 'main-folder-principal': true, 'shrinked': showModalFileOption }">
       <!-- Mostrar Rutas (Breadcrumbs) -->
       <div class="main-dashboard-title">
         <p class="breadcrumbs">
@@ -179,22 +14,23 @@
         </p>
       </div>
 
-      <!-- Mostrar Carpetas -->
-      <div class="main-container-grid-a">
-        <div v-for="(folder, index) in folders" 
-          :key="index" class="main-folders-block-a"
-          :class="{ 'selected': selectedItem === folder }" 
-          @dblclick="openFolder(folder)"
-          @click.right="selectFolder(folder)" 
-          @contextmenu.prevent="openModal('carpeta', folder)" 
-          draggable="true"
-          @dragover.prevent 
-          @drop="handleDrop(folder)" 
-          @dragstart="handleDragStart(folder)">
-          <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 512 512"
-            enable-background="new 0 0 512 512" xml:space="preserve">
-            <path fill="#FFFFFF" opacity="1.000000" stroke="none" d="M1.000003,406.000000 
+      <!-- Mostrar Materias o Estudiantes -->
+      <div class="main-dashboard-title">
+        <p>{{ isViewingSubjects ? 'Materias' : 'Archivos de la Materia' }}</p>
+      </div>
+
+      <div v-if="isViewingSubjects" class="main-container-grid-a">
+        <div
+          v-for="(subject, index) in subjects"
+          :key="index"
+          @dblclick="openSubject(subject.subject_name)"
+          class="main-folders-block-a"
+        >
+            <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 512 512"
+              enable-background="new 0 0 512 512" xml:space="preserve">
+              <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
+                  d="M1.000003,406.000000 
                   C1.000000,306.979095 1.000000,207.958206 1.343198,108.765999 
                   C2.990636,104.346497 4.195457,100.064751 5.615906,95.855789 
                   C12.675550,74.937157 24.789125,57.629814 42.346096,44.109512 
@@ -248,30 +84,110 @@
                   C42.694408,114.577950 43.683090,132.138702 44.143555,149.000000 
                   C116.409424,149.000000 188.414322,149.000000 261.396912,149.000000 
                 z" />
-          </svg>
+            </svg>
+          <p class="subject_name">{{ subject.subject_name }}</p>
+        </div>
+      </div>
+
+      
+
+      <div v-if="isViewingFolders" class="main-container-grid-a">
+        <div
+          v-for="(folder, index) in folders"
+          :key="index"
+          class="main-folders-block-a"
+          :class="{ 'selected': selectedItem === folder }" 
+          @dblclick="openFolder(folder)"
+          @click.right="selectFolder(folder)" 
+          @contextmenu.prevent="openModal('carpeta', folder)" 
+          draggable="true"
+          @dragover.prevent 
+          @drop="handleDrop(folder)" 
+          @dragstart="handleDragStart(folder)">
+            <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 512 512"
+              enable-background="new 0 0 512 512" xml:space="preserve">
+              <path fill="#FFFFFF" opacity="1.000000" stroke="none" 
+                  d="M1.000003,406.000000 
+                  C1.000000,306.979095 1.000000,207.958206 1.343198,108.765999 
+                  C2.990636,104.346497 4.195457,100.064751 5.615906,95.855789 
+                  C12.675550,74.937157 24.789125,57.629814 42.346096,44.109512 
+                  C61.048351,29.707258 82.146294,22.266527 105.701859,22.038574 
+                  C125.197838,21.849909 144.697174,21.964716 164.194839,22.016298 
+                  C172.729004,22.038876 180.822556,24.075893 188.459427,27.878235 
+                  C210.362747,38.783741 232.133011,49.969444 254.243195,60.437531 
+                  C259.896637,63.114162 266.606537,64.758614 272.846710,64.805878 
+                  C319.838715,65.161812 366.835083,64.906319 413.828827,65.114494 
+                  C419.939270,65.141556 426.170807,66.206253 432.126770,67.678246 
+                  C454.615936,73.236320 473.419403,84.803185 488.311768,102.739349 
+                  C499.752930,116.518906 507.840149,131.802933 511.081390,149.528015 
+                  C511.188934,150.115967 512.336975,150.513626 513.000000,151.000000 
+                  C513.000000,235.687561 513.000000,320.375122 512.656860,405.233978 
+                  C511.009491,409.653290 509.815002,413.938690 508.382843,418.143127 
+                  C500.972687,439.897308 488.232513,458.008942 469.731598,471.550323 
+                  C451.115265,485.176147 430.021240,492.043945 406.744385,492.028625 
+                  C305.432495,491.961945 204.120453,492.039215 102.808670,491.903381 
+                  C96.668373,491.895142 90.410744,491.017731 84.412048,489.649109 
+                  C62.629402,484.679260 44.049870,474.101593 28.875113,457.479828 
+                  C16.636871,444.074585 8.066161,428.869415 3.906753,411.162506 
+                  C3.472996,409.315948 1.994028,407.714935 1.000003,406.000000 
+                M448.499878,191.000000 
+                  C422.753693,191.333328 397.008423,191.800476 371.261169,191.973358 
+                  C309.357269,192.388992 247.452759,192.757919 185.547897,192.969635 
+                  C140.225906,193.124634 94.902962,193.000000 49.580441,193.000000 
+                  C47.808380,193.000000 46.036320,193.000000 44.000000,193.000000 
+                  C44.000000,195.321259 44.000000,197.125336 44.000000,198.929413 
+                  C44.000000,257.248840 43.969124,315.568268 44.043823,373.887604 
+                  C44.052040,380.301208 44.617348,386.716949 45.008713,393.126556 
+                  C45.745605,405.194916 51.037884,415.558899 58.347420,424.665405 
+                  C71.876068,441.520020 90.293076,448.897095 111.496696,448.931305 
+                  C208.473312,449.087646 305.450439,449.062531 402.426941,448.870453 
+                  C409.488678,448.856476 416.761688,447.763977 423.569122,445.859680 
+                  C452.138092,437.867981 469.704224,411.954254 469.866180,386.460022 
+                  C470.271606,322.644501 470.001373,258.824677 469.989838,195.006561 
+                  C469.989624,193.736511 469.837860,192.466476 469.744263,191.000000 
+                  C462.786346,191.000000 456.143066,191.000000 448.499878,191.000000 
+                M261.396912,149.000000 
+                  C265.813660,148.666672 270.228729,148.067902 274.647400,148.039993 
+                  C336.703430,147.647736 398.759949,147.334732 460.816284,146.987778 
+                  C461.855804,146.981964 462.894318,146.793854 464.342407,146.650238 
+                  C459.921021,137.459183 454.602722,129.875687 447.174927,123.487144 
+                  C435.325409,113.295578 421.599426,108.228508 406.360809,108.119125 
+                  C360.385010,107.789108 314.404755,107.875237 268.427551,108.086708 
+                  C256.763794,108.140358 245.998795,105.302643 235.731216,100.243706 
+                  C215.665604,90.357155 195.634583,80.395561 175.723724,70.202301 
+                  C168.593887,66.552223 161.291016,64.699074 153.304230,64.970421 
+                  C133.986649,65.626724 114.567711,63.452858 95.354927,67.003944 
+                  C75.851212,70.608803 61.915234,81.959373 52.061340,98.681870 
+                  C42.694408,114.577950 43.683090,132.138702 44.143555,149.000000 
+                  C116.409424,149.000000 188.414322,149.000000 261.396912,149.000000 
+                z" />
+            </svg>
           <p>{{ folder.split('/').pop() }}</p>
         </div>
       </div>
 
-      <!-- Mostrar Archivos -->
-      <div class="main-dashboard-title">
-        <p>Mis Archivos</p>
+      <div v-if="isViewingFolders" class="main-dashboard-title">
+        <p>Archivos del Alumno</p>
         <div class="main-dashboard-title-description">
           <p>Nombre</p>
           <p>Fecha de Subida</p>
           <p>Tamaño</p>
         </div>
       </div>
-      <div class="main-container-grid-b">
-        <div v-for="(file, index) in files" 
-          :key="index" class="main-folders-block-b"
-          :class="{ 'selected': selectedItem === file.path }" 
+
+      <div v-if="isViewingFolders" class="main-container-grid-b">
+        <div v-for="(file, index) in files"
+          :key="index"
+          class="main-folders-block-b"
+          :class="{ 'selected': selectedItem === file.path }"
           @contextmenu.prevent="openModal('archivo', file.path)"
           @click.right="selectFile(file.path)" 
           draggable="true" 
           @dragover.prevent
           @dragstart="handleDragStart(file.path)" 
-          @drop="handleDrop(file.path)">
+          @drop="handleDrop(file.path)"
+        >
           <div class="main-folders-block-b-img">
             <svg class="folder-svg-img" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="100%" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
@@ -361,15 +277,20 @@
           </div>
         </div>
       </div>
+
     </div>
   </main>
-  <div v-else class="loading">
+
+  <div v-if="loading" class="loading">
+    <p>Cargando materias...</p>
+  </div>
+
+  <div v-if="loadingFolders" class="loading">
     <p>Cargando archivos...</p>
   </div>
 
-  <ThemeSwitcherComponent />
-  <FooterComponent />
-
+  <ThemeSwitcherComponent/>
+  <FooterComponent/>
   <!-- Modales -->
   <ModalFileOption v-if="showModalFileOption" :type="selectedType" @close-ModalFileOption="closeModalFileOption"
     @open-DeleteModal="openDeleteModal" />
@@ -381,193 +302,184 @@
 </template>
 
 <script setup>
-import HeaderComponent from '@/components/HeaderStudentComponent.vue'
-import FooterComponent from '@/components/FooterStudentComponent.vue'
-import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
-import ModalFileOption from '@/components/ModalFileOption.vue'
-import ModalFileUpload from '@/components/ModalFileUpload.vue'
-import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
-import ModalDelete from '@/components/ModalFileDelete.vue'
-import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
-import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-import { useFileStore } from '@/store/FileStore'
+  import MenuDashboardStudent from '@/components/MenuDashboardStudent.vue'
+  import HeaderComponent from '@/components/HeaderStudentComponent.vue'
+  import FooterComponent from '@/components/FooterStudentComponent.vue'
+  import ModalFileOption from '@/components/ModalFileOption.vue'
+  import ModalDelete from '@/components/ModalFileDelete.vue'
+  import ModalFileUpload from '@/components/ModalFileUpload.vue'
+  import ModalFolderCreate from '@/components/ModalFolderCreate.vue'
+  import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
-const showModal1 = ref(false)
-const showModal2 = ref(false)
-const showModalFileOption = ref(false)
-const showModalDelete = ref(false)
-const selectedType = ref('')
-const selectedItem = ref('')
-const deleteType = ref('')
-const fileStore = useFileStore()
-const router = useRouter()
+  import { ref, computed, onMounted } from 'vue'
+  import { useSubjectsStore } from '@/store/SubjectsStore'
 
-// Estado de carga
-const loading = ref(true)
+  const showModal1 = ref(false)
+  const showModal2 = ref(false)
 
-// Obtener las carpetas y archivos del directorio actual
-const folders = computed(() => {
-  return isSearching.value
-    ? fileStore.searchResults.filter((item) => item.isFolder).map((item) => item.name)
-    : fileStore.getCurrentFolderContent.folders;
-});
+  const selectedItem = ref('')
+  const selectedType = ref('')
+  const deleteType = ref('')
 
-const files = computed(() => {
-  return isSearching.value
-    ? fileStore.searchResults.filter((item) => !item.isFolder)
-    : fileStore.getCurrentFolderContent.files
-});
+  const showModalFileOption = ref(false)
+  const showModalDelete = ref(false)
 
-const breadcrumbs = computed(() => {
-  const baseBreadcrumbs = fileStore.getBreadcrumbs;
-  if (router.currentRoute.value.name === 'folders-student-personal' || router.currentRoute.value.name === 'folders-teacher-personal' || router.currentRoute.value.name === 'folders-academy-personal') {
-    return ['Personal', ...baseBreadcrumbs]
-  }
-  return baseBreadcrumbs
-})
-const searchResults = computed(() => fileStore.getSearchResults)
-const isSearching = computed(() => fileStore.searchQuery.length > 0)
+  const subjectsStore = useSubjectsStore()
 
+  // Estado de carga
+  const loading = ref(true)
+  const loadingFolders = ref(false)
 
-const performSearch = (query) => {
-  console.log('Buscando:', query)
-  fileStore.searchFiles(query)
-}
+  // Obtener las materias desde el store
+  const subjects = computed(() => subjectsStore.subjects)
+  const folders = computed(() => subjectsStore.getCurrentFoldersContent.folders)
+  const files = computed(() => subjectsStore.getCurrentFoldersContent.files)
 
-async function loadFiles() {
-  try {
-    if (router.currentRoute.value.path === '/folders-student-personal') {
-      fileStore.resetStrucuture()
-      await fileStore.getFiles()
+  const isViewingSubjects = computed(() => subjectsStore.isViewingSubjects)
+  const isViewingFolders = computed(() => subjectsStore.isViewingFolders)
+
+  const breadcrumbs = computed(() => {
+    const baseBreadcrumbs = subjectsStore.getBreadcrumbs;
+    return baseBreadcrumbs
+  })
+
+  async function loadSubjects() {
+    try {
+      await subjectsStore.getSubjects()  // Cargar las materias
+      loading.value = false
+    } catch (error) {
+      console.error('Error al cargar las materias:', error)
     }
-    loading.value = false
-    fileStore.setSelectedFile('')
-    fileStore.setSelectedFolder('')
-    fileStore.setSearchQuery('')
-    fileStore.resetSearch
-  } catch (error) {
-    console.error('Error al cargar los archivos:', error)
   }
-}
 
-onMounted(async () => {
-  await loadFiles()
-})
+  onMounted(async () => {
+    await loadSubjects()
+  })
 
-function openFolder(folder) {
-  fileStore.setSelectedFile('')
-  fileStore.setSelectedFolder('')
-  fileStore.changeDirectory(folder)
-}
+  async function openSubject(subjectName) {
+    loadingFolders.value = true
+    await subjectsStore.getFolders(subjectName)// Navegar al estudiante y cargar materias
+    loadingFolders.value = false  
+  }
 
-function navigateTo(index) {
-  const newPath = breadcrumbs.value.slice(1, index + 1).join('/')
-  fileStore.changeDirectory(newPath)
-}
+  function openFolder(folder){
+    subjectsStore.changeDirectory(folder)  // Cambiar el directorio actual
+  }
 
-function openModal(type, itemName) {
-  selectedType.value = type
-  selectedItem.value = itemName
-  showModalFileOption.value = true
-}
+  function navigateTo(index) {
+    console.log('navegar a:', index)
+    subjectsStore.navigateToBreadcrumb(index)  // Navegar a la ruta del breadcrumb
+  }
 
-function closeModalFileOption() {
-  showModalFileOption.value = false
-  selectedType.value = ''
-  selectedItem.value = ''
-  loading.value = true
-  fileStore.resetStrucuture()
-  loadFiles()
-  loading.value = false
-}
+  function openModal(type, itemName) {
+    selectedType.value = type
+    selectedItem.value = itemName
+    showModalFileOption.value = true
+  }
 
-function openDeleteModal(type) {
-  deleteType.value = type
-  showModalFileOption.value = false
-  showModalDelete.value = true
-}
+  function closeModalFileOption() {
+    showModalFileOption.value = false
+    selectedType.value = ''
+    selectedItem.value = ''
+    loading.value = true
+    loadSubjects()
+    loading.value = false
+  }
 
-function closeModalDelete() {
-  showModalDelete.value = false
-  loading.value = true
-  fileStore.resetStrucuture()
-  loadFiles()
-  loading.value = false
-}
+  function openDeleteModal(type) {
+    deleteType.value = type
+    showModalFileOption.value = false
+    showModalDelete.value = true
+  }
 
-function selectFile(fileName) {
-  fileStore.setSelectedFile(fileName)
-  selectedItem.value = fileName
-}
+  function closeModalDelete() {
+    showModalDelete.value = false
+    loading.value = true
+    loadSubjects()
+    loading.value = false
+  }
 
-function selectFolder(folderName) {
-  fileStore.setSelectedFolder(folderName)
-  selectedItem.value = folderName
-}
+  function selectFile(fileName) {
+    subjectsStore.setSelectedFile(fileName)
+    selectedItem.value = fileName
+  }
 
-function handleDragStart(source_path) {
-  fileStore.setSelectedFile(source_path)
-}
+  function selectFolder(folderName) {
+    subjectsStore.setSelectedFolder(folderName)
+    selectedItem.value = folderName
+  }
 
-function handleDrop(destination_path) {
-  fileStore.setSelectedFolder(destination_path)
-  fileStore.moveFile()
-  fileStore.setSelectedFile('')
-  fileStore.setSelectedFolder('')
-  loading.value = true
-  fileStore.resetStrucuture()
-  loadFiles()
-  loading.value = false
-}
+  function handleDragStart(source_path) {
+    subjectsStore.setSelectedFile(source_path)
+  }
 
-function CloseModalFileUpload() {
-  showModal2.value = false
-  loading.value = true
-  fileStore.resetStrucuture()
-  loadFiles()
-  loading.value = false
-}
+  function handleDrop(destination_path) {
+    subjectsStore.setSelectedFolder(destination_path)
+    subjectsStore.moveFile()
+    subjectsStore.setSelectedFile('')
+    subjectsStore.setSelectedFolder('')
+    loading.value = true
+    loadSubjects()
+    loading.value = false
+  }
 
-function CloseModalFolderCreate() {
-  showModal1.value = false
-  loading.value = true
-  fileStore.resetStrucuture()
-  loadFiles()
-  loading.value = false
-}
+  function CloseModalFileUpload() {
+    showModal2.value = false
+    loading.value = true
+    loadSubjects()
+    loading.value = false
+  }
 
+  function CloseModalFolderCreate() {
+    showModal1.value = false
+    loading.value = true
+    loadSubjects()
+    loading.value = false
+  }
 </script>
 
 <style scoped lang="scss">
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-size: 1.5rem;
-    color: var(--text-color);
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  z-index: 10000;
+  background-color: var(--background-color-page);
+}
+
+.selected {
+  background-color: var(--invert-background-color-page);
+  color: var(--invert-text-color);
+}
+
+.selected p {
+  color: var(--invert-text-color) !important;
+}
+
+.breadcrumbs {
+  span {
+    cursor: pointer;
   }
 
-  .selected {
-      background-color: var(--invert-background-color-page);
-      color: var(--invert-text-color);
-
+  span:hover {
+    text-decoration: underline;
   }
+}
 
-  .selected path[fill="#FFFFFF"]{
-    fill: var(--invert-text-color);
-  }
+.subject_name {
+  font-size: 14px !important;
+  text-align: center;
+}
 
-  .selected p{
-      color: var(--invert-text-color) !important;
-    }
-  .breadcrumbs {
-    span {
-      cursor: pointer;
-    }
-    span:hover {
-      text-decoration: underline;
-    }
-  }
+.student_id {
+  font-size: 14px;
+  text-align: center;
+}
 </style>

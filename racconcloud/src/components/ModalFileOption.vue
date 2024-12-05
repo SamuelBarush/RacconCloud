@@ -64,9 +64,13 @@
 <script setup>
 import { defineEmits, defineProps } from 'vue'
 import { useFileStore } from '@/store/FileStore'
+import { useSubjectsStore } from '@/store/SubjectsStore'
+import { useRouter } from 'vue-router'
 
 const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal' , 'openUpdateUser', 'openDeleteUser'])
 const fileStore = useFileStore()
+const subjectsStore = useSubjectsStore()
+const router = useRouter()
 
 const props = defineProps({
   type: {
@@ -91,10 +95,20 @@ function openUpdateUser(type) {
 }
 
 async function Descargar() {
-  await fileStore.downloadFile()
+
+  if (router.currentRoute.value.name === 'folders-student-personal'){
+    await fileStore.downloadFile()
+  } else if (router.currentRoute.value.name === 'folders-student-subjects'){
+    await subjectsStore.downloadFile()
+  }
+  
 }
 
 async function DescargarCarpeta() {
-  await fileStore.downloadFolder()
+  if (router.currentRoute.value.name === 'folders-student-personal'){
+    await fileStore.downloadFolder()
+  } else if (router.currentRoute.value.name === 'folders-student-subjects'){
+    await subjectsStore.downloadFolder()
+  }
 }
 </script>

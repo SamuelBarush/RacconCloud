@@ -3,7 +3,6 @@ import { useAuthStore } from './AuthStore'
 
 export const useAcademyStore = defineStore('academy',{
     state: () => ({
-        //jwt: useAuthStore().getJwt,
         academy_id : null,
         subjects : {},
         students : {},

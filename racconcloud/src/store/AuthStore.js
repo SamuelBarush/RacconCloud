@@ -5,13 +5,17 @@ export const useAuthStore = defineStore('auth',{
     flag: null,
     authUser: null,
     role: null,
-    jwt: null
+    jwt: null,
+    free_space: null,
+    size: null,
   }),
   getters: {
     isAuthenticated: (state) => state.authUser,
     getRole: (state) => state.role,
     getJwt: (state) => state.jwt,
-    getFlag: (state) => state.flag
+    getFlag: (state) => state.flag,
+    getFreeSpace: (state) => state.free_space,
+    getSize: (state) => state.size
   },
   actions: {
     async login(id, password){
@@ -33,7 +37,9 @@ export const useAuthStore = defineStore('auth',{
             this.authUser = true
             this.role = response.user_type
             this.jwt = response.access_token 
-            this.flag = response.active //Bandera para saber si es la primera vez que inicia sesión
+            this.flag = response.active
+            this.free_space = response.free_space
+            this.size = response.size
             alert(response.message)
         } else {
             alert(response.message || response.error)

@@ -8,6 +8,7 @@ import DashboardAdminView from '@/views/DashboardAdminView.vue'
 import FolderStudentView from '@/views/FoldersStudentView.vue'
 import FolderTeacherView from '@/views/FoldersTeacherView.vue'
 import FolderAcademyView from '@/views/FoldersAcademyView.vue'
+import FoldersSubjectsStudentView from '@/views/FoldersSubjectsStudentView.vue'
 import FoldersSubjectsAcademyView from '@/views/FoldersSubjectsAcademyView.vue'
 import InfoStudentView from '@/views/InfoStudentView.vue'
 import InfoTeacherView from '@/views/InfoTeacherView.vue'
@@ -123,7 +124,7 @@ const routes = [
   {
     path: '/folders-student-subjects',
     name: 'folders-student-subjects',
-    component: FolderStudentView,
+    component: FoldersSubjectsStudentView,
     meta:{
       requireAuth: true,
       role: 3
