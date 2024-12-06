@@ -1,22 +1,21 @@
 import { defineStore } from 'pinia'
 import { useAuthStore } from './AuthStore'
 
-export const useAcademyStore = defineStore('academy',{
+export const useTeacherStore = defineStore('teacher',{
     state: () => ({
-        academy_id : null,
         subjects : {},
         students : {},
         structure:{},
         breadcrumbs: ['Materias'],
         currentPath : '',
         currentSubject : '',
+        currentStudent : '',
         isViewingSubjects: true,
         isViewingStudents : false,
         isViewingFoldersStudent : false,
         subject_id : null,
         selectedFile: '',
         selectedFolder: '',
-        Logs : {}
     }),
     getters: {
       getJwt: () => {
@@ -32,70 +31,11 @@ export const useAcademyStore = defineStore('academy',{
       getBreadcrumbs: (state) => state.breadcrumbs,
     },
     actions: {
-      async info(){
-        const jwt = this.getJwt;
-        try {
-            const res = await fetch('http://localhost:5000/academy/info',{
-              method : 'GET',
-              headers:{
-                'Content-Type':'application/json',
-                'Authorization': `Bearer ${jwt}`
-              }
-            })
-    
-            const response = await res.json()
-    
-            if (res.ok){
-              return {
-                academy_id : response.academy_id,
-                name : response.name,
-                main_teacher_rfc:response.main_teacher_rfc,
-                description:response.description
-              }
-            }
-            else{
-              alert(response.error)
-            }
-    
-          } catch (error) {
-              console.error(error)
-              alert("Error en la conexión con la API")
-          }
-      },
-      async createSubject(subject_name,group_id,teacher_id){
-        const jwt = this.getJwt;
-        try {
-          const res = await fetch('http://localhost:5000/subject/create-subject',{
-            method : 'POST',
-            headers:{
-              'Content-Type':'application/json',
-              'Authorization': `Bearer ${jwt}`
-            },
-            body:JSON.stringify({
-                subject_name:subject_name,
-                group_id: group_id,
-                teacher_id:teacher_id
-            })
-          })
-  
-          const response = await res.json()
-  
-          if (res.ok){
-            alert(response.message)
-          }
-          else{
-            alert(response.error)
-          }
-  
-        } catch (error) {
-            console.error(error)
-            alert("Error en la conexión con la API")
-        }
-      },
+
       async getSubjects(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://localhost:5000/subject/subjects',{
+          const res = await fetch('http://localhost:5000/subject/subjects-teacher',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -104,6 +44,7 @@ export const useAcademyStore = defineStore('academy',{
           })
   
           const response = await res.json()
+          console.log(response)
   
           if (res.ok){
             this.subjects = response
@@ -113,61 +54,6 @@ export const useAcademyStore = defineStore('academy',{
             this.currentPath = ''
             this.currentSubject = ''
             this.breadcrumbs = ['Academia']
-          }
-          else{
-            alert(response.error)
-          }
-  
-        } catch (error) {
-            console.error(error)
-            alert("Error en la conexión con la API")
-        }
-      },
-      async getSubjectGroup(group_id){
-        const jwt = this.getJwt;
-        try {
-          const res = await fetch(`http://localhost:5000/subject/subject-by-group/${group_id}`,{
-            method : 'GET',
-            headers:{
-              'Content-Type':'application/json',
-              'Authorization': `Bearer ${jwt}`
-            }
-          })
-  
-          const response = await res.json()
-  
-          if (res.ok){
-            alert(response.message)
-            return response.subjects_data
-          }
-          else{
-            alert(response.error)
-          }
-  
-        } catch (error) {
-            console.error(error)
-            alert("Error en la conexión con la API")
-        }
-      },    
-      async addStudent(user_id){
-        const jwt = this.getJwt;
-        try {
-          const res = await fetch('http://localhost:5000/enrollment/enroll',{
-            method : 'POST',
-            headers:{
-              'Content-Type':'application/json',
-              'Authorization': `Bearer ${jwt}`
-            },
-            body:JSON.stringify({
-                user_id:user_id,
-                subject_id:this.currentSubject
-            })
-          })
-  
-          const response = await res.json()
-  
-          if (res.ok){
-            alert(response.message)
           }
           else{
             alert(response.error)
@@ -236,6 +122,7 @@ export const useAcademyStore = defineStore('academy',{
             this.isViewingStudents = false
             this.isViewingSubjects = false
             this.isViewingFoldersStudent = true
+            this.currentStudent = student_id
             this.breadcrumbs = ['Academia',this.currentSubject,student_id]
           }
           else{
@@ -247,31 +134,71 @@ export const useAcademyStore = defineStore('academy',{
             alert("Error al obtener los archivos del alumno")
         }
       },
-      async getLogs(){
+      async downloadFile(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('http://localhost:5000/logs/',{
-              method : 'GET',
+          const res = await fetch(`http://localhost:5000/file/download-student`,{
+              method: 'POST',
               headers:{
                 'Content-Type':'application/json',
                 'Authorization': `Bearer ${jwt}`
-              }
-            })
-    
-            const response = await res.json()
-            console.log(response)
-    
-            if (res.ok){
-              this.Logs = response
-            }
-            else{
-              alert(response.message_error)
-            }
-    
-          } catch (error) {
-              console.error(error)
-              alert("Error en la conexión con la API")
+              },
+              body:JSON.stringify({
+                project_id: this.currentSubject,
+                file_path: this.selectedFile,
+                student_id: this.currentStudent
+              })
+          })
+  
+          if(res.ok){
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url
+            a.download = this.selectedFile.split('/').pop()
+            a.click()
+            a.remove()
+          } else {
+             const errorData = res.json
+             alert(errorData.error || 'Error al descargar el archivo')
           }
+  
+        } catch (error) {
+            console.error(error)
+        }
+      },
+      async downloadFolder(){
+        const jwt = this.getJwt;
+        try {
+          const res = await fetch(`http://localhost:5000/file/download-folder-student`,{
+              method: 'POST',
+              headers:{
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${jwt}`
+              },
+              body: JSON.stringify({
+                  project_id: this.currentSubject,
+                  folder_path: this.selectedFolder,
+                  student_id: this.currentStudent
+              })
+          })
+  
+          if(res.ok){
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url
+            a.download = this.selectedFolder.split('/').pop()
+            a.click()
+            a.remove()
+          } else {
+             const errorData = res.json|
+             alert(errorData.error || 'Error al descargar el archivo')
+          }
+  
+        } catch (error) {
+            console.error(error)
+        }
       },
       setSelectedFile(fileName) {
         this.selectedFile = fileName

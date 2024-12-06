@@ -15,53 +15,15 @@
                 </div> 
             </div>
             <div class="main-container-grid-b">
-                <div class="main-dashboard-block-c" @dblclick="openModal('usuario')">
+                <div 
+                v-for="(user, index) in users"
+                :key="index"
+                class="main-dashboard-block-c" 
+                @dblclick="openModal('usuario')">
                     <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Nombre de Usuario</p>
-                        <p>Rol de Usuario</p>
-                        <p>000000000</p>
+                        <p>{{ user.username }}</p>
+                        <p>{{user.role}}</p>
+                        <p>{{ user.boleta  || user.rfc}}</p>
                     </div>
                 </div>
             </div>
@@ -83,7 +45,7 @@
 </template>
 
 <script setup>
-    import { ref } from "vue"
+    import { ref , onMounted , computed } from "vue"
 
     import HeaderAdminComponent from '@/components/HeaderAdminComponent.vue'
     import FooterAdminComponent from '@/components/FooterAdminComponent.vue'
@@ -93,6 +55,11 @@
     import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
     import UserUpdateComponent from "@/components/ModalUserUpdate.vue"
     import ModalUserDelete from "@/components/ModalUserDelete.vue"
+
+    import { useAdminStore } from "@/store/AdminStore"
+
+    const adminStore = useAdminStore()
+    const users = computed(() => adminStore.Users)
 
     const showModal1 = ref(false)
     const showDeleteUser = ref(false)
@@ -121,6 +88,10 @@
         showModalFileOption.value = false
         showUpdateUser.value = true
     }
+
+    onMounted(async () => {
+        await adminStore.getUsers()
+    })
 
 </script>
 

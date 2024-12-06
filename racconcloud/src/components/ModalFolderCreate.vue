@@ -59,9 +59,9 @@
 
     async function CreateFolder(){
 
-        if (router.currentRoute.value.path === '/folders-student-personal'){
+        if (router.currentRoute.value.path === '/folders-student-personal' || router.currentRoute.value.path === '/folders-teacher-personal' || router.currentRoute.value.path === '/folders-academy-personal'){
             await fileStore.createFolder(folder_name.value)
-        } else if (router.currentRoute.value.path === '/folders-student-subjects'){
+        } else if (router.currentRoute.value.path === '/folders-student-subjects' || router.currentRoute.value.path === '/folders-teacher-subjects'){
             await subjectsStore.createFolder(folder_name.value)
         }
         folder_name.value = ''

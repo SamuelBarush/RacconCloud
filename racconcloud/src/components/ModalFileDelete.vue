@@ -48,19 +48,21 @@
 
   async function Eliminar() {
     if (props.type === 'archivo') {
-      if (router.currentRoute.value.path === '/folders-student-personal' === '/folders-student-personal'){
+      if (router.currentRoute.value.path === '/folders-student-personal' || router.currentRoute.value.path === '/folders-teacher-personal' || router.currentRoute.value.path === '/folders-academy-personal'){
         console.log('delete file personal')
         await fileStore.deleteFile()
-      }
-      console.log('delete file subjects')
-      await subjectsStore.deleteFile()
+      } else if (router.currentRoute.value.path === '/folders-student-subjects'){
+        console.log('delete file subjects')
+        await subjectsStore.deleteFile()
+      } 
     } else {
-      if (router.currentRoute.value.path === '/folders-student-personal'){
+      if (router.currentRoute.value.path === '/folders-student-personal' || router.currentRoute.value.path === '/folders-teacher-personal' || router.currentRoute.value.path === '/folders-academy-personal'){
         console.log('delete folder subjects')
         await fileStore.deleteFolder()
+      } else if(router.currentRoute.value.path === '/folders-student-subjects'){
+        console.log('delete folder subjects')
+        await subjectsStore.deleteFolder()
       }
-      console.log('delete folder subjects')
-      await subjectsStore.deleteFolder()
     }
 
     emit('close-ModalDelete')

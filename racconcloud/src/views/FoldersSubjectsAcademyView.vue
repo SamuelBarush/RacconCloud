@@ -418,7 +418,6 @@
   async function openStudent(studentId) {
     loadingFolders.value = true
     await academyStore.getStudentsFolders(studentId)// Navegar al estudiante y cargar materias
-    //academyStore.changeDirectory(studentId)  // Cambiar el directorio actual
     loadingFolders.value = false  
   }
 

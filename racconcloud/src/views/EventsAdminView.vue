@@ -16,60 +16,14 @@
                 </div> 
             </div>
             <div class="main-container-grid-b">
-                <div class="main-dashboard-block-c">
+                <div v-for="(log, index) in logs" 
+                :key="index"
+                class="main-dashboard-block-c">
                     <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
-                    </div>
-                </div>
-                <div class="main-dashboard-block-c">
-                    <div>
-                        <p>Usuario</p>
-                        <p>Movimiento</p>
-                        <p>Carpeta</p>
-                        <p>dd/mm/aaaa hh/mm</p>
+                        <p>{{ log.user_identifier }}</p>
+                        <p>{{log.operation}}</p>
+                        <p>{{log.container_name}}</p>
+                        <p>{{log.timestamp}}</p>
                     </div>
                 </div>
             </div>
@@ -88,9 +42,18 @@
     import RegisterAdminComponent from '@/components/RegisterAdminComponent.vue'
     import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
 
-    import { ref } from "vue"
+    import { ref , onMounted, computed } from "vue"
+    import { useAdminStore } from '@/store/AdminStore'
 
     const showModal1 = ref(false)
+    const adminStore = useAdminStore()
+
+    const logs = computed(() => adminStore.Logs)
+
+    onMounted(async () => {
+        await adminStore.getLogs()
+    })
+
 </script>
 
 <style lang="scss">

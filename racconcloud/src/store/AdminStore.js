@@ -4,7 +4,9 @@ import { useAuthStore } from './AuthStore'
 export const useAdminStore = defineStore('admin',{
     state: () => ({
         //jwt: useAuthStore().getJwt,
-        selectedUser: null
+        selectedUser: null,
+        Logs : {},
+        Users: {}
     }),
     getters: {  
       getSelectedUser: (state) => state.selectedUser,
@@ -29,7 +31,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("alumno")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/users/',{
+            const res = await fetch('http://localhost:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -63,7 +65,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("profesor")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/users/',{
+            const res = await fetch('http://localhost:5000/users/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -94,7 +96,7 @@ export const useAdminStore = defineStore('admin',{
           console.log("academia")
 
           try {
-            const res = await fetch('http://192.168.1.245:5000/academy/',{
+            const res = await fetch('http://localhost:5000/academy/',{
               method : 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -122,7 +124,7 @@ export const useAdminStore = defineStore('admin',{
       async getAcademys(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.245:5000/academy',{
+          const res = await fetch('http://localhost:5000/academy',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -148,7 +150,7 @@ export const useAdminStore = defineStore('admin',{
       async getAcademy(academy_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${academy_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -174,7 +176,7 @@ export const useAdminStore = defineStore('admin',{
       async deleteAcademy(academy_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${academy_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
@@ -200,7 +202,7 @@ export const useAdminStore = defineStore('admin',{
       async actuAcademy(academy_id,name,description,main_teacher){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${academy_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${academy_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -231,7 +233,7 @@ export const useAdminStore = defineStore('admin',{
       async getUsers(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://192.168.1.245:5000/users',{
+          const res = await fetch('http://localhost:5000/users/',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -240,10 +242,10 @@ export const useAdminStore = defineStore('admin',{
           })
   
           const response = await res.json()
+          console.log(response)
   
           if (res.ok){
-            alert(response.message)
-            return response.users_data
+            this.Users = response
           }
           else{
             alert(response.error)
@@ -257,7 +259,7 @@ export const useAdminStore = defineStore('admin',{
       async getUser(user_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${user_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -283,7 +285,7 @@ export const useAdminStore = defineStore('admin',{
       async actuUser(user_id,name,email,password){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${user_id}`,{
             method : 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -317,7 +319,7 @@ export const useAdminStore = defineStore('admin',{
       async deleteUser(user_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://192.168.1.245:5000/academy/${user_id}`,{
+          const res = await fetch(`http://localhost:5000/academy/${user_id}`,{
             method : 'DELETE',
             headers:{
               'Content-Type':'application/json',
@@ -343,7 +345,7 @@ export const useAdminStore = defineStore('admin',{
       async getLogs(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('http://192.168.1.245:5000/logs',{
+            const res = await fetch('http://localhost:5000/logs/',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -352,16 +354,10 @@ export const useAdminStore = defineStore('admin',{
             })
     
             const response = await res.json()
+            console.log(response)
     
             if (res.ok){
-              return {
-                id : response.id,
-                user: response.user_identifier,
-                operation: response.operation,
-                container: response.container_name,
-                object: response.object_name,
-                time: response.timestamp,
-              }
+              this.Logs = response
             }
             else{
               alert(response.message_error)

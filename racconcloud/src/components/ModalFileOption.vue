@@ -65,11 +65,13 @@
 import { defineEmits, defineProps } from 'vue'
 import { useFileStore } from '@/store/FileStore'
 import { useSubjectsStore } from '@/store/SubjectsStore'
+import { useTeacherStore } from '@/store/TeacherStore'
 import { useRouter } from 'vue-router'
 
 const emit = defineEmits(['close-ModalFileOption', 'open-DeleteModal' , 'openUpdateUser', 'openDeleteUser'])
 const fileStore = useFileStore()
 const subjectsStore = useSubjectsStore()
+const teacherStore = useTeacherStore()
 const router = useRouter()
 
 const props = defineProps({
@@ -96,19 +98,23 @@ function openUpdateUser(type) {
 
 async function Descargar() {
 
-  if (router.currentRoute.value.name === 'folders-student-personal'){
+  if (router.currentRoute.value.name === 'folders-student-personal' || router.currentRoute.value.name === 'folders-teacher-personal' || router.currentRoute.value.name === 'folders-academy-personal'){
     await fileStore.downloadFile()
-  } else if (router.currentRoute.value.name === 'folders-student-subjects'){
+  } else if (router.currentRoute.value.name === 'folders-student-subjects' ){
     await subjectsStore.downloadFile()
+  } else if (router.currentRoute.value.name === 'folders-teacher-subjects'){
+    await teacherStore.downloadFile()
   }
   
 }
 
 async function DescargarCarpeta() {
-  if (router.currentRoute.value.name === 'folders-student-personal'){
+  if (router.currentRoute.value.name === 'folders-student-personal' || router.currentRoute.value.name === 'folders-teacher-personal' || router.currentRoute.value.name === 'folders-academy-personal'){
     await fileStore.downloadFolder()
   } else if (router.currentRoute.value.name === 'folders-student-subjects'){
     await subjectsStore.downloadFolder()
+  } else if (router.currentRoute.value.name === 'folders-teacher-subjects'){
+    await teacherStore.downloadFolder()
   }
 }
 </script>
