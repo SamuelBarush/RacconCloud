@@ -35,7 +35,7 @@ export const useAcademyStore = defineStore('academy',{
       async info(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('http://localhost:5000/academy/info',{
+            const res = await fetch('http://172.17.0.1:5000/academy/info',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -65,7 +65,7 @@ export const useAcademyStore = defineStore('academy',{
       async createSubject(subject_name,group_id,teacher_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://localhost:5000/subject/create-subject',{
+          const res = await fetch('http://172.17.0.1:5000/subject/create-subject',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -95,7 +95,7 @@ export const useAcademyStore = defineStore('academy',{
       async getSubjects(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://localhost:5000/subject/subjects',{
+          const res = await fetch('http://172.17.0.1:5000/subject/subjects',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -126,7 +126,7 @@ export const useAcademyStore = defineStore('academy',{
       async getSubjectGroup(group_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://localhost:5000/subject/subject-by-group/${group_id}`,{
+          const res = await fetch(`http://172.17.0.1:5000/subject/subject-by-group/${group_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -152,7 +152,7 @@ export const useAcademyStore = defineStore('academy',{
       async addStudent(user_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://localhost:5000/enrollment/enroll',{
+          const res = await fetch('http://172.17.0.1:5000/enrollment/enroll',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -181,7 +181,7 @@ export const useAcademyStore = defineStore('academy',{
       async getStudents(subject_id,subject_name){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://localhost:5000/subject/subject-by-id',{
+          const res = await fetch('http://172.17.0.1:5000/subject/subject-by-id',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -217,7 +217,7 @@ export const useAcademyStore = defineStore('academy',{
         this.structure = {}
         this.currentPath = ''
         try {
-          const res = await fetch('http://localhost:5000/file/list-student',{
+          const res = await fetch('http://172.17.0.1:5000/file/list-student',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -250,7 +250,7 @@ export const useAcademyStore = defineStore('academy',{
       async getLogs(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('http://localhost:5000/logs/',{
+            const res = await fetch('http://172.17.0.1:5000/logs/',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
