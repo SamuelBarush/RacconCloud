@@ -109,7 +109,7 @@
         padding: 25px;
         border-radius: 20px;
         width: 700px;
-        height: 350px;
+        height: 550px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);

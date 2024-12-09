@@ -1,3 +1,4 @@
+const fs = require('fs')
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -13,8 +14,13 @@ module.exports = defineConfig({
     }
   },
   devServer:{
-    host: '0.0.0.0',
-    port: 8080,
+    host: 'racooncloud.me',
+    port: 443,
     allowedHosts:"all",
+    https:{
+      key: fs.readFileSync('./ssl/racooncloud_me.key'),
+      cert: fs.readFileSync('./ssl/racooncloud_me.crt'),
+      ca: fs.readFileSync('./ssl/racooncloud_me.ca-bundle')
+    }
   }
 })

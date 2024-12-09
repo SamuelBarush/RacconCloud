@@ -33,7 +33,7 @@ export const useSubjectsStore = defineStore('subjects',{
       async getSubjects() {
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://172.17.0.1:5000/enrollment/get-enrolled-subjects', {
+          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/enrollment/get-enrolled-subjects', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const useSubjectsStore = defineStore('subjects',{
         this.structure = {}
         this.currentPath = ''
         try {
-          const res = await fetch('http://172.17.0.1:5000/file/list-subject',{
+          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/list-subject',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -95,7 +95,7 @@ export const useSubjectsStore = defineStore('subjects',{
       async createFolder(path_name){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://172.17.0.1:5000/file/create-folder',{
+          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/create-folder',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -126,7 +126,7 @@ export const useSubjectsStore = defineStore('subjects',{
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'http://172.17.0.1:5000/file/upload/single', true);
+          xhr.open('POST', 'https://ad77-148-204-57-53.ngrok-free.app/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.setRequestHeader('Authorization', `Bearer ${jwt}`);
       
@@ -168,7 +168,7 @@ export const useSubjectsStore = defineStore('subjects',{
       async deleteFolder(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('http://172.17.0.1:5000/file/delete',{
+          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -196,7 +196,7 @@ export const useSubjectsStore = defineStore('subjects',{
         const jwt = this.getJwt;
         console.log(jwt)
         try {
-          const res = await fetch('http://172.17.0.1:5000/file/delete',{
+          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -228,7 +228,7 @@ export const useSubjectsStore = defineStore('subjects',{
         }
         else{
           try {
-            const res = await fetch('http://172.17.0.1:5000/file/move',{
+            const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/move',{
                 method: 'POST',
                 headers:{
                   'Content-Type':'application/json',
@@ -257,7 +257,7 @@ export const useSubjectsStore = defineStore('subjects',{
       async downloadFile(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://172.17.0.1:5000/file/download`,{
+          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -289,7 +289,7 @@ export const useSubjectsStore = defineStore('subjects',{
       async downloadFolder(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`http://172.17.0.1:5000/file/download-folder`,{
+          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download-folder`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',

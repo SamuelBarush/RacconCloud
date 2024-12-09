@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth',{
   actions: {
     async login(id, password){
       try {
-        const res = await fetch('http://172.17.0.1:5000/auth/login',{
+        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/login',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -63,7 +63,7 @@ export const useAuthStore = defineStore('auth',{
       const id = await this.info()
 
       try {
-        const res = await fetch(`http://172.17.0.1:5000/users/${id.boleta}`,{
+        const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/users/${id.boleta}`,{
             method: 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -88,7 +88,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async isAuth(){
       try {
-        const res = await fetch('http://172.17.0.1:5000/auth/verify-session',{
+        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/verify-session',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -110,7 +110,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async ForgetPassword(id){
       try {
-        const res = await fetch('http://172.17.0.1:5000/auth/forget_password',{
+        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/forget_password',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -135,7 +135,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async info(){
       try {
-        const res = await fetch('http://172.17.0.1:5000/users/info',{
+        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/users/info',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
