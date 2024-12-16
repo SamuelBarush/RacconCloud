@@ -10,7 +10,7 @@
             <input type="text" placeholder="Carpeta Sin Titulo" v-model="folder_name">
         </div>
         <div class="modal-folder-options">
-            <input type="button" value="Cancelar" @click="closeModal1" id="modal-folder-option-cancel">
+            <input type="button" value="Cerrar" @click="closeModal1" id="modal-folder-option-cancel">
             <input type="submit" value="Crear" id="modal-folder-option-create" @click="CreateFolder">
         </div>
     </div>

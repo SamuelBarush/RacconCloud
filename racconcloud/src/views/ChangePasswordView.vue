@@ -2,7 +2,7 @@
     <HeaderChangePasswordComponent/>
     <main class="forgot-password-container">
       <div class="forgot-password-box">
-        <h2 class="forgot-password-box-title">Bienvenido a RacconCloud</h2>
+        <h2 class="forgot-password-box-title">Bienvenido a RaccoonCloud</h2>
         <p class="forgot-password-box-text">Antes de ingresar tendras que crear una nueva contraseña para ingresar</p>
         <form @submit.prevent="submitForm">
           <div class="form-group">

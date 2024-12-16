@@ -12,7 +12,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img" v-if="$route.path === '/dashboard-student'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>
         <div class="header-folders-title" id="header-folders-title-a" v-if="$route.path === '/folders-student-personal'"><p>Personal</p></div>
@@ -32,7 +32,7 @@
             @input="$emit('search-query', $event.target.value)">
         </div>
         <div class="header-img-2" v-if="$route.path === '/folders-student-personal'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>
         <div class="header-user-2" v-if="$route.path === '/folders-student-subjects' ">
@@ -47,7 +47,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img-2" v-if="$route.path === '/folders-student-subjects'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>
         <div class="header-info-logo" v-if="$route.path === '/info-student'">
@@ -326,7 +326,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img-2" v-if="$route.path === '/info-student'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-student.png" alt="">
         </div>
     </header>

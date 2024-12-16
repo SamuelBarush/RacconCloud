@@ -12,7 +12,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img" v-if="$route.path === '/dashboard-admin'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>
         <div class="header-user-2" v-if="$route.path === '/events-admin'">
@@ -27,7 +27,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img-2" v-if="$route.path === '/events-admin'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>
         <div class="header-user-2" v-if="$route.path === '/user-list-admin'">
@@ -42,7 +42,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img-2" v-if="$route.path === '/user-list-admin'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>
         <div class="header-info-logo" v-if="$route.path === '/info-admin'">
@@ -321,7 +321,7 @@
             <input type="search" value="Buscar">
         </div>
         <div class="header-img-2" v-if="$route.path === '/info-admin'">
-            <p>RacconCloud</p>
+            <p>RaccoonCloud</p>
             <img src="../assets/icons/avatar-admin.png" alt="">
         </div>
     </header>

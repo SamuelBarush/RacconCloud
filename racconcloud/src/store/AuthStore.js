@@ -6,21 +6,17 @@ export const useAuthStore = defineStore('auth',{
     authUser: null,
     role: null,
     jwt: null,
-    free_space: null,
-    size: null,
   }),
   getters: {
     isAuthenticated: (state) => state.authUser,
     getRole: (state) => state.role,
     getJwt: (state) => state.jwt,
     getFlag: (state) => state.flag,
-    getFreeSpace: (state) => state.free_space,
-    getSize: (state) => state.size
   },
   actions: {
     async login(id, password){
       try {
-        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/login',{
+        const res = await fetch('https://5548a8b14105.ngrok.app/auth/login',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -38,8 +34,6 @@ export const useAuthStore = defineStore('auth',{
             this.role = response.user_type
             this.jwt = response.access_token 
             this.flag = response.active
-            this.free_space = response.free_space
-            this.size = response.size
             alert(response.message)
         } else {
             alert(response.message || response.error)
@@ -63,7 +57,7 @@ export const useAuthStore = defineStore('auth',{
       const id = await this.info()
 
       try {
-        const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/users/${id.boleta}`,{
+        const res = await fetch(`https://5548a8b14105.ngrok.app/users/${id.boleta}`,{
             method: 'PUT',
             headers:{
               'Content-Type':'application/json',
@@ -88,7 +82,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async isAuth(){
       try {
-        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/verify-session',{
+        const res = await fetch('https://5548a8b14105.ngrok.app/auth/verify-session',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -110,7 +104,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async ForgetPassword(id){
       try {
-        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/auth/forget_password',{
+        const res = await fetch('https://5548a8b14105.ngrok.app/auth/forget_password',{
             method: 'POST',
             headers:{
               'Content-Type':'application/json'
@@ -135,7 +129,7 @@ export const useAuthStore = defineStore('auth',{
     },
     async info(){
       try {
-        const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/users/info',{
+        const res = await fetch('https://5548a8b14105.ngrok.app/users/info',{
             method: 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -160,6 +154,27 @@ export const useAuthStore = defineStore('auth',{
               email: response.email
             }
           }
+        } else {
+            alert(response.error)
+        }
+
+      } catch (error) {
+          console.error(error)
+      }
+    },
+    async getNotices(){
+      try {
+        const res = await fetch('https://5548a8b14105.ngrok.app/notices/get-notices',{
+            method: 'GET',
+            headers:{
+              'Content-Type':'application/json',
+            }
+        })
+
+        const response = await res.json()
+
+        if(res.ok){
+          return response
         } else {
             alert(response.error)
         }

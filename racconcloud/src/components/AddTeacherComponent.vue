@@ -15,7 +15,7 @@
         </div>
 
         <div class="form-actions">
-            <button @click="$emit('close')" type="button">Cancelar</button>
+            <button @click="$emit('close')" type="button">Cerrar</button>
             <button type="submit">Enviar</button>
         </div>
     </form>

@@ -398,20 +398,19 @@
         <img src="../assets/images/cloud-image.jpg" alt="">
       </div>
       <div class="main-home-text">
-        <h1>Raccon Cloud</h1>
+        <h1>Raccoon Cloud</h1>
         <p>Bienvenido a la Nube de la ESCOM</p>
       </div>    
     </div>
     <div class="aside">
       <ul>
-        <li><img class="main-home-image-slide" src="../assets/images/small-cloud-image.jpg" alt="Small Cloud Image"></li>
-        <li><img class="main-home-image-slide" src="../assets/images/small-cloud-image.jpg" alt="Small Cloud Image"></li>
-        <li><img class="main-home-image-slide" src="../assets/images/small-cloud-image.jpg" alt="Small Cloud Image"></li>
+        <li><img class="main-home-image-slide" src="../assets/images/raccooncloud-1.jpg" alt="Small Cloud Image"></li>
+        <li><img class="main-home-image-slide" src="../assets/images/raccooncloud-2.jpg" alt="Small Cloud Image"></li>
+        <li><img class="main-home-image-slide" src="../assets/images/cloud-image-2.jpg" alt="Small Cloud Image"></li>
         <li><img class="main-home-image-slide" src="../assets/images/small-cloud-image.jpg" alt="Small Cloud Image"></li>
       </ul>
-      <h2>Aviso de Mantenimiento</h2>
-      <p>La plataforma tendrá mantenimiento el día 
-        27 de Mayo del 2024</p>
+      <h2>{{ title }}</h2>
+      <p> {{ notices_1 }} <br> {{ notice_2 }}</p>
     </div>
   </main>
   <ThemeSwitcherComponent/>
@@ -419,4 +418,26 @@
 
 <script setup>
   import ThemeSwitcherComponent from '@/components/ThemeSwitcherComponent.vue'
+
+  import { useAuthStore } from '@/store/AuthStore'
+  import { ref , onMounted } from 'vue'
+
+  const notice_1 = ref('')
+  const notice_2 = ref('')
+  const title = ref('')
+
+  const authStore = useAuthStore()
+
+  onMounted(async () => {
+
+    const notices = await authStore.getNotices()
+    console.log(notices)
+    if(notices){
+      title.value = notices[0].content
+      notice_1.value = notices[0].date_at_finish
+      notice_2.value = notices[0].date_at_publish
+    }
+  })
+
+
 </script>

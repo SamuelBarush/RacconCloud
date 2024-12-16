@@ -31,11 +31,10 @@ export const useTeacherStore = defineStore('teacher',{
       getBreadcrumbs: (state) => state.breadcrumbs,
     },
     actions: {
-
       async getSubjects(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/subject/subjects-teacher',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/subject/subjects-teacher',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -67,7 +66,7 @@ export const useTeacherStore = defineStore('teacher',{
       async getStudents(subject_id,subject_name){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/subject/subject-by-id',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/subject/subject-by-id',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -87,7 +86,7 @@ export const useTeacherStore = defineStore('teacher',{
             this.isViewingStudents = true
             this.isViewingSubjects = false
             this.isViewingFoldersStudent = false
-            this.breadcrumbs = ['Academia',subject_name]
+            this.breadcrumbs = ['Materias',subject_name]
           }
           else{
             alert(response.error)
@@ -103,7 +102,7 @@ export const useTeacherStore = defineStore('teacher',{
         this.structure = {}
         this.currentPath = ''
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/list-student',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/list-student',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -123,7 +122,7 @@ export const useTeacherStore = defineStore('teacher',{
             this.isViewingSubjects = false
             this.isViewingFoldersStudent = true
             this.currentStudent = student_id
-            this.breadcrumbs = ['Academia',this.currentSubject,student_id]
+            this.breadcrumbs = ['Materias',this.currentSubject,student_id]
           }
           else{
             alert(response.error)
@@ -137,7 +136,7 @@ export const useTeacherStore = defineStore('teacher',{
       async downloadFile(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download-student`,{
+          const res = await fetch(`https://5548a8b14105.ngrok.app/file/download-student`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -170,7 +169,7 @@ export const useTeacherStore = defineStore('teacher',{
       async downloadFolder(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download-folder-student`,{
+          const res = await fetch(`https://5548a8b14105.ngrok.app/file/download-folder-student`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',

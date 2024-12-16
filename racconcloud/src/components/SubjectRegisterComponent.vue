@@ -61,7 +61,7 @@
             </div>
             <div class="form-actions">
                 <button type="submit" class="submit-button">Crear Materia</button>
-                <button type="button" class="cancel-button" @click="$emit('close')">Cancelar</button>
+                <button type="button" class="cancel-button" @click="$emit('close')">Cerrar</button>
             </div>
         </form>
     </div>

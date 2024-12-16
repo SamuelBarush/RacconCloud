@@ -58,7 +58,7 @@
   
       <!-- Botones -->
       <div class="form-actions">
-        <button @click="closeModal" type="button">Cancelar</button>
+        <button @click="closeModal" type="button">Cerrar</button>
         <button @click="submitForm" type="button">Enviar</button>
       </div>
     </div>

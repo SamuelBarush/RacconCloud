@@ -7,7 +7,6 @@ export const useFileStore = defineStore('file',{
       currentPath: '',
       selectedFile: null,
       selectedFolder: null,
-      currentProject: null,
       searchQuery: '',
       searchResults: [],
     }),
@@ -17,7 +16,6 @@ export const useFileStore = defineStore('file',{
       },
       getSelectedFile: (state) => state.selectedFile,
       getSelectedFolder: (state) => state.selectedFolder,
-      getCurrentProject: (state) => state.currentProject,
       getPath: (state) => state.currentPath,
       getCurrentFolderContent: (state) => {
         return state.structure?.[state.currentPath] || { files: [], folders: [] };  
@@ -31,11 +29,10 @@ export const useFileStore = defineStore('file',{
     actions: {
       async uploadFile(file, filename,updateProgressCallback) {
         const jwt = this.getJwt;
-        console.log(jwt)
         try {
           const xhr = new XMLHttpRequest();
       
-          xhr.open('POST', 'https://ad77-148-204-57-53.ngrok-free.app/file/upload/single', true);
+          xhr.open('POST', 'https://5548a8b14105.ngrok.app/file/upload/single', true);
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.setRequestHeader('Authorization', `Bearer ${jwt}`);
       
@@ -77,7 +74,7 @@ export const useFileStore = defineStore('file',{
       async getSize() {
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/space', {
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/space', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -102,7 +99,7 @@ export const useFileStore = defineStore('file',{
       async getFiles() {
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/full-list', {
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/full-list', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -127,7 +124,7 @@ export const useFileStore = defineStore('file',{
       async createFolder(path_name){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/create-folder',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/create-folder',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -164,7 +161,7 @@ export const useFileStore = defineStore('file',{
       async downloadFile(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download`,{
+          const res = await fetch(`https://5548a8b14105.ngrok.app/file/download`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -195,7 +192,7 @@ export const useFileStore = defineStore('file',{
       async downloadFolder(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/file/download-folder`,{
+          const res = await fetch(`https://5548a8b14105.ngrok.app/file/download-folder`,{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -223,31 +220,10 @@ export const useFileStore = defineStore('file',{
             console.error(error)
         }
       },
-      async getSubjects() {
-        const jwt = this.getJwt;
-        try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/enrollment/get-enrolled-subjects', {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${jwt}`
-            }
-          })
-          const data = await res.json();
-  
-          if (res.ok) {
-            return data.subjects
-          } else {
-            throw new Error(res.error);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      },
       async deleteFolder(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/delete',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -272,9 +248,8 @@ export const useFileStore = defineStore('file',{
       },
       async deleteFile(){
         const jwt = this.getJwt;
-        console.log(jwt)
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/delete',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/delete',{
               method: 'POST',
               headers:{
                 'Content-Type':'application/json',
@@ -305,7 +280,7 @@ export const useFileStore = defineStore('file',{
         }
         else{
           try {
-            const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/move',{
+            const res = await fetch('https://5548a8b14105.ngrok.app/file/move',{
                 method: 'POST',
                 headers:{
                   'Content-Type':'application/json',
@@ -372,8 +347,6 @@ export const useFileStore = defineStore('file',{
       
         // Start search from the root path
         recursiveSearch('', this.structure);
-      
-        console.log('Search Results:', this.searchResults); // Debugging output
       },
       setSearchQuery(query) {
         this.searchQuery = query;

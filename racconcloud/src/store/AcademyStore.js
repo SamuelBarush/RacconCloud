@@ -3,7 +3,6 @@ import { useAuthStore } from './AuthStore'
 
 export const useAcademyStore = defineStore('academy',{
     state: () => ({
-        academy_id : null,
         subjects : {},
         students : {},
         structure:{},
@@ -35,7 +34,7 @@ export const useAcademyStore = defineStore('academy',{
       async info(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/academy/info',{
+            const res = await fetch('https://5548a8b14105.ngrok.app/academy/info',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',
@@ -65,7 +64,7 @@ export const useAcademyStore = defineStore('academy',{
       async createSubject(subject_name,group_id,teacher_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/subject/create-subject',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/subject/create-subject',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -95,7 +94,7 @@ export const useAcademyStore = defineStore('academy',{
       async getSubjects(){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/subject/subjects',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/subject/subjects',{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -126,7 +125,7 @@ export const useAcademyStore = defineStore('academy',{
       async getSubjectGroup(group_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch(`https://ad77-148-204-57-53.ngrok-free.app/subject/subject-by-group/${group_id}`,{
+          const res = await fetch(`https://5548a8b14105.ngrok.app/subject/subject-by-group/${group_id}`,{
             method : 'GET',
             headers:{
               'Content-Type':'application/json',
@@ -152,7 +151,7 @@ export const useAcademyStore = defineStore('academy',{
       async addStudent(user_id){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/enrollment/enroll',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/enrollment/enroll',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -181,7 +180,7 @@ export const useAcademyStore = defineStore('academy',{
       async getStudents(subject_id,subject_name){
         const jwt = this.getJwt;
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/subject/subject-by-id',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/subject/subject-by-id',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -217,7 +216,7 @@ export const useAcademyStore = defineStore('academy',{
         this.structure = {}
         this.currentPath = ''
         try {
-          const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/file/list-student',{
+          const res = await fetch('https://5548a8b14105.ngrok.app/file/list-student',{
             method : 'POST',
             headers:{
               'Content-Type':'application/json',
@@ -250,7 +249,7 @@ export const useAcademyStore = defineStore('academy',{
       async getLogs(){
         const jwt = this.getJwt;
         try {
-            const res = await fetch('https://ad77-148-204-57-53.ngrok-free.app/logs/',{
+            const res = await fetch('https://5548a8b14105.ngrok.app/logs/',{
               method : 'GET',
               headers:{
                 'Content-Type':'application/json',

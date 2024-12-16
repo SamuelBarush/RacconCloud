@@ -14,7 +14,7 @@
                 <div><input type="password" placeholder="Ingresa tu Contraseña" v-model="password"></div>
                 <router-link to="/forgot"><p id="main-login-FPW">Olvide mi Contraseña</p></router-link>
             </div>   
-            <div class="main-login-BT"><input type="submit" value="Sign Up"></div>
+            <div class="main-login-BT"><input type="submit" value="Sign In"></div>
         </form>
     </main>
     <ThemeSwitcherComponent/>

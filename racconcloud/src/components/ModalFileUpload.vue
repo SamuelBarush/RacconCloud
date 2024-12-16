@@ -27,10 +27,10 @@
           <div class="modal-file-preview-description">
             <div class="modal-file-preview-text">
               <p>{{ file.name }}</p>
-              <p v-if="file.status !== 'completed'" @click="uploadFile(file, index)">
+              <p v-if="file.status !== 'completed'" class="modal-file-preview-text-p" @click="uploadFile(file, index)">
                 {{ file.status === 'uploading' ? 'Subiendo...' : 'Subir' }}
               </p>
-              <p v-else>Completado</p>
+              <p v-else class="modal-file-preview-text-p">Completado</p>
             </div>
             <div class="modal-file-preview-progress">
               <div 
@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="modal-file-option">
-      <button @click="closeModal2">Cancelar</button>
+      <button @click="closeModal2">Cerrar</button>
     </div>
   </div>
 </template>
