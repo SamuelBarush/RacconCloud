@@ -10,10 +10,8 @@
 - **Sass**: Estilos
 
 ## Requisitos Previos
-- _[Node.JS][1]_
-[1]:https://nodejs.org/es
-- _[VueJS][2]_
-[2]:https://vuejs.org/
+- _[Node.JS](https://nodejs.org/es)_
+- _[VueJS](https://vuejs.org/)_
 
 ## Ejecución de Proyecto
 ### Clonar el Repositorio
