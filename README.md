@@ -10,9 +10,9 @@
 - **Sass**: Estilos
 
 ## Requisitos Previos
-- [_Node.JS_][1]
+- _[Node.JS][1]_
 [1]:https://nodejs.org/es
-- [_VueJS_][2]
+- _[VueJS][2]_
 [2]:https://vuejs.org/
 
 ## Ejecución de Proyecto
