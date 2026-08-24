@@ -12,15 +12,5 @@ module.exports = defineConfig({
         `
       }
     }
-  },
-  devServer:{
-    host: 'racooncloud.me',
-    port: 443,
-    allowedHosts:"all",
-    https:{
-      key: fs.readFileSync('./ssl/racooncloud_me.key'),
-      cert: fs.readFileSync('./ssl/racooncloud_me.crt'),
-      ca: fs.readFileSync('./ssl/racooncloud_me.ca-bundle')
-    }
   }
 })
