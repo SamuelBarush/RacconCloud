@@ -4,54 +4,38 @@
 
 
 ## Tecnologías Utilizadas
-- **VueJS**: Estructuración del Proyecto
-- **Vue Router**: Gestion y Control de Rutas
+- **VueJS**: Arquitectura del Proyecto
+- **Vue Router**: Gestión y Control de Rutas
 - **Pinia**: Administración de Estados
 - **Sass**: Estilos
 
 ## Requisitos Previos
-- [Node.JS]
-### Instalación en Linux (Basadas en Debian)
-```bash
-apt install nodejs
-```
-- [NPM]
-### Instalación en Linux (Basadas en Debian)
-```bash
-apt install npm
-```
-- [VueJS]
-### Instalación con NPM
-```bash
-npm install -g @vue/cli
-```
-- [Sass]
-### Instalación con NPM
-```bash
-npm install -g sass
-```
+- [_Node.JS_][1]
+[1]:https://nodejs.org/es
+- [_VueJS_][2]
+[2]:https://vuejs.org/
 
-## Ejecucion de FrontEnd
+## Ejecución de Proyecto
 ### Clonar el Repositorio
 ```bash
 git clone https://github.com/SamuelBarush/RacconCloud
 cd RacconCloud
 ```
 
-## Instalar Librerias faltantes como Pinia y Pinia-Plugin-PersistedState
+### Iniciar Servicio
 ```bash
-npm install pinia
-npm install pinia-plugin-persistedstate
+npm run start
 ```
 
-### Iniciar Servidor
+## Compilar Proyecto
 ```bash
-cd racconcloud
-npm run serve
+npm run build
 ```
+**Montar Proyecto en Servidor** _/dist_
 
-## ⚠️ Advertencia
-⚠️ **IMPORTANTE:** Si hay falta de librerias para ejecutar el Servidor ejecutar el siguiente comando para instalar librerias y plugins faltantes
+
+## ⚠️ **IMPORTANTE:** 
+Si hay falta de librerias para ejecutar el servicio, ejecutar el siguiente comando para instalar librerias y plugins faltantes
 ```bash
 npm install
 ```
